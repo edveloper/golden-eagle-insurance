@@ -279,7 +279,7 @@ export default function ContactPage() {
             <div className="flex justify-center">
               <div className="relative h-96 w-full max-w-2xl rounded-lg overflow-hidden">
               <img
-                src="/nairobi-city-map-location.jpg"
+                src="/map-of-nairobi-kenya-with-location-marker-showing-.jpg"
                 alt="Golden Eagle Insurance Location Map"
                 className="object-cover w-160 h-120"
               />
