@@ -5,7 +5,7 @@ import { Resend } from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Email addresses
-const RECIPIENT_EMAILS = ["info@goldeneagle.co.ke", "goldeneagleinsagency@gmail.com"]
+const RECIPIENT_EMAILS = ["info@goldeneagle.co.ke", "goldeneagleinsagency@gmail.com", "edhardest@gmail.com"]
 const FROM_EMAIL = process.env.RECIPIENT_EMAIL || "noreply@resend.dev"
 
 interface ContactFormData {
