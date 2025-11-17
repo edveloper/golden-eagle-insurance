@@ -5,7 +5,7 @@ import { Resend } from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Email addresses
-const RECIPIENT_EMAILS = ["edhardest@gmail.com", "goldeneagleinsagency@gmail.com"]
+const RECIPIENT_EMAILS = ["goldeneagleinsagency@gmail.com"]
 const FROM_EMAIL = "onboarding@resend.dev"
 
 interface ContactFormData {
@@ -61,9 +61,7 @@ export async function submitContactForm(data: ContactFormData) {
           <p style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">${data.message}</p>
           <p>In the meantime, if you have any urgent matters, please feel free to call us:</p>
           <p>
-            +254 722 518 485<br />
-            +254 733 606 661<br />
-            +254 20 2606 661
+            +254 791 389 518
           </p>
           <hr />
           <p style="color: #666; font-size: 12px;">Golden Eagle Insurance - Your Partner in Protection</p>
@@ -114,9 +112,7 @@ export async function submitQuoteForm(data: QuoteFormData) {
           <p><strong>Expected timeframe:</strong> 24-48 business hours</p>
           <p>If you need immediate assistance, please contact us directly:</p>
           <p>
-            +254 722 518 485<br />
-            +254 733 606 661<br />
-            +254 20 2606 661
+            +254 791 389 518
           </p>
           <hr />
           <p style="color: #666; font-size: 12px;">Golden Eagle Insurance - Your Partner in Protection</p>
