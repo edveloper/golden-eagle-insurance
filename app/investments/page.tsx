@@ -4,11 +4,9 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import {
   TrendingUp,
-  PiggyBank,
-  GraduationCap,
-  Home,
   Briefcase,
   Shield,
   Globe,
@@ -26,9 +24,13 @@ export default function InvestmentsPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-14 text-white md:py-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_8%_20%,rgba(197,161,0,0.2),transparent_34%),radial-gradient(circle_at_86%_80%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_50%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Wealth Strategy
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-balance text-secondary">Investment Solutions</h1>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
                 Build wealth, secure your future, and achieve your financial goals with our comprehensive investment
@@ -39,9 +41,9 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Investment Partners */}
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Our Investment Partners
               </h2>
@@ -52,7 +54,7 @@ export default function InvestmentsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <Card>
-                <CardContent className="p-8">
+                <CardContent className="p-8 h-full flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
                       <Globe className="h-8 w-8 text-secondary" />
@@ -66,11 +68,19 @@ export default function InvestmentsPage() {
                     A leading international life insurance company offering innovative investment solutions with global
                     reach and proven track record of excellence.
                   </p>
+                  <a
+                    href="https://www.investors-trust.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto pt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Visit Investors Trust <ArrowRight className="ml-1 h-4 w-4" />
+                  </a>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-8">
+                <CardContent className="p-8 h-full flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
                       <Shield className="h-8 w-8 text-secondary" />
@@ -84,6 +94,14 @@ export default function InvestmentsPage() {
                     Trusted provider of international investment and savings solutions, helping clients build and
                     protect wealth across generations.
                   </p>
+                  <a
+                    href="https://www.rl360.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto pt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Visit RL360 <ArrowRight className="ml-1 h-4 w-4" />
+                  </a>
                 </CardContent>
               </Card>
             </div>
@@ -91,9 +109,10 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Investment Products */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Asset Classes</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Investment Products
               </h2>
@@ -103,7 +122,7 @@ export default function InvestmentsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                     <TrendingUp className="h-7 w-7 text-secondary" />
@@ -112,10 +131,16 @@ export default function InvestmentsPage() {
                   <p className="text-sm text-muted-foreground">
                     Invest in equity markets and participate in company growth with carefully selected stock portfolios.
                   </p>
+                  <Link
+                    href="/investments#shares"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Explore Shares <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                     <Briefcase className="h-7 w-7 text-secondary" />
@@ -124,10 +149,16 @@ export default function InvestmentsPage() {
                   <p className="text-sm text-muted-foreground">
                     Professionally managed diversified portfolios offering balanced risk and return potential.
                   </p>
+                  <Link
+                    href="/investments#mutual-funds"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Explore Funds <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                     <Award className="h-7 w-7 text-secondary" />
@@ -136,10 +167,16 @@ export default function InvestmentsPage() {
                   <p className="text-sm text-muted-foreground">
                     Exchange-traded funds providing low-cost access to diversified market exposure and flexibility.
                   </p>
+                  <Link
+                    href="/investments#etfs"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Explore ETFs <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                     <Shield className="h-7 w-7 text-secondary" />
@@ -148,16 +185,27 @@ export default function InvestmentsPage() {
                   <p className="text-sm text-muted-foreground">
                     Fixed-income securities offering stable returns and capital preservation for conservative investors.
                   </p>
+                  <Link
+                    href="/investments#bonds"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80"
+                  >
+                    Explore Bonds <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
                 </CardContent>
               </Card>
+            </div>
+
+            <div className="mx-auto mt-10 max-w-4xl rounded-xl border border-primary/10 bg-muted/60 px-5 py-4 text-sm text-muted-foreground">
+              Investment values can fluctuate, and past performance does not guarantee future results. Our advisory
+              team helps match strategy to your goals and risk profile.
             </div>
           </div>
         </section>
 
         {/* Shares - Magnificent 7 */}
-        <section className="py-16 md:py-24 bg-muted" id="shares">
+        <section className="py-14 md:py-20 bg-muted" id="shares">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Shares - Magnificent 7 & More
               </h2>
@@ -168,18 +216,18 @@ export default function InvestmentsPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { name: "Apple", symbol: "AAPL", icon: siApple, color: "#555555" },
-                { name: "Microsoft", symbol: "MSFT", icon: null, initials: "MS", color: "#0078D4" },
-                { name: "Google", symbol: "GOOGL", icon: siGoogle, color: "#4285F4" },
-                { name: "Amazon", symbol: "AMZN", icon: null, initials: "AM", color: "#FF9900" },
-                { name: "Tesla", symbol: "TSLA", icon: siTesla, color: "#E82127" },
-                { name: "Meta", symbol: "META", icon: siMeta, color: "#0A66C2" },
-                { name: "Nvidia", symbol: "NVDA", icon: siNvidia, color: "#76B900" },
+                { name: "Apple", symbol: "AAPL", icon: siApple, color: "#555555", link: "https://investor.apple.com/" },
+                { name: "Microsoft", symbol: "MSFT", icon: null, initials: "MS", color: "#0078D4", link: "https://www.microsoft.com/en-us/Investor/" },
+                { name: "Google", symbol: "GOOGL", icon: siGoogle, color: "#4285F4", link: "https://abc.xyz/investor/" },
+                { name: "Amazon", symbol: "AMZN", icon: null, initials: "AM", color: "#FF9900", link: "https://ir.aboutamazon.com/" },
+                { name: "Tesla", symbol: "TSLA", icon: siTesla, color: "#E82127", link: "https://ir.tesla.com/" },
+                { name: "Meta", symbol: "META", icon: siMeta, color: "#0A66C2", link: "https://investor.atmeta.com/" },
+                { name: "Nvidia", symbol: "NVDA", icon: siNvidia, color: "#76B900", link: "https://investor.nvidia.com/" },
                 { name: "Other Stocks", symbol: "Various", icon: null, initials: "+", color: "#c9a961" },
               ].map((stock) => {
                 const IconComponent = stock.icon
                 return (
-                  <Card key={stock.symbol} className="hover:shadow-lg transition-shadow">
+                  <Card key={stock.symbol} className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                     <CardContent className="p-6 text-center">
                       <div
                         className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -201,6 +249,16 @@ export default function InvestmentsPage() {
                       </div>
                       <h3 className="font-bold text-primary mb-1">{stock.name}</h3>
                       <p className="text-sm text-muted-foreground">{stock.symbol}</p>
+                      {stock.link && (
+                        <a
+                          href={stock.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex items-center text-xs font-medium text-secondary hover:text-secondary/80"
+                        >
+                          Official Site <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                        </a>
+                      )}
                     </CardContent>
                   </Card>
                 )
@@ -223,16 +281,16 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Mutual Funds */}
-        <section className="py-16 md:py-24" id="mutual-funds">
+        <section className="py-14 md:py-20" id="mutual-funds">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">Mutual Funds</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
                 Professionally managed portfolios tailored to your investment objectives
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-10">
               {[
                 { name: "JP Morgan", symbol: "JPM", initials: "JP", color: "#117DBA" },
                 { name: "S&P 500 Fund", symbol: "SPY", initials: "SP", color: "#1F77B4" },
@@ -241,7 +299,7 @@ export default function InvestmentsPage() {
                 { name: "Goldman Sachs", symbol: "GS", initials: "GS", color: "#0066CC" },
                 { name: "Vanguard Fund", symbol: "VTI", initials: "VG", color: "#8B4513" },
               ].map((fund) => (
-                <Card key={fund.symbol} className="hover:shadow-lg transition-shadow">
+                <Card key={fund.symbol} className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <CardContent className="p-6 text-center">
                     <div
                       className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -273,9 +331,9 @@ export default function InvestmentsPage() {
         </section>
 
         {/* ETFs */}
-        <section className="py-16 md:py-24 bg-muted" id="etfs">
+        <section className="py-14 md:py-20 bg-muted" id="etfs">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Exchange-Traded Funds (ETFs)
               </h2>
@@ -293,7 +351,7 @@ export default function InvestmentsPage() {
                 { name: "Sector ETF", description: "Focused exposure to specific industries" },
                 { name: "Global ETF", description: "International market diversification" },
               ].map((etf) => (
-                <Card key={etf.name} className="hover:shadow-lg transition-shadow">
+                <Card key={etf.name} className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <CardContent className="p-6">
                     <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                       <Award className="h-6 w-6 text-secondary" />
@@ -320,9 +378,9 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Bonds */}
-        <section className="py-16 md:py-24" id="bonds">
+        <section className="py-14 md:py-20" id="bonds">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">Bonds</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
                 Fixed-income securities for stable, predictable returns
@@ -338,7 +396,7 @@ export default function InvestmentsPage() {
                 { name: "High-Yield Bonds", description: "Higher returns with moderate risk" },
                 { name: "International Bonds", description: "Diversified global fixed-income exposure" },
               ].map((bond) => (
-                <Card key={bond.name} className="hover:shadow-lg transition-shadow">
+                <Card key={bond.name} className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <CardContent className="p-6">
                     <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
                       <Shield className="h-6 w-6 text-secondary" />
@@ -365,9 +423,10 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Investment Goals */}
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Long-Term Planning</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Achieve Your Financial Goals
               </h2>
@@ -376,13 +435,10 @@ export default function InvestmentsPage() {
               </p>
             </div>
 
-            <div className="space-y-16">
+            <div className="space-y-12">
               {/* Education Funds */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                    <GraduationCap className="h-8 w-8 text-secondary" />
-                  </div>
+              <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+                <div className="flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                     Education Funds
                   </h3>
@@ -428,13 +484,16 @@ export default function InvestmentsPage() {
                     </Button>
                   </Link>
                 </div>
-                <div className="relative h-[400px] rounded-lg overflow-hidden">
-                  <img
+                <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                  <Image
                     src="/education-funds-graduation-kenya.jpg"
                     alt="Education Funds"
-                    className="object-cover w-full h-full"
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 92vw"
+                    quality={82}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/35 flex items-center justify-center">
                     <p className="text-white text-center font-serif text-lg px-4 text-balance">
                       "A graduation gown - the most valuable clothing item you can buy!"
                     </p>
@@ -443,18 +502,19 @@ export default function InvestmentsPage() {
               </div>
 
               {/* Retirement Planning */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div className="order-2 lg:order-1 relative h-[400px] rounded-lg overflow-hidden">
-                  <img
+              <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+                <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                  <Image
                     src="/retirement-planning-couple-kenya.jpg"
                     alt="Retirement Planning"
-                    className="object-cover w-full h-full"
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 92vw"
+                    quality={82}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                    <PiggyBank className="h-8 w-8 text-secondary" />
-                  </div>
+                <div className="order-1 flex flex-col justify-center lg:order-2">
                   <h3 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                     Retirement Planning
                   </h3>
@@ -503,11 +563,8 @@ export default function InvestmentsPage() {
               </div>
 
               {/* Wealth Creation */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                    <Home className="h-8 w-8 text-secondary" />
-                  </div>
+              <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+                <div className="flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                     Wealth Creation
                   </h3>
@@ -553,12 +610,16 @@ export default function InvestmentsPage() {
                     </Button>
                   </Link>
                 </div>
-                <div className="relative h-[400px] rounded-lg overflow-hidden">
-                  <img
+                <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                  <Image
                     src="/wealth-creation-financial-symbols-kenya.jpg"
                     alt="Wealth Creation"
-                    className="object-cover w-full h-full"
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 92vw"
+                    quality={82}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
                 </div>
               </div>
             </div>
@@ -566,10 +627,10 @@ export default function InvestmentsPage() {
         </section>
 
         {/* Why Invest With Us */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
+              <div className="text-center mb-10">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                   Why Invest With Golden Eagle?
                 </h2>
@@ -632,7 +693,7 @@ export default function InvestmentsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-white">
+        <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">
               Start Your Investment Journey Today
@@ -664,3 +725,5 @@ export default function InvestmentsPage() {
     </div>
   )
 }
+
+

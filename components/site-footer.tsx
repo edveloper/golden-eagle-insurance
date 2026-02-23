@@ -4,38 +4,39 @@ import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "luc
 
 export function SiteFooter() {
   return (
-    <footer className="bg-primary text-white">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="relative overflow-hidden bg-primary text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(197,161,0,0.14),transparent_34%),radial-gradient(circle_at_88%_84%,rgba(0,119,190,0.18),transparent_38%)]" />
+      <div className="container relative mx-auto px-4 pt-14 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
-            <Link href="/" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer">
-              <Image src="/golden-eagle-logo.png" alt="Golden Eagle Logo" width={32} height={32} className="h-11 w-11" />
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-7">
+            <Link href="/" className="mb-4 flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-80">
+              <Image src="/golden-eagle-logo.png" alt="Golden Eagle Logo" width={32} height={32} className="h-11 w-11 rounded-full ring-1 ring-secondary/40" />
               <h3 className="text-2xl font-serif font-bold text-secondary">Golden Eagle</h3>
             </Link>
-            <p className="text-sm text-gray-300 mb-4">
-              Your trusted insurance and investment partner in Kenya since 2006, providing comprehensive coverage and
+            <p className="mb-4 text-sm text-gray-300">
+              Your trusted insurance and investment partner since 2006, providing comprehensive coverage and
               wealth-building solutions for individuals and businesses.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="#" className="rounded-full border border-white/15 p-2 text-gray-300 transition-colors hover:text-secondary">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="#" className="rounded-full border border-white/15 p-2 text-gray-300 transition-colors hover:text-secondary">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="#" className="rounded-full border border-white/15 p-2 text-gray-300 transition-colors hover:text-secondary">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="hover:text-secondary transition-colors">
+              <a href="#" className="rounded-full border border-white/15 p-2 text-gray-300 transition-colors hover:text-secondary">
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-7">
+            <h4 className="mb-4 font-semibold text-secondary">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/about" className="text-gray-300 hover:text-secondary transition-colors">
@@ -66,12 +67,12 @@ export function SiteFooter() {
           </div>
 
           {/* Insurance Products */}
-          <div>
-            <h4 className="font-semibold mb-4">Insurance Products</h4>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-7">
+            <h4 className="mb-4 font-semibold text-secondary">Insurance Products</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/products#motor" className="text-gray-300 hover:text-secondary transition-colors">
-                  Motor Insurance
+                <Link href="/products#professional-indemnity" className="text-gray-300 hover:text-secondary transition-colors">
+                  Professional Indemnity
                 </Link>
               </li>
               <li>
@@ -98,8 +99,8 @@ export function SiteFooter() {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-7">
+            <h4 className="mb-4 font-semibold text-secondary">Contact Us</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
@@ -132,9 +133,20 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-gray-300">
+        <div className="mt-12 pt-8 text-center text-sm text-gray-300 pb-4">
           <p>&copy; {new Date().getFullYear()} Golden Eagle Insurance Agency Limited. All rights reserved.</p>
           <p className="mt-2">Licensed by the Insurance Regulatory Authority of Kenya</p>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs">
+            <Link href="/privacy-policy" className="text-gray-300 hover:text-secondary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/cookie-policy" className="text-gray-300 hover:text-secondary transition-colors">
+              Cookie Policy
+            </Link>
+            <Link href="/terms-of-use" className="text-gray-300 hover:text-secondary transition-colors">
+              Terms of Use
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

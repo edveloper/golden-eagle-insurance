@@ -27,11 +27,11 @@ export default function FAQPage() {
         },
         {
           q: "How do I get a quote?",
-          a: "You can get a free quote by filling out our online quote form, calling us at +254 700 000 000, or visiting our office. Our insurance experts will provide you with a personalized quote within 24 hours based on your specific needs.",
+          a: "You can get a free quote by filling out our online quote form, calling us at +254 791 389 518, or visiting our office. Our insurance experts will provide you with a personalized quote within 24 hours based on your specific needs.",
         },
         {
           q: "Is Golden Eagle Insurance licensed?",
-          a: "Yes, Golden Eagle Insurance Agency is fully licensed and regulated by the Insurance Regulatory Authority (IRA) of Kenya. We have been operating since 2010 and maintain the highest standards of professionalism and compliance.",
+          a: "Yes, Golden Eagle Insurance Agency is fully licensed and regulated by the Insurance Regulatory Authority (IRA) of Kenya. We have been operating since 2006 and maintain the highest standards of professionalism and compliance.",
         },
         {
           q: "How can I pay my insurance premium?",
@@ -103,7 +103,7 @@ export default function FAQPage() {
         },
         {
           q: "Can I track my claim status?",
-          a: "Yes, once you submit a claim, you'll receive a claim reference number. You can track your claim status by calling our claims department at +254 700 000 000 or emailing claims@goldeneagle.co.ke with your reference number.",
+          a: "Yes, once you submit a claim, you'll receive a claim reference number. You can track your claim status by calling our claims department at +254 791 389 518 or emailing claims@goldeneagle.co.ke with your reference number.",
         },
       ],
     },
@@ -143,9 +143,13 @@ export default function FAQPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.2),transparent_38%),linear-gradient(120deg,#09172d_0%,#0a1d37_50%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Knowledge Base
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">
                 Frequently Asked Questions
               </h1>
@@ -231,39 +235,39 @@ export default function FAQPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <Card>
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-6 text-center h-full flex flex-col">
                   <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Phone className="h-7 w-7 text-secondary" />
                   </div>
                   <h3 className="font-semibold mb-2">Call Us</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Speak to our customer service team</p>
-                  <a href="tel:+254791389518" className="text-accent hover:underline font-medium">
+                  <p className="text-sm text-muted-foreground">Speak to our customer service team</p>
+                  <a href="tel:+254791389518" className="mt-auto pt-4 text-accent hover:underline font-medium">
                     +254 791 389 518
                   </a>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-6 text-center h-full flex flex-col">
                   <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Mail className="h-7 w-7 text-secondary" />
                   </div>
                   <h3 className="font-semibold mb-2">Email Us</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Send us your questions</p>
-                  <a href="mailto:info@goldeneagle.co.ke" className="text-accent hover:underline font-medium">
+                  <p className="text-sm text-muted-foreground">Send us your questions</p>
+                  <a href="mailto:info@goldeneagle.co.ke" className="mt-auto pt-4 text-accent hover:underline font-medium">
                     info@goldeneagle.co.ke
                   </a>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-6 text-center h-full flex flex-col">
                   <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <MessageCircle className="h-7 w-7 text-secondary" />
                   </div>
                   <h3 className="font-semibold mb-2">Contact Form</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Fill out our contact form</p>
-                  <Link href="/contact" className="text-accent hover:underline font-medium">
+                  <p className="text-sm text-muted-foreground">Fill out our contact form</p>
+                  <Link href="/contact" className="mt-auto pt-4 text-accent hover:underline font-medium">
                     Go to Contact Page
                   </Link>
                 </CardContent>
@@ -292,3 +296,4 @@ export default function FAQPage() {
     </div>
   )
 }
+

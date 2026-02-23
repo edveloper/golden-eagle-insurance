@@ -2,7 +2,8 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Heart, Shield, Home, Briefcase, Plane, CheckCircle, ArrowRight, Lock } from "lucide-react"
+import Image from "next/image"
+import { CheckCircle, ArrowRight } from "lucide-react"
 
 export const metadata = {
   title: "Insurance Products | Golden Eagle Insurance Agency",
@@ -17,9 +18,13 @@ export default function ProductsPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(197,161,0,0.22),transparent_34%),radial-gradient(circle_at_85%_78%,rgba(0,119,190,0.22),transparent_38%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Coverage Portfolio
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-balance text-secondary">
                 Comprehensive Insurance Solutions
               </h1>
@@ -31,13 +36,10 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section id="professional-indemnity" className="py-16 md:py-24 scroll-mt-20">
+        <section id="professional-indemnity" className="py-14 md:py-20 scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Briefcase className="h-8 w-8 text-secondary" />
-                </div>
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="flex flex-col justify-center">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Professional Indemnity Insurance
                 </h2>
@@ -92,32 +94,37 @@ export default function ProductsPage() {
                   </Button>
                 </Link>
               </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
+              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/professional-indemnity-insurance-kenya.jpg"
                   alt="Professional Indemnity Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Health Insurance */}
-        <section id="health" className="py-16 md:py-24 bg-muted scroll-mt-20">
+        <section id="health" className="py-14 md:py-20 bg-muted scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 relative h-[400px] rounded-lg overflow-hidden">
-                <img
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/health-insurance-medical-care-kenya.jpg"
                   alt="Health Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
-              <div className="order-1 lg:order-2">
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Heart className="h-8 w-8 text-secondary" />
-                </div>
+              <div className="order-1 flex flex-col justify-center lg:order-2">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Health Insurance
                 </h2>
@@ -170,13 +177,10 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section id="cyber-security" className="py-16 md:py-24 scroll-mt-20">
+        <section id="cyber-security" className="py-14 md:py-20 scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Lock className="h-8 w-8 text-secondary" />
-                </div>
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="flex flex-col justify-center">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Cyber Security Insurance
                 </h2>
@@ -227,32 +231,37 @@ export default function ProductsPage() {
                   </Button>
                 </Link>
               </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
+              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/cyber-security-insurance-kenya.jpg"
                   alt="Cyber Security Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Life Insurance */}
-        <section id="life" className="py-16 md:py-24 bg-muted scroll-mt-20">
+        <section id="life" className="py-14 md:py-20 bg-muted scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 relative h-[400px] rounded-lg overflow-hidden">
-                <img
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/family-life-insurance-protection-kenya.jpg"
                   alt="Life Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
-              <div className="order-1 lg:order-2">
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Shield className="h-8 w-8 text-secondary" />
-                </div>
+              <div className="order-1 flex flex-col justify-center lg:order-2">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Life Insurance
                 </h2>
@@ -304,20 +313,21 @@ export default function ProductsPage() {
         </section>
 
         {/* Property Insurance */}
-        <section id="property" className="py-16 md:py-24 bg-muted scroll-mt-20">
+        <section id="property" className="py-14 md:py-20 bg-muted scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 relative h-[400px] rounded-lg overflow-hidden">
-                <img
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/home-property-insurance-kenya.jpg"
                   alt="Property Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
-              <div className="order-1 lg:order-2">
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Home className="h-8 w-8 text-secondary" />
-                </div>
+              <div className="order-1 flex flex-col justify-center lg:order-2">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Property Insurance
                 </h2>
@@ -371,13 +381,10 @@ export default function ProductsPage() {
         </section>
 
         {/* Business Insurance */}
-        <section id="business" className="py-16 md:py-24 scroll-mt-20">
+        <section id="business" className="py-14 md:py-20 scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Briefcase className="h-8 w-8 text-secondary" />
-                </div>
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="flex flex-col justify-center">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Business Insurance
                 </h2>
@@ -424,32 +431,37 @@ export default function ProductsPage() {
                   </Button>
                 </Link>
               </div>
-              <div className="relative h-[400px] rounded-lg overflow-hidden">
-                <img
+              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/business-insurance-office-kenya.jpg"
                   alt="Business Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Travel Insurance */}
-        <section id="travel" className="py-16 md:py-24 bg-muted scroll-mt-20">
+        <section id="travel" className="py-14 md:py-20 bg-muted scroll-mt-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 relative h-[400px] rounded-lg overflow-hidden">
-                <img
+            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
+                <Image
                   src="/travel-insurance-vacation-kenya.jpg"
                   alt="Travel Insurance"
-                  className="object-cover w-full h-full"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 92vw"
+                  quality={82}
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
               </div>
-              <div className="order-1 lg:order-2">
-                <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
-                  <Plane className="h-8 w-8 text-secondary" />
-                </div>
+              <div className="order-1 flex flex-col justify-center lg:order-2">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
                   Travel Insurance
                 </h2>
@@ -501,7 +513,7 @@ export default function ProductsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-white">
+        <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">
               Not Sure Which Product is Right for You?
@@ -534,3 +546,4 @@ export default function ProductsPage() {
     </div>
   )
 }
+

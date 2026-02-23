@@ -20,29 +20,34 @@ export default function ContactPage() {
     phone: "",
     subject: "",
     message: "",
+    website: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus("idle")
+    setErrorMessage("")
 
     try {
       const result = await submitContactForm(formData)
 
       if (result.success) {
         setSubmitStatus("success")
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "", website: "" })
         setTimeout(() => setSubmitStatus("idle"), 5000)
       } else {
         setSubmitStatus("error")
+        setErrorMessage(result.error || "Please try again.")
         setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
       console.error("[v0] Form submission error:", error)
       setSubmitStatus("error")
+      setErrorMessage("Please try again.")
       setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
       setIsSubmitting(false)
@@ -62,9 +67,13 @@ export default function ContactPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(197,161,0,0.2),transparent_34%),radial-gradient(circle_at_84%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Reach Our Team
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">Get in Touch</h1>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
                 Have questions about our insurance products? Our team is here to help you find the perfect coverage for
@@ -109,7 +118,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold mb-2">Call Us</h3>
                         <p className="text-sm text-muted-foreground">
-                          <a href="tel:+254722518485" className="hover:text-accent transition-colors">
+                          <a href="tel:+254791389518" className="hover:text-accent transition-colors">
                             +254 791 389 518
                           </a>
                         </p>
@@ -181,11 +190,21 @@ export default function ContactPage() {
 
                     {submitStatus === "error" && (
                       <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                        Sorry, there was an error sending your message. Please try again or contact us directly.
+                        Sorry, there was an error sending your message. {errorMessage || "Please try again or contact us directly."}
                       </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      <input
+                        type="text"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        className="hidden"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                      />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="name">Full Name *</Label>
@@ -261,6 +280,17 @@ export default function ContactPage() {
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
+                      <p className="text-xs text-muted-foreground">
+                        By submitting, you agree to our{" "}
+                        <a href="/privacy-policy" className="text-primary underline hover:text-primary/80">
+                          Privacy Policy
+                        </a>{" "}
+                        and{" "}
+                        <a href="/terms-of-use" className="text-primary underline hover:text-primary/80">
+                          Terms of Use
+                        </a>
+                        .
+                      </p>
                     </form>
                   </CardContent>
                 </Card>
@@ -293,3 +323,4 @@ export default function ContactPage() {
     </div>
   )
 }
+

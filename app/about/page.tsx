@@ -16,9 +16,13 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_88%_80%,rgba(0,119,190,0.2),transparent_36%),linear-gradient(120deg,#09172d_0%,#0a1d37_50%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Company Profile
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">
                 About Golden Eagle Insurance Agency Limited
               </h1>
@@ -31,7 +35,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -67,7 +71,7 @@ export default function AboutPage() {
         </section>
 
         {/* Mission, Vision, Values */}
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Mission */}
@@ -116,9 +120,9 @@ export default function AboutPage() {
         </section>
 
         {/* Core Values Details */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 What Drives Us
               </h2>
@@ -176,9 +180,9 @@ export default function AboutPage() {
         </section>
 
         {/* Leadership Team */}
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Meet Our Team
               </h2>
@@ -187,17 +191,10 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Team Member 1 */}
-              <Card className="overflow-hidden">
-                <div className="relative h-16"> {/* Previously set at h-64 to include image */}
-                 {/* <img
-                    src="/professional-african-business-executive-woman.jpg"
-                    alt="Lydia Wanjiku Mwangi"
-                    className="object-cover w-full h-full"
-                  /> */}
-                </div>
-                <CardContent className="p-6 text-center">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <CardContent className="p-7 text-center">
                   <h3 className="text-xl font-semibold mb-1">Lydia Wanjiku Mwangi</h3>
                   <p className="text-sm text-muted-foreground mb-2">Director & Founder</p>
                   <p className="text-xs text-muted-foreground">
@@ -208,15 +205,8 @@ export default function AboutPage() {
               </Card>
 
               {/* Team Member 2 */}
-              <Card className="overflow-hidden">
-                <div className="relative h-16"> {/* Previously set at h-64 to include image */}
-                  {/* <img
-                    src="/professional-african-business-executive-man.jpg"
-                    alt="Alvin Lee Waithaka"
-                    className="object-cover w-full h-full"
-                  /> */}
-                </div>
-                <CardContent className="p-6 text-center">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <CardContent className="p-7 text-center">
                   <h3 className="text-xl font-semibold mb-1">Alvin Lee Waithaka</h3>
                   <p className="text-sm text-muted-foreground mb-2">Marketing Director</p>
                   <p className="text-xs text-muted-foreground">
@@ -230,9 +220,9 @@ export default function AboutPage() {
         </section>
 
         {/* Achievements */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Our Achievements
               </h2>
@@ -338,7 +328,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-white">
+        <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">
               Ready to Experience the Golden Eagle Difference?
@@ -366,3 +356,4 @@ export default function AboutPage() {
     </div>
   )
 }
+

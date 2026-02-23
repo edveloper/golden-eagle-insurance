@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import {
-  Car,
   Heart,
   Home,
   Briefcase,
@@ -27,21 +26,30 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-primary text-white overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-accent/20" />
-          <div className="container mx-auto px-4 py-20 md:py-32 relative">
+        <section className="relative overflow-hidden bg-primary text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(197,161,0,0.2),transparent_36%),radial-gradient(circle_at_85%_80%,rgba(0,119,190,0.22),transparent_38%),linear-gradient(120deg,#09172d_0%,#0a1d37_48%,#0d2749_100%)]" />
+          <div className="animate-drift absolute -left-24 top-1/3 h-64 w-64 rounded-full bg-secondary/15 blur-3xl" />
+          <div className="animate-float-slow absolute -right-20 top-16 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
+
+          <div className="container relative mx-auto px-4 py-20 md:py-28">
             <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-balance text-secondary">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.15em] text-white/90 uppercase">
+                Insurance + Investment Advisory
+              </div>
+              <h1 className="mb-6 text-4xl font-serif font-bold text-balance text-secondary md:text-6xl">
                 Trusted Financial & Insurance Partner Since 2006
               </h1>
-              <p className="text-lg md:text-xl text-gray-200 mb-8 text-pretty leading-relaxed">
+              <p className="mb-8 max-w-2xl text-lg leading-relaxed text-gray-100 text-pretty md:text-xl">
                 Golden Eagle Insurance Agency Limited offers trusted financial and risk management solutions. We
                 represent multiple reputable insurance companies and investment partners globally, providing tailored
                 services that empower our clients to protect, grow, and secure their wealth.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/quote">
-                  <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                  <Button
+                    size="lg"
+                    className="bg-secondary font-semibold text-primary shadow-[0_12px_36px_rgba(197,161,0,0.35)] hover:bg-secondary/90"
+                  >
                     Get a Free Quote
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -50,7 +58,7 @@ export default function HomePage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+                    className="border-white/60 bg-white/5 text-white hover:bg-white hover:text-primary"
                   >
                     Contact Us
                   </Button>
@@ -59,30 +67,30 @@ export default function HomePage() {
             </div>
           </div>
           {/* Decorative Element */}
-          <div className="absolute bottom-0 right-0 w-1/3 h-full opacity-10">
-            <div className="absolute bottom-10 right-10 w-64 h-64 border-4 border-secondary rounded-full" />
-            <div className="absolute bottom-20 right-20 w-48 h-48 border-4 border-secondary rounded-full" />
+          <div className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-1/3 opacity-25 lg:block">
+            <div className="absolute bottom-10 right-10 h-64 w-64 rounded-full border border-secondary/50" />
+            <div className="absolute bottom-20 right-20 h-48 w-48 rounded-full border border-secondary/50" />
           </div>
         </section>
 
         {/* Trust Indicators */}
-        <section className="py-12 bg-muted">
+        <section className="bg-muted py-10 md:py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">18+</div>
+              <div className="rounded-xl border border-primary/10 bg-white p-4 text-center shadow-[0_10px_24px_rgba(10,29,55,0.06)]">
+                <div className="mb-2 text-3xl font-bold text-primary md:text-4xl">18+</div>
                 <div className="text-sm text-muted-foreground">Years of Excellence</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">2</div>
+              <div className="rounded-xl border border-primary/10 bg-white p-4 text-center shadow-[0_10px_24px_rgba(10,29,55,0.06)]">
+                <div className="mb-2 text-3xl font-bold text-primary md:text-4xl">2</div>
                 <div className="text-sm text-muted-foreground">Powerful Divisions</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">9+</div>
+              <div className="rounded-xl border border-primary/10 bg-white p-4 text-center shadow-[0_10px_24px_rgba(10,29,55,0.06)]">
+                <div className="mb-2 text-3xl font-bold text-primary md:text-4xl">9+</div>
                 <div className="text-sm text-muted-foreground">Insurance Partners</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">AKI</div>
+              <div className="rounded-xl border border-primary/10 bg-white p-4 text-center shadow-[0_10px_24px_rgba(10,29,55,0.06)]">
+                <div className="mb-2 text-3xl font-bold text-primary md:text-4xl">AKI</div>
                 <div className="text-sm text-muted-foreground">Award Winner</div>
               </div>
             </div>
@@ -90,9 +98,10 @@ export default function HomePage() {
         </section>
 
         {/* Two Divisions Overview */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Integrated Advisory</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Two Powerful Divisions
               </h2>
@@ -103,7 +112,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
               {/* Investment Division card */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
                     <LineChart className="h-8 w-8 text-secondary" />
@@ -134,7 +143,7 @@ export default function HomePage() {
               </Card>
 
               {/* Insurance Division card */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 bg-secondary/20 rounded-lg flex items-center justify-center mb-6">
                     <Scale className="h-8 w-8 text-secondary" />
@@ -168,9 +177,10 @@ export default function HomePage() {
         </section>
 
         {/* Insurance Products */}
-        <section className="py-16 md:py-24 bg-muted">
+        <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Insurance Coverage</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Our Insurance Products
               </h2>
@@ -181,7 +191,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Medical Insurance */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Heart className="h-6 w-6 text-secondary" />
@@ -192,7 +202,7 @@ export default function HomePage() {
                     inpatient, outpatient, maternity, dental, and optical care.
                   </p>
                   <Link
-                    href="/products#medical"
+                    href="/products#health"
                     className="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center"
                   >
                     Learn More <ArrowRight className="ml-1 h-4 w-4" />
@@ -201,7 +211,7 @@ export default function HomePage() {
               </Card>
 
               {/* Motor Vehicle Insurance 
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Car className="h-6 w-6 text-secondary" />
@@ -221,7 +231,7 @@ export default function HomePage() {
               </Card> */}
 
               {/* Professional Indemnity */}
-              <Card className="hover:shadow-lg transition-shadow border-2 border-secondary">
+              <Card className="border-2 border-secondary transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
@@ -235,7 +245,7 @@ export default function HomePage() {
                     leader in this category.
                   </p>
                   <Link
-                    href="/products#professional"
+                    href="/products#professional-indemnity"
                     className="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center"
                   >
                     Learn More <ArrowRight className="ml-1 h-4 w-4" />
@@ -244,7 +254,7 @@ export default function HomePage() {
               </Card>
 
               {/* Home Insurance */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Home className="h-6 w-6 text-secondary" />
@@ -255,7 +265,7 @@ export default function HomePage() {
                     for homeowners and tenants.
                   </p>
                   <Link
-                    href="/products#home"
+                    href="/products#property"
                     className="text-secondary hover:text-secondary/80 font-medium text-sm inline-flex items-center"
                   >
                     Learn More <ArrowRight className="ml-1 h-4 w-4" />
@@ -264,7 +274,7 @@ export default function HomePage() {
               </Card>
 
               {/* Business Insurance */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Briefcase className="h-6 w-6 text-secondary" />
@@ -284,7 +294,7 @@ export default function HomePage() {
               </Card>
 
               {/* Travel Insurance */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Plane className="h-6 w-6 text-secondary" />
@@ -304,7 +314,7 @@ export default function HomePage() {
               </Card>
 
               {/* Life & Pension */}
-              <Card className="hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1">
+              <Card className="md:col-span-2 lg:col-span-1 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Shield className="h-8 w-8 text-secondary" />
@@ -327,9 +337,10 @@ export default function HomePage() {
         </section>
 
         {/* Investment Products */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Investment Options</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Our Investment Products
               </h2>
@@ -340,7 +351,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Shares */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <TrendingUp className="h-6 w-6 text-secondary" />
@@ -360,7 +371,7 @@ export default function HomePage() {
               </Card>
 
               {/* Mutual Funds */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Briefcase className="h-6 w-6 text-secondary" />
@@ -380,7 +391,7 @@ export default function HomePage() {
               </Card>
 
               {/* ETFs */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Award className="h-6 w-6 text-secondary" />
@@ -400,7 +411,7 @@ export default function HomePage() {
               </Card>
 
               {/* Bonds */}
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                     <Shield className="h-6 w-6 text-secondary" />
@@ -423,9 +434,10 @@ export default function HomePage() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 md:py-24">
+        <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-center mb-10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Why Golden Eagle</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
                 Why Choose Golden Eagle?
               </h2>
@@ -476,7 +488,7 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-white">
+        <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Ready to Get Protected?</h2>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
@@ -489,7 +501,7 @@ export default function HomePage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href="tel:+254725162240">
+              <a href="tel:+254791389518">
                 <Button
                   size="lg"
                   variant="outline"

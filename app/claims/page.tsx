@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { FileText, Clock, CheckCircle, Phone, AlertCircle } from "lucide-react"
 import { useState } from "react"
+import { submitClaimForm } from "@/lib/actions"
 
 export default function ClaimsPage() {
   const [formData, setFormData] = useState({
@@ -29,24 +30,32 @@ export default function ClaimsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus("idle")
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const result = await submitClaimForm(formData)
+
+      if (result.success) {
+        setSubmitStatus("success")
+        setFormData({
+          policyNumber: "",
+          claimType: "",
+          name: "",
+          email: "",
+          phone: "",
+          incidentDate: "",
+          description: "",
+        })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error("[v0] Claim submission error:", error)
+      setSubmitStatus("error")
+    } finally {
       setIsSubmitting(false)
-      setSubmitStatus("success")
-      setFormData({
-        policyNumber: "",
-        claimType: "",
-        name: "",
-        email: "",
-        phone: "",
-        incidentDate: "",
-        description: "",
-      })
-
-      // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus("idle"), 5000)
-    }, 1500)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -69,9 +78,13 @@ export default function ClaimsPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Claims Support
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-balance">File a Claim</h1>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
                 We're here to support you when you need us most. File your claim quickly and easily, and our team will
@@ -160,10 +173,10 @@ export default function ClaimsPage() {
                   <p className="text-sm text-white/90">Available 24/7 for urgent claims</p>
                 </div>
               </div>
-              <a href="tel:+254700000000">
+              <a href="tel:+254791389518">
                 <Button size="lg" className="bg-white text-accent hover:bg-white/90 font-semibold">
                   <Phone className="mr-2 h-5 w-5" />
-                  Call +254 700 000 000
+                  Call +254 791 389 518
                 </Button>
               </a>
             </div>
@@ -180,8 +193,13 @@ export default function ClaimsPage() {
 
                   {submitStatus === "success" && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                      Your claim has been submitted successfully! Our team will review it and contact you within 48
-                      hours. Your claim reference number will be sent to your email.
+                      Your claim has been submitted successfully. Our team will review it and contact you within 24-48
+                      business hours.
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                      Sorry, we could not submit your claim right now. Please try again or contact us directly.
                     </div>
                   )}
 
@@ -336,8 +354,8 @@ export default function ClaimsPage() {
                   <Phone className="h-8 w-8 text-accent mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Call Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Speak to a claims specialist</p>
-                  <a href="tel:+254700000000" className="text-accent hover:underline text-sm">
-                    +254 700 000 000
+                  <a href="tel:+254791389518" className="text-accent hover:underline text-sm">
+                    +254 791 389 518
                   </a>
                 </CardContent>
               </Card>
@@ -370,3 +388,4 @@ export default function ClaimsPage() {
     </div>
   )
 }
+

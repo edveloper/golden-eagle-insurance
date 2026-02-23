@@ -40,6 +40,9 @@
 }
 
 @theme inline {
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-playfair);
+
   /* Color Palette - Professional Insurance Brand */
   --color-primary: #0a1d37; /* Deep Navy Blue - Trust & Stability (initially #1a3a5c) */
   --color-secondary: #c5a100; /* Warm Gold - Premium & Excellence (initially #c9a961) */
@@ -101,5 +104,45 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(16px, -8px, 0) scale(1.04);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 12s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: color-mix(in oklab, white 78%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-drift {
+    animation: none;
   }
 }

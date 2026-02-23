@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import type React from "react";
-import { Geist, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
+import { CookieConsent } from "@/components/cookie-consent";
 import "./globals.css";
 
-const geistSans = Geist({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-manrope",
 });
 
 const playfair = Playfair_Display({
@@ -15,9 +16,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions in Kenya",
+  title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions",
   description:
-    "Golden Eagle Insurance Agency provides comprehensive insurance solutions for individuals and businesses across Kenya. Get protected today.",
+    "Golden Eagle Insurance Agency provides comprehensive insurance solutions for individuals and businesses. Get protected today.",
 
   generator: "v0.app",
 
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Golden Eagle Insurance Agency",
     description:
-      "Comprehensive, reliable insurance solutions for individuals and businesses in Kenya.",
+      "Comprehensive, reliable insurance solutions for individuals and businesses.",
     images: ["/icon.png"],
   },
 
@@ -84,8 +85,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="en" className={`${manrope.variable} ${playfair.variable}`}>
+      <body className="font-sans antialiased">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

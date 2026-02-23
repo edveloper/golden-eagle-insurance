@@ -22,14 +22,17 @@ export default function QuotePage() {
     insuranceType: "",
     coverageAmount: "",
     additionalInfo: "",
+    website: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus("idle")
+    setErrorMessage("")
 
     try {
       const result = await submitQuoteForm(formData)
@@ -43,15 +46,18 @@ export default function QuotePage() {
           insuranceType: "",
           coverageAmount: "",
           additionalInfo: "",
+          website: "",
         })
         setTimeout(() => setSubmitStatus("idle"), 5000)
       } else {
         setSubmitStatus("error")
+        setErrorMessage(result.error || "Please try again.")
         setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
       console.error("[v0] Form submission error:", error)
       setSubmitStatus("error")
+      setErrorMessage("Please try again.")
       setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
       setIsSubmitting(false)
@@ -78,9 +84,13 @@ export default function QuotePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
+          <div className="container relative mx-auto px-4">
             <div className="max-w-3xl">
+              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
+                Fast Quotation
+              </div>
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">Get Your Free Quote</h1>
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
                 Fill out the form below and our insurance experts will provide you with a personalized quote within 24
@@ -172,12 +182,21 @@ export default function QuotePage() {
 
                     {submitStatus === "error" && (
                       <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                        Sorry, there was an error submitting your quote request. Please try again or contact us
-                        directly.
+                        Sorry, there was an error submitting your quote request. {errorMessage || "Please try again or contact us directly."}
                       </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      <input
+                        type="text"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        className="hidden"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                      />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="name">Full Name *</Label>
@@ -274,8 +293,16 @@ export default function QuotePage() {
 
                       <div className="bg-muted p-4 rounded-lg text-sm text-muted-foreground">
                         By submitting this form, you agree to be contacted by Golden Eagle Insurance Agency regarding
-                        your quote request. We respect your privacy and will never share your information with third
-                        parties.
+                        your quote request. We respect your privacy and will never share your information with third parties.
+                        {" "}
+                        <a href="/privacy-policy" className="text-primary underline hover:text-primary/80">
+                          Privacy Policy
+                        </a>
+                        {" "}and{" "}
+                        <a href="/terms-of-use" className="text-primary underline hover:text-primary/80">
+                          Terms of Use
+                        </a>
+                        .
                       </div>
 
                       <Button
@@ -327,3 +354,4 @@ export default function QuotePage() {
     </div>
   )
 }
+
