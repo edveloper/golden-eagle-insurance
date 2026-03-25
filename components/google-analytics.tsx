@@ -1,15 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Script from "next/script"
 import { usePathname } from "next/navigation"
-import { CONSENT_EVENT, CONSENT_KEY } from "@/components/cookie-consent"
 
-const GA_MEASUREMENT_ID = "G-1KQ3655T5W"
-
-type ConsentState = {
-  analytics?: boolean
-}
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 declare global {
   interface Window {
@@ -18,43 +13,18 @@ declare global {
   }
 }
 
-function hasAnalyticsConsent(value: string | null) {
-  if (!value) return false
-
-  try {
-    const parsed = JSON.parse(value) as ConsentState
-    return Boolean(parsed.analytics)
-  } catch {
-    return false
-  }
-}
-
 export function GoogleAnalytics() {
   const pathname = usePathname()
-  const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
-    const syncConsent = () => {
-      setEnabled(hasAnalyticsConsent(window.localStorage.getItem(CONSENT_KEY)))
-    }
-
-    const handleConsentChange = () => syncConsent()
-
-    syncConsent()
-    window.addEventListener(CONSENT_EVENT, handleConsentChange)
-
-    return () => window.removeEventListener(CONSENT_EVENT, handleConsentChange)
-  }, [])
-
-  useEffect(() => {
-    if (!enabled || !window.gtag) return
+    if (!GA_MEASUREMENT_ID || !window.gtag) return
 
     const query = window.location.search.replace(/^\?/, "")
     const pagePath = query ? `${pathname}?${query}` : pathname
     window.gtag("config", GA_MEASUREMENT_ID, { page_path: pagePath })
-  }, [enabled, pathname])
+  }, [pathname])
 
-  if (!enabled) return null
+  if (!GA_MEASUREMENT_ID) return null
 
   return (
     <>
