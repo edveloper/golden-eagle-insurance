@@ -11,7 +11,8 @@ type ConsentState = {
   updatedAt: string
 }
 
-const CONSENT_KEY = "ge_cookie_consent_v1"
+export const CONSENT_KEY = "ge_cookie_consent_v1"
+export const CONSENT_EVENT = "ge-consent-updated"
 
 function getDefaultConsent(): ConsentState {
   return {
@@ -34,6 +35,7 @@ export function CookieConsent() {
 
   const saveConsent = (next: ConsentState) => {
     window.localStorage.setItem(CONSENT_KEY, JSON.stringify(next))
+    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: next }))
     setVisible(false)
   }
 
@@ -73,4 +75,3 @@ export function CookieConsent() {
     </div>
   )
 }
-

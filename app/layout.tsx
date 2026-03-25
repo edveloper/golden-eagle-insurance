@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type React from "react";
 import { Manrope, Playfair_Display } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { ORGANIZATION_NAME, SITE_URL, organizationSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        <GoogleAnalytics />
         {children}
         <CookieConsent />
       </body>
