@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 export const SITE_URL = "https://www.goldeneagleltd.org"
+export const ORGANIZATION_NAME = "Golden Eagle Insurance Agency"
 
 type MetadataInput = {
   title: string
@@ -30,3 +31,11 @@ export function buildPageMetadata({ title, description, path = "/" }: MetadataIn
   }
 }
 
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: ORGANIZATION_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.png`,
+  sameAs: [],
+}

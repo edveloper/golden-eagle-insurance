@@ -18,7 +18,7 @@ export function SiteFooter() {
               Your trusted insurance and investment partner since 2006, providing comprehensive coverage and
               wealth-building solutions for individuals and businesses.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3">
               <a href="#" className="rounded-full border border-white/15 p-2 text-gray-300 transition-colors hover:text-secondary">
                 <Facebook className="h-5 w-5" />
               </a>
