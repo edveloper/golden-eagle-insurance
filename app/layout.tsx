@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type React from "react";
 import { Manrope, Playfair_Display } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
+import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -16,9 +17,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions",
   description:
     "Golden Eagle Insurance Agency provides comprehensive insurance solutions for individuals and businesses. Get protected today.",
+  alternates: {
+    canonical: "/",
+  },
 
   generator: "v0.app",
 
@@ -39,7 +44,7 @@ export const metadata: Metadata = {
     title: "Golden Eagle Insurance Agency",
     description:
       "Reliable, professional, and comprehensive insurance solutions across Kenya.",
-    url: "https://goldeneagleltd.org",
+    url: SITE_URL,
     siteName: "Golden Eagle Insurance Agency",
     images: [
       {
@@ -68,8 +73,8 @@ export const metadata: Metadata = {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "Golden Eagle Insurance Agency",
-      url: "https://goldeneagleltd.org",
-      logo: "https://goldeneagleltd.org/icon.png",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon.png`,
       sameAs: [
         // Add social links if you have them:
         // "https://facebook.com/yourpage",

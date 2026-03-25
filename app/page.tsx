@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import {
   Heart,
@@ -18,6 +19,13 @@ import {
   Scale,
   Plane,
 } from "lucide-react"
+
+export const metadata = buildPageMetadata({
+  title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions",
+  description:
+    "Golden Eagle Insurance Agency provides comprehensive insurance and investment solutions for individuals and businesses.",
+  path: "/",
+})
 
 export default function HomePage() {
   return (

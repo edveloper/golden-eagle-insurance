@@ -1,10 +1,12 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Terms of Use | Golden Eagle Insurance Agency",
   description: "Terms governing use of Golden Eagle Insurance Agency website and services.",
-}
+  path: "/terms-of-use",
+})
 
 export default function TermsOfUsePage() {
   return (
@@ -83,4 +85,3 @@ export default function TermsOfUsePage() {
     </div>
   )
 }
-

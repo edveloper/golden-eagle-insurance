@@ -1,15 +1,17 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
+import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import Image from "next/image"
 import { CheckCircle, ArrowRight } from "lucide-react"
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Insurance Products | Golden Eagle Insurance Agency",
   description:
-    "Explore our comprehensive range of insurance products including professional indemnity, health, cyber security, life, property, business, and travel insurance tailored for Kenyan families and businesses.",
-}
+    "Explore our comprehensive range of insurance products including professional indemnity, health, cyber security, life, property, business, and travel insurance tailored for individuals and businesses.",
+  path: "/products",
+})
 
 export default function ProductsPage() {
   return (

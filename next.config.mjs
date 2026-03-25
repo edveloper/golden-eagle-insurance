@@ -9,6 +9,21 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "goldeneagleltd.org",
+          },
+        ],
+        destination: "https://www.goldeneagleltd.org/:path*",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

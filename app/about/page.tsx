@@ -1,13 +1,15 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Card, CardContent } from "@/components/ui/card"
+import { buildPageMetadata } from "@/lib/seo"
 import { Shield, Target, Eye, Award, Users, TrendingUp, Heart, Handshake } from "lucide-react"
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "About Us | Golden Eagle Insurance Agency",
   description:
     "Learn about Golden Eagle Insurance Agency Limited - Kenya's trusted insurance and investment partner since 2006.",
-}
+  path: "/about",
+})
 
 export default function AboutPage() {
   return (

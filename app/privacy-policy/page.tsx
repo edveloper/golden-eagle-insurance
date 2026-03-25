@@ -1,10 +1,12 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { buildPageMetadata } from "@/lib/seo"
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Privacy Policy | Golden Eagle Insurance Agency",
   description: "How Golden Eagle Insurance Agency collects, uses, and protects personal information.",
-}
+  path: "/privacy-policy",
+})
 
 export default function PrivacyPolicyPage() {
   return (
@@ -94,4 +96,3 @@ export default function PrivacyPolicyPage() {
     </div>
   )
 }
-
