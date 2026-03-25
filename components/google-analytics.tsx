@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Script from "next/script"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { CONSENT_EVENT, CONSENT_KEY } from "@/components/cookie-consent"
 
 const GA_MEASUREMENT_ID = "G-1KQ3655T5W"
@@ -31,7 +31,6 @@ function hasAnalyticsConsent(value: string | null) {
 
 export function GoogleAnalytics() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
@@ -50,10 +49,10 @@ export function GoogleAnalytics() {
   useEffect(() => {
     if (!enabled || !window.gtag) return
 
-    const query = searchParams.toString()
+    const query = window.location.search.replace(/^\?/, "")
     const pagePath = query ? `${pathname}?${query}` : pathname
     window.gtag("config", GA_MEASUREMENT_ID, { page_path: pagePath })
-  }, [enabled, pathname, searchParams])
+  }, [enabled, pathname])
 
   if (!enabled) return null
 
