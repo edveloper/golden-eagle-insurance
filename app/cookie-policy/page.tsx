@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata = buildPageMetadata({
@@ -8,67 +9,84 @@ export const metadata = buildPageMetadata({
   path: "/cookie-policy",
 })
 
+function Clause({ title, children }: { title: string; children: React.ReactNode }) {
+  const [num, ...rest] = title.split(". ")
+  const heading = rest.length ? rest.join(". ") : title
+  return (
+    <section className="flex gap-4 border-t border-primary/10 pt-6 first:border-t-0 first:pt-0 md:gap-6">
+      <span className="pt-1 font-serif text-sm font-bold tabular-nums text-secondary">
+        {rest.length ? num.padStart(2, "0") : ""}
+      </span>
+      <div className="flex-1">
+        <h2 className="mb-3 font-serif text-xl font-bold text-primary">{heading}</h2>
+        <div className="space-y-3">{children}</div>
+      </div>
+    </section>
+  )
+}
+
 export default function CookiePolicyPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-primary py-14 text-white md:py-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_88%_84%,rgba(0,119,190,0.2),transparent_36%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Legal
-              </div>
-              <h1 className="mb-6 text-4xl font-serif font-bold text-balance text-secondary md:text-5xl">Cookie Policy</h1>
-              <p className="text-lg leading-relaxed text-gray-200 text-pretty md:text-xl">Last updated: February 23, 2026</p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-cityscape-hero.jpg"
+          imageAlt="Nairobi cityscape"
+          eyebrow="Legal"
+          title="Cookie Policy"
+          subtitle="How we use cookies and similar technologies."
+        >
+          <p className="mt-4 text-sm text-white/70">Last updated: 6 July 2026</p>
+        </PageHero>
 
         <section className="py-14 md:py-20">
           <div className="container mx-auto max-w-4xl px-4">
             <div className="space-y-8 text-sm leading-7 text-muted-foreground md:text-base">
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">1. What Are Cookies</h2>
+              <Clause title="1. What Are Cookies">
                 <p>
-                  Cookies are small text files stored on your device to help websites function and to provide insights into usage and performance.
+                  Cookies are small text files stored on your device to help websites function and to provide insights
+                  into usage and performance.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">2. How We Use Cookies</h2>
-                <p>We use essential cookies to run core site features. We may use optional analytics cookies where you provide consent.</p>
-              </section>
-
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">3. Cookie Categories</h2>
+              <Clause title="2. How We Use Cookies">
                 <p>
-                  Essential Cookies: Required for core site operations.
-                  <br />
-                  Analytics Cookies: Help us understand traffic and improve user experience.
-                  <br />
-                  Marketing Cookies: Not currently enabled by default.
+                  We use essential cookies to run core site features. We use optional analytics cookies only where you
+                  give consent through our cookie banner.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">4. Managing Preferences</h2>
+              <Clause title="3. Cookie Categories">
+                <p>Essential cookies: required for core site operations.</p>
+                <p>Analytics cookies: help us understand traffic and improve the experience (optional, consent-based).</p>
+                <p>Marketing cookies: not enabled by default.</p>
+              </Clause>
+
+              <Clause title="4. Your Consent">
                 <p>
-                  You can choose cookie preferences from the consent banner. You can also clear cookies through your browser settings at any time.
+                  In line with the Data Protection Act, 2019 of Kenya, non-essential cookies are set only after you
+                  consent. You can change or withdraw your choice at any time using the cookie banner or your browser
+                  settings.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">5. Contact</h2>
+              <Clause title="5. Managing Preferences">
                 <p>
-                  For cookie and tracking questions, contact{" "}
+                  You can choose your cookie preferences from the consent banner, and you can clear cookies through your
+                  browser settings at any time. Blocking essential cookies may affect how the site works.
+                </p>
+              </Clause>
+
+              <Clause title="6. Contact">
+                <p>
+                  For cookie and tracking questions, contact us at{" "}
                   <a href="mailto:info@goldeneagle.co.ke" className="text-primary underline hover:text-primary/80">
                     info@goldeneagle.co.ke
                   </a>
                   .
                 </p>
-              </section>
+              </Clause>
             </div>
           </div>
         </section>

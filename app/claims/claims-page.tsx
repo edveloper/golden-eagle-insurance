@@ -4,6 +4,7 @@ import type React from "react"
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -50,7 +51,7 @@ export default function ClaimsPage() {
         setSubmitStatus("error")
       }
     } catch (error) {
-      console.error("[v0] Claim submission error:", error)
+      console.error("Claim submission error:", error)
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
@@ -77,22 +78,13 @@ export default function ClaimsPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Claims Support
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-balance">File a Claim</h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
-                We're here to support you when you need us most. File your claim quickly and easily, and our team will
-                process it promptly.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-park-skyline-hero.jpg"
+          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          eyebrow="Claims Support"
+          title="File a Claim"
+          subtitle="We're here to support you when you need us most. File your claim quickly and easily, and our team will process it promptly."
+        />
 
         {/* Claims Process */}
         <section className="py-16 md:py-24 bg-muted">
@@ -102,62 +94,29 @@ export default function ClaimsPage() {
                 Our Claims Process
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                Simple, transparent, and efficient - we make filing claims easy
+                Simple, transparent and efficient, so filing a claim is easy
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FileText className="h-8 w-8 text-secondary" />
+            <div className="relative mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+              <div
+                className="absolute left-[12.5%] right-[12.5%] top-5 hidden h-px bg-primary/15 md:block"
+                aria-hidden="true"
+              />
+              {[
+                { t: "Submit Claim", d: "Fill out the claim form with all the necessary details and documentation." },
+                { t: "Review", d: "Our team reviews your claim and may contact you for more information." },
+                { t: "Approval", d: "Once approved, you'll receive confirmation and the next steps." },
+                { t: "Settlement", d: "Receive your settlement according to your policy terms." },
+              ].map((s, i) => (
+                <div key={s.t} className="relative text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border-2 border-secondary bg-background font-serif text-lg font-bold text-secondary">
+                    {i + 1}
                   </div>
-                  <div className="text-2xl font-bold text-primary mb-2">Step 1</div>
-                  <h3 className="font-semibold mb-2">Submit Claim</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Fill out the claim form with all necessary details and documentation
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-8 w-8 text-secondary" />
-                  </div>
-                  <div className="text-2xl font-bold text-primary mb-2">Step 2</div>
-                  <h3 className="font-semibold mb-2">Review Process</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Our team reviews your claim and may contact you for additional information
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="h-8 w-8 text-secondary" />
-                  </div>
-                  <div className="text-2xl font-bold text-primary mb-2">Step 3</div>
-                  <h3 className="font-semibold mb-2">Approval</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Once approved, you'll receive confirmation and next steps
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Phone className="h-8 w-8 text-secondary" />
-                  </div>
-                  <div className="text-2xl font-bold text-primary mb-2">Step 4</div>
-                  <h3 className="font-semibold mb-2">Settlement</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Receive your claim settlement according to your policy terms
-                  </p>
-                </CardContent>
-              </Card>
+                  <h3 className="mt-4 font-semibold text-primary">{s.t}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

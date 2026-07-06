@@ -1,82 +1,136 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
 
 export const metadata = buildPageMetadata({
   title: "Terms of Use | Golden Eagle Insurance Agency",
-  description: "Terms governing use of Golden Eagle Insurance Agency website and services.",
+  description:
+    "Terms governing use of the Golden Eagle Insurance Agency website and services, under the laws of Kenya.",
   path: "/terms-of-use",
 })
+
+function Clause({ title, children }: { title: string; children: React.ReactNode }) {
+  const [num, ...rest] = title.split(". ")
+  const heading = rest.length ? rest.join(". ") : title
+  return (
+    <section className="flex gap-4 border-t border-primary/10 pt-6 first:border-t-0 first:pt-0 md:gap-6">
+      <span className="pt-1 font-serif text-sm font-bold tabular-nums text-secondary">
+        {rest.length ? num.padStart(2, "0") : ""}
+      </span>
+      <div className="flex-1">
+        <h2 className="mb-3 font-serif text-xl font-bold text-primary">{heading}</h2>
+        <div className="space-y-3">{children}</div>
+      </div>
+    </section>
+  )
+}
 
 export default function TermsOfUsePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-primary py-14 text-white md:py-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_88%_84%,rgba(0,119,190,0.2),transparent_36%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Legal
-              </div>
-              <h1 className="mb-6 text-4xl font-serif font-bold text-balance text-secondary md:text-5xl">Terms of Use</h1>
-              <p className="text-lg leading-relaxed text-gray-200 text-pretty md:text-xl">Last updated: February 23, 2026</p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-cityscape-hero.jpg"
+          imageAlt="Nairobi cityscape"
+          eyebrow="Legal"
+          title="Terms of Use"
+          subtitle="The terms governing your use of this website and our services."
+        >
+          <p className="mt-4 text-sm text-white/70">Last updated: 6 July 2026</p>
+        </PageHero>
 
         <section className="py-14 md:py-20">
           <div className="container mx-auto max-w-4xl px-4">
             <div className="space-y-8 text-sm leading-7 text-muted-foreground md:text-base">
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">1. Acceptance</h2>
-                <p>By using this website, you agree to these terms. If you do not agree, please discontinue use.</p>
-              </section>
-
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">2. Informational Content</h2>
+              <Clause title="1. About Us and These Terms">
                 <p>
-                  Content on this site is for general information and does not constitute personal legal, tax, or investment advice.
+                  This website is operated by Golden Eagle Insurance Agency Ltd, an insurance agency licensed by the
+                  Insurance Regulatory Authority (IRA) of Kenya under the Insurance Act, Cap 487 (IRA Reg. No. 11611).
+                  By using this website, you agree to these terms. If you do not agree, please discontinue use.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">3. No Guarantee of Outcomes</h2>
+              <Clause title="2. Informational Content Only">
                 <p>
-                  Insurance acceptance, pricing, and claims outcomes are subject to policy terms, underwriting decisions, and applicable law.
+                  Content on this site is provided for general information and does not constitute personal legal, tax,
+                  or investment advice. You should seek advice suited to your own circumstances before making a
+                  financial decision.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">4. Third-Party Links</h2>
+              <Clause title="3. Insurance Services">
                 <p>
-                  We may link to third-party websites for convenience. We are not responsible for their content, availability, or practices.
+                  As a licensed agency, we arrange cover with regulated insurers. Acceptance of any risk, the premium
+                  charged, and the outcome of any claim are subject to the insurer's underwriting decisions, the terms
+                  of the relevant policy, and applicable law. The policy document, once issued, governs your cover.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">5. Limitation of Liability</h2>
+              <Clause title="4. Investment Services and Risk">
                 <p>
-                  To the maximum extent allowed by applicable law, we are not liable for indirect or consequential losses arising from site use.
+                  Our Global Markets Advisory division facilitates international investment solutions through our
+                  regulated partner, Investors Trust. Investing involves risk, including the possible loss of capital.
+                  The value of investments and any income from them can fall as well as rise, currency movements can
+                  affect value, and past performance is not a reliable indicator of future results. No return is
+                  guaranteed.
                 </p>
-              </section>
+              </Clause>
 
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">6. Changes to Terms</h2>
-                <p>We may update these terms from time to time. Continued use after updates means you accept the revised terms.</p>
-              </section>
-
-              <section>
-                <h2 className="mb-2 text-2xl font-serif font-bold text-primary">7. Contact</h2>
+              <Clause title="5. No Guarantee of Outcomes">
                 <p>
-                  For questions about these terms, contact{" "}
+                  We make no guarantee as to insurance acceptance, pricing, claims outcomes, or investment performance.
+                  Any figures or targets shown on this site are illustrative and are not promises of a specific result.
+                </p>
+              </Clause>
+
+              <Clause title="6. Intellectual Property">
+                <p>
+                  The content, branding, and materials on this website belong to Golden Eagle Insurance Agency Ltd or
+                  its licensors and may not be reproduced without permission, except as allowed by law.
+                </p>
+              </Clause>
+
+              <Clause title="7. Third-Party Links">
+                <p>
+                  We may link to third-party websites for convenience. We are not responsible for their content,
+                  availability, or practices, and a link does not imply endorsement.
+                </p>
+              </Clause>
+
+              <Clause title="8. Limitation of Liability">
+                <p>
+                  To the maximum extent permitted by the laws of Kenya, we are not liable for indirect or consequential
+                  losses arising from use of this website. Nothing in these terms limits any liability that cannot
+                  lawfully be limited.
+                </p>
+              </Clause>
+
+              <Clause title="9. Governing Law and Disputes">
+                <p>
+                  These terms are governed by the laws of Kenya, and any dispute relating to them or to this website is
+                  subject to the jurisdiction of the Kenyan courts. Complaints about our conduct as an insurance agency
+                  may also be raised with the Insurance Regulatory Authority.
+                </p>
+              </Clause>
+
+              <Clause title="10. Changes to These Terms">
+                <p>
+                  We may update these terms from time to time. Continued use of the website after an update means you
+                  accept the revised terms.
+                </p>
+              </Clause>
+
+              <Clause title="11. Contact">
+                <p>
+                  For questions about these terms, contact us at{" "}
                   <a href="mailto:info@goldeneagle.co.ke" className="text-primary underline hover:text-primary/80">
                     info@goldeneagle.co.ke
-                  </a>
-                  .
+                  </a>{" "}
+                  or +254 791 389 518.
                 </p>
-              </section>
+              </Clause>
             </div>
           </div>
         </section>

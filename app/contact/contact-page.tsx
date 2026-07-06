@@ -4,6 +4,7 @@ import type React from "react"
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -45,7 +46,7 @@ export default function ContactPage() {
         setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
-      console.error("[v0] Form submission error:", error)
+      console.error("Contact form submission error:", error)
       setSubmitStatus("error")
       setErrorMessage("Please try again.")
       setTimeout(() => setSubmitStatus("idle"), 5000)
@@ -66,114 +67,74 @@ export default function ContactPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(197,161,0,0.2),transparent_34%),radial-gradient(circle_at_84%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Reach Our Team
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">Get in Touch</h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
-                Have questions about our insurance products? Our team is here to help you find the perfect coverage for
-                your needs.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-cityscape-hero.jpg"
+          imageAlt="Nairobi cityscape"
+          eyebrow="Reach Our Team"
+          title="Get in Touch"
+          subtitle="Have questions about our insurance products? Our team is here to help you find the perfect coverage for your needs."
+        />
 
         {/* Contact Information & Form */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Contact Information */}
-              <div className="lg:col-span-1 space-y-6">
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MapPin className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">Visit Us</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Maruti Court
-                          <br />
-                          East Church Road, Westlands
-                          <br />
-                          Nairobi, Kenya
-                        </p>
-                      </div>
+              <div className="lg:col-span-1">
+                <div className="divide-y divide-primary/10 rounded-2xl border border-primary/10">
+                  <div className="flex items-start gap-4 p-6">
+                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Visit Us</h3>
+                      <p className="mt-1 text-sm text-primary">
+                        Maruti Court
+                        <br />
+                        East Church Road, Westlands
+                        <br />
+                        Nairobi, Kenya
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Phone className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">Call Us</h3>
-                        <p className="text-sm text-muted-foreground">
-                          <a href="tel:+254791389518" className="hover:text-accent transition-colors">
-                            +254 791 389 518
-                          </a>
-                        </p>
-                      </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-6">
+                    <Phone className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Call Us</h3>
+                      <p className="mt-1 text-sm text-primary">
+                        <a href="tel:+254791389518" className="transition-colors hover:text-accent">
+                          +254 791 389 518
+                        </a>
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">Email Us</h3>
-                        <p className="text-sm text-muted-foreground">
-                          <a
-                            href="mailto:info@goldeneagle.co.ke"
-                            className="hover:text-accent transition-colors"
-                          >
-                            info@goldeneagle.co.ke
-                          </a>
-                          <br />
-                          <a
-                            href="mailto:goldeneagleinsagency@gmail.com"
-                            className="hover:text-accent transition-colors"
-                          >
-                            goldeneagleinsagency@gmail.com
-                          </a>
-                        </p>
-                      </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-6">
+                    <Mail className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Email Us</h3>
+                      <p className="mt-1 text-sm text-primary">
+                        <a href="mailto:info@goldeneagle.co.ke" className="transition-colors hover:text-accent">
+                          info@goldeneagle.co.ke
+                        </a>
+                        <br />
+                        <a href="mailto:goldeneagleinsagency@gmail.com" className="transition-colors hover:text-accent">
+                          goldeneagleinsagency@gmail.com
+                        </a>
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Clock className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2">Business Hours</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Monday - Friday: 8:00 AM - 5:00 PM
-                          <br />
-                          Saturday: 9:00 AM - 1:00 PM
-                          <br />
-                          Sunday: Closed
-                        </p>
-                      </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-6">
+                    <Clock className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Business Hours</h3>
+                      <p className="mt-1 text-sm text-primary">
+                        Monday to Friday: 8:00 AM to 5:00 PM
+                        <br />
+                        Saturday: 9:00 AM to 1:00 PM
+                        <br />
+                        Sunday: Closed
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
 
               {/* Contact Form */}
@@ -306,14 +267,14 @@ export default function ContactPage() {
               <h2 className="text-3xl font-serif font-bold text-primary mb-4">Find Us on the Map</h2>
               <p className="text-muted-foreground">Visit our office in the heart of Nairobi</p>
             </div>
-            <div className="flex justify-center">
-              <div className="relative h-96 w-full max-w-2xl rounded-lg overflow-hidden">
-              <img
-                src="/map-of-nairobi-kenya-with-location-marker-showing-.jpg"
-                alt="Golden Eagle Insurance Location Map"
-                className="object-cover w-160 h-120"
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-primary/10">
+              <iframe
+                title="Golden Eagle office location, Westlands, Nairobi"
+                src="https://www.google.com/maps?q=Maruti+Court,+East+Church+Road,+Westlands,+Nairobi&output=embed"
+                className="h-96 w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
-            </div>
           </div>
           </div>
         </section>

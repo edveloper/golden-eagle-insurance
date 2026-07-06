@@ -2,7 +2,7 @@
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Card, CardContent } from "@/components/ui/card"
+import { PageHero } from "@/components/page-hero"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
@@ -61,7 +61,7 @@ export default function FAQPage() {
       questions: [
         {
           q: "Which hospitals are covered under your health insurance?",
-          a: "We have partnerships with over 200 hospitals and clinics across Kenya, including major facilities like Aga Khan Hospital, Nairobi Hospital, MP Shah Hospital, and many others. Contact us for a complete list of our network providers.",
+          a: "Through our insurer partners, you gain access to an extensive hospital network across Kenya, including major facilities such as Aga Khan Hospital, Nairobi Hospital, and MP Shah Hospital. The exact panel depends on your chosen insurer and plan; contact us for the current provider list.",
         },
         {
           q: "Does health insurance cover pre-existing conditions?",
@@ -95,7 +95,7 @@ export default function FAQPage() {
       questions: [
         {
           q: "How long does it take to process a claim?",
-          a: "Most claims are processed within 7-14 business days once we receive all required documentation. Emergency claims and medical claims are prioritized and can be processed faster. We maintain a 98% claim success rate.",
+          a: "Most claims are processed within 7-14 business days once we receive all required documentation. Emergency and medical claims are prioritized and can be processed faster. We guide you through every step to give your claim the best chance of a smooth outcome.",
         },
         {
           q: "What documents do I need to file a claim?",
@@ -142,136 +142,117 @@ export default function FAQPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.2),transparent_38%),linear-gradient(120deg,#09172d_0%,#0a1d37_50%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Knowledge Base
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">
-                Frequently Asked Questions
-              </h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty mb-8">
-                Find answers to common questions about our insurance products and services
-              </p>
-
-              {/* Search Bar */}
-              <div className="relative max-w-2xl mx-auto">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <Input
-                  type="text"
-                  placeholder="Search for answers..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 py-6 text-lg bg-white text-gray-900"
-                />
-              </div>
-            </div>
+        <PageHero
+          image="/nairobi-cityscape-hero.jpg"
+          imageAlt="Nairobi cityscape"
+          align="center"
+          eyebrow="Knowledge Base"
+          title="Frequently Asked Questions"
+          subtitle="Find answers to common questions about our insurance products and services"
+        >
+          <div className="relative mx-auto mt-8 max-w-2xl">
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search for answers..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-white py-6 pl-12 text-lg text-gray-900"
+            />
           </div>
-        </section>
+        </PageHero>
 
         {/* FAQ Content */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              {filteredFaqs.length === 0 ? (
-                <Card>
-                  <CardContent className="p-12 text-center">
-                    <p className="text-muted-foreground mb-4">No results found for "{searchQuery}"</p>
-                    <Button onClick={() => setSearchQuery("")} variant="outline">
-                      Clear Search
-                    </Button>
-                  </CardContent>
-                </Card>
-              ) : (
-                <div className="space-y-8">
+            {filteredFaqs.length === 0 ? (
+              <div className="mx-auto max-w-2xl rounded-2xl border border-primary/10 p-12 text-center">
+                <p className="mb-4 text-muted-foreground">No results found for "{searchQuery}"</p>
+                <Button onClick={() => setSearchQuery("")} variant="outline">
+                  Clear Search
+                </Button>
+              </div>
+            ) : (
+              <div className="grid gap-10 lg:grid-cols-[220px_1fr]">
+                {/* Sticky category nav */}
+                <aside className="lg:sticky lg:top-28 lg:self-start">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Categories</p>
+                  <nav className="flex flex-col gap-1">
+                    {filteredFaqs.map((category, i) => (
+                      <a
+                        key={i}
+                        href={`#faq-${i}`}
+                        className="border-l-2 border-transparent py-1.5 pl-3 text-sm text-primary/70 transition-colors hover:border-secondary hover:text-primary"
+                      >
+                        {category.category}
+                      </a>
+                    ))}
+                  </nav>
+                </aside>
+
+                {/* Questions */}
+                <div className="space-y-10">
                   {filteredFaqs.map((category, categoryIndex) => (
-                    <div key={categoryIndex}>
-                      <h2 className="text-2xl font-serif font-bold text-primary mb-4">{category.category}</h2>
-                      <div className="space-y-4">
+                    <div key={categoryIndex} id={`faq-${categoryIndex}`} className="scroll-mt-28">
+                      <h2 className="mb-4 font-serif text-2xl font-bold text-primary">{category.category}</h2>
+                      <div className="divide-y divide-primary/10 overflow-hidden rounded-2xl border border-primary/10">
                         {category.questions.map((item, itemIndex) => {
                           const globalIndex = categoryIndex * 100 + itemIndex
                           const isOpen = openItems.includes(globalIndex)
 
                           return (
-                            <Card key={itemIndex} className="overflow-hidden">
+                            <div key={itemIndex}>
                               <button
                                 onClick={() => toggleItem(globalIndex)}
-                                className="w-full text-left p-6 flex items-center justify-between hover:bg-muted/50 transition-colors"
+                                className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors hover:bg-muted/50"
                               >
-                                <h3 className="font-semibold pr-4">{item.q}</h3>
+                                <h3 className="font-semibold text-primary">{item.q}</h3>
                                 <ChevronDown
-                                  className={`h-5 w-5 flex-shrink-0 transition-transform ${
-                                    isOpen ? "transform rotate-180" : ""
+                                  className={`h-5 w-5 flex-shrink-0 text-secondary transition-transform ${
+                                    isOpen ? "rotate-180" : ""
                                   }`}
                                 />
                               </button>
-                              {isOpen && (
-                                <CardContent className="px-6 pb-6 pt-0">
-                                  <p className="text-muted-foreground leading-relaxed">{item.a}</p>
-                                </CardContent>
-                              )}
-                            </Card>
+                              {isOpen ? (
+                                <div className="px-5 pb-5 pt-0">
+                                  <p className="leading-relaxed text-muted-foreground">{item.a}</p>
+                                </div>
+                              ) : null}
+                            </div>
                           )
                         })}
                       </div>
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </section>
 
         {/* Still Have Questions */}
-        <section className="py-16 bg-muted">
+        <section className="border-t border-primary/10 bg-muted py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Still Have Questions?</h2>
-              <p className="text-muted-foreground">Our team is here to help you find the answers you need</p>
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="font-serif text-3xl font-bold text-primary">Still Have Questions?</h2>
+              <p className="mt-2 text-muted-foreground">Our team is here to help you find the answers you need.</p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <Card>
-                <CardContent className="p-6 text-center h-full flex flex-col">
-                  <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Phone className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">Call Us</h3>
-                  <p className="text-sm text-muted-foreground">Speak to our customer service team</p>
-                  <a href="tel:+254791389518" className="mt-auto pt-4 text-accent hover:underline font-medium">
-                    +254 791 389 518
-                  </a>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center h-full flex flex-col">
-                  <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">Email Us</h3>
-                  <p className="text-sm text-muted-foreground">Send us your questions</p>
-                  <a href="mailto:info@goldeneagle.co.ke" className="mt-auto pt-4 text-accent hover:underline font-medium">
-                    info@goldeneagle.co.ke
-                  </a>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center h-full flex flex-col">
-                  <div className="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <MessageCircle className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">Contact Form</h3>
-                  <p className="text-sm text-muted-foreground">Fill out our contact form</p>
-                  <Link href="/contact" className="mt-auto pt-4 text-accent hover:underline font-medium">
-                    Go to Contact Page
-                  </Link>
-                </CardContent>
-              </Card>
+            <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-3">
+              <a href="tel:+254791389518" className="bg-background p-6 text-center transition-colors hover:bg-muted">
+                <Phone className="mx-auto mb-3 h-6 w-6 text-secondary" />
+                <h3 className="font-semibold text-primary">Call Us</h3>
+                <p className="mt-1 text-sm text-muted-foreground">+254 791 389 518</p>
+              </a>
+              <a href="mailto:info@goldeneagle.co.ke" className="bg-background p-6 text-center transition-colors hover:bg-muted">
+                <Mail className="mx-auto mb-3 h-6 w-6 text-secondary" />
+                <h3 className="font-semibold text-primary">Email Us</h3>
+                <p className="mt-1 text-sm text-muted-foreground">info@goldeneagle.co.ke</p>
+              </a>
+              <Link href="/contact" className="bg-background p-6 text-center transition-colors hover:bg-muted">
+                <MessageCircle className="mx-auto mb-3 h-6 w-6 text-secondary" />
+                <h3 className="font-semibold text-primary">Contact Form</h3>
+                <p className="mt-1 text-sm text-muted-foreground">Send us a message</p>
+              </Link>
             </div>
           </div>
         </section>

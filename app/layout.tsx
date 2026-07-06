@@ -3,6 +3,7 @@ import type React from "react";
 import { Manrope, Playfair_Display } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ORGANIZATION_NAME, SITE_URL, organizationSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
         />
         <GoogleAnalytics />
         {children}
+        <WhatsAppButton />
         <CookieConsent />
       </body>
     </html>

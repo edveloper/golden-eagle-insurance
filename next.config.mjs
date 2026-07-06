@@ -9,6 +9,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/investments",
+        destination: "/advisory",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

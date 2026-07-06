@@ -4,6 +4,7 @@ import type React from "react"
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -55,7 +56,7 @@ export default function QuotePage() {
         setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
-      console.error("[v0] Form submission error:", error)
+      console.error("Quote form submission error:", error)
       setSubmitStatus("error")
       setErrorMessage("Please try again.")
       setTimeout(() => setSubmitStatus("idle"), 5000)
@@ -83,88 +84,58 @@ export default function QuotePage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_86%_82%,rgba(0,119,190,0.22),transparent_40%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Fast Quotation
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">Get Your Free Quote</h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
-                Fill out the form below and our insurance experts will provide you with a personalized quote within 24
-                hours.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-park-skyline-hero.jpg"
+          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          eyebrow="Fast Quotation"
+          title="Get Your Free Quote"
+          subtitle="Fill out the form below and our insurance experts will provide you with a personalized quote within 24 hours."
+        />
 
         {/* Quote Form */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Benefits */}
-              <div className="lg:col-span-1 space-y-6">
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-4">Why Get a Quote?</h3>
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+              {/* Benefits rail */}
+              <div className="lg:col-span-1">
+                <div className="rounded-2xl bg-primary p-8 text-white">
+                  <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+                    <span className="h-px w-8 bg-secondary" aria-hidden="true" />
+                    Why Get a Quote?
+                  </p>
+                  <ul className="space-y-5">
+                    {[
+                      { t: "Free & No Obligation", d: "Get a quote with no commitment required" },
+                      { t: "Personalized Coverage", d: "Tailored to your specific needs" },
+                      { t: "Competitive Rates", d: "Best value without compromising quality" },
+                      { t: "Fast Response", d: "Receive your quote within 24 hours" },
+                      { t: "Expert Guidance", d: "Professional advice from our team" },
+                    ].map((b) => (
+                      <li key={b.t} className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
                         <div>
-                          <p className="text-sm font-medium">Free & No Obligation</p>
-                          <p className="text-xs text-muted-foreground">Get a quote with no commitment required</p>
+                          <p className="text-sm font-semibold">{b.t}</p>
+                          <p className="text-xs text-gray-300">{b.d}</p>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium">Personalized Coverage</p>
-                          <p className="text-xs text-muted-foreground">Tailored to your specific needs</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium">Competitive Rates</p>
-                          <p className="text-xs text-muted-foreground">Best prices without compromising quality</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium">Fast Response</p>
-                          <p className="text-xs text-muted-foreground">Receive your quote within 24 hours</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium">Expert Guidance</p>
-                          <p className="text-xs text-muted-foreground">Professional advice from our team</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-accent text-white">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">Need Help?</h3>
-                    <p className="text-sm mb-4 text-white/90">
-                      Our insurance experts are available to assist you with any questions.
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 border-t border-white/15 pt-6 text-sm">
+                    <p className="font-semibold text-secondary">Need help?</p>
+                    <p className="mt-2 text-gray-300">
+                      Call{" "}
+                      <a href="tel:+254791389518" className="text-white transition-colors hover:text-secondary">
+                        +254 791 389 518
+                      </a>
                     </p>
-                    <div className="space-y-2 text-sm">
-                      <p>
-                        <strong>Call:</strong> +254 791 389 518
-                      </p>
-                      <p>
-                        <strong>Email:</strong> info@goldeneagle.co.ke
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    <p className="text-gray-300">
+                      Email{" "}
+                      <a href="mailto:info@goldeneagle.co.ke" className="text-white transition-colors hover:text-secondary">
+                        info@goldeneagle.co.ke
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Quote Form */}
@@ -325,8 +296,8 @@ export default function QuotePage() {
         <section className="py-16 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Trusted by Thousands</h2>
-              <p className="text-muted-foreground">Join over 50,000 satisfied clients across Kenya</p>
+              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Trusted Since 2006</h2>
+              <p className="text-muted-foreground">Nearly two decades protecting Kenyan families and businesses</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
@@ -334,16 +305,16 @@ export default function QuotePage() {
                 <div className="text-sm text-muted-foreground">Years of Service</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">50K+</div>
-                <div className="text-sm text-muted-foreground">Happy Clients</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">AKI</div>
+                <div className="text-sm text-muted-foreground">Award-Winning Agency</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">98%</div>
-                <div className="text-sm text-muted-foreground">Claim Success Rate</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">9+</div>
+                <div className="text-sm text-muted-foreground">Insurer Partners</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
-                <div className="text-sm text-muted-foreground">Customer Support</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">IRA</div>
+                <div className="text-sm text-muted-foreground">Licensed &amp; Regulated</div>
               </div>
             </div>
           </div>

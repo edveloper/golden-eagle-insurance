@@ -1,5 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
+import { CoverQuiz } from "@/components/cover-quiz"
 import { Button } from "@/components/ui/button"
 import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
@@ -19,21 +21,64 @@ export default function ProductsPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(197,161,0,0.22),transparent_34%),radial-gradient(circle_at_85%_78%,rgba(0,119,190,0.22),transparent_38%),linear-gradient(120deg,#09172d_0%,#0a1d37_52%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Coverage Portfolio
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-balance text-secondary">
-                Comprehensive Insurance Solutions
-              </h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
-                Discover our wide range of insurance products designed to protect what matters most to you and your
-                business.
+        <PageHero
+          image="/nairobi-park-skyline-hero.jpg"
+          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          eyebrow="Coverage Portfolio"
+          title="Comprehensive Insurance Solutions"
+          subtitle="Discover our wide range of insurance products designed to protect what matters most to you and your business."
+        />
+
+        {/* Cover finder quiz */}
+        <section className="border-b border-primary/10 bg-muted py-14 md:py-20">
+          <div className="container mx-auto px-4">
+            <div className="mb-8 text-center">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Not sure where to start?</p>
+              <h2 className="mb-3 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                Find the Right Cover in 30 Seconds
+              </h2>
+              <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
+                Answer two quick questions and we'll point you to the cover that fits.
               </p>
+            </div>
+            <CoverQuiz />
+          </div>
+        </section>
+
+        {/* Coverage index */}
+        <section className="border-b border-primary/10 py-14 md:py-20">
+          <div className="container mx-auto px-4">
+            <div className="mb-8">
+              <p className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+                <span className="h-px w-8 bg-secondary" aria-hidden="true" />
+                Coverage at a Glance
+              </p>
+              <h2 className="font-serif text-3xl font-bold text-primary text-balance md:text-4xl">Everything We Protect</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { name: "Professional Indemnity", href: "#professional-indemnity", note: "Award-winning" },
+                { name: "Health Insurance", href: "#health" },
+                { name: "Cyber Security", href: "#cyber-security" },
+                { name: "Life Insurance", href: "#life" },
+                { name: "Property Insurance", href: "#property" },
+                { name: "Business Insurance", href: "#business" },
+                { name: "Travel Insurance", href: "#travel" },
+              ].map((c) => (
+                <a
+                  key={c.href}
+                  href={c.href}
+                  className="group flex items-center justify-between gap-3 bg-background p-6 transition-colors hover:bg-muted"
+                >
+                  <span>
+                    <span className="font-serif text-lg font-semibold text-primary">{c.name}</span>
+                    {c.note ? (
+                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-secondary">{c.note}</span>
+                    ) : null}
+                  </span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-secondary transition-transform group-hover:translate-x-1" />
+                </a>
+              ))}
             </div>
           </div>
         </section>
@@ -51,7 +96,7 @@ export default function ProductsPage() {
                   professionals.
                 </p>
                 <p className="text-sm text-secondary font-semibold mb-6">
-                  Award-Winning Coverage - Multiple AKI Awards Winner (2018, 2019, 2023, 2024)
+                  Award-Winning Coverage: Multiple AKI Awards Winner (2018, 2019, 2023, 2024)
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -268,8 +313,8 @@ export default function ProductsPage() {
                   Life Insurance
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Secure your family's financial future with our flexible life insurance plans. Provide peace of mind
-                  knowing your loved ones are protected.
+                  Secure your family's financial future with our flexible life insurance plans, so your loved ones are
+                  protected whatever happens.
                 </p>
 
                 <div className="space-y-4 mb-8">

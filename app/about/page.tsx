@@ -1,8 +1,9 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { buildPageMetadata } from "@/lib/seo"
-import { Shield, Target, Eye, Award, Users, TrendingUp, Heart, Handshake } from "lucide-react"
+import { Shield, Award, TrendingUp, Heart, Handshake } from "lucide-react"
 
 export const metadata = buildPageMetadata({
   title: "About Us | Golden Eagle Insurance Agency",
@@ -12,29 +13,26 @@ export const metadata = buildPageMetadata({
 })
 
 export default function AboutPage() {
+  const milestones = [
+    { year: "2006", title: "Founded in Nairobi", desc: "Golden Eagle Insurance Agency Ltd is established in Westlands." },
+    { year: "2018", title: "AKI Award", desc: "1st Position, Professional Indemnity Insurance Category." },
+    { year: "2019", title: "AKI Award", desc: "1st Position, Professional Indemnity Insurance Category." },
+    { year: "2023", title: "AKI Award", desc: "1st Position, Professional Indemnity Insurance Category." },
+    { year: "2024", title: "AKI Award", desc: "Top 10 Agents, Nationwide." },
+  ]
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-primary py-16 text-white md:py-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(197,161,0,0.2),transparent_35%),radial-gradient(circle_at_88%_80%,rgba(0,119,190,0.2),transparent_36%),linear-gradient(120deg,#09172d_0%,#0a1d37_50%,#0d2749_100%)]" />
-          <div className="container relative mx-auto px-4">
-            <div className="max-w-3xl">
-              <div className="mb-5 inline-flex items-center rounded-full border border-secondary/25 bg-white/8 px-4 py-1.5 text-xs tracking-[0.14em] text-white/90 uppercase">
-                Company Profile
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-secondary text-balance">
-                About Golden Eagle Insurance Agency Limited
-              </h1>
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed text-pretty">
-                A leading insurance and investment agency based in Kenya, offering trusted financial and risk management
-                solutions since 2006.
-              </p>
-            </div>
-          </div>
-        </section>
+        <PageHero
+          image="/nairobi-skyline-hero.jpg"
+          imageAlt="Nairobi city skyline"
+          eyebrow="Company Profile"
+          title="About Golden Eagle Insurance Agency Limited"
+          subtitle="A leading insurance and investment agency based in Kenya, offering trusted financial and risk management solutions since 2006."
+        />
 
         {/* Our Story */}
         <section className="py-14 md:py-20">
@@ -56,7 +54,7 @@ export default function AboutPage() {
                   </p>
                   <p>
                     For nearly two decades, Golden Eagle has been a beacon of trust and reliability, helping
-                    individuals, families, and businesses achieve financial stability and peace of mind through
+                    individuals, families, and businesses achieve financial stability and confidence through
                     professionalism, integrity, and personalized financial guidance.
                   </p>
                 </div>
@@ -75,48 +73,28 @@ export default function AboutPage() {
         {/* Mission, Vision, Values */}
         <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Mission */}
-              <Card>
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                    <Target className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="text-2xl font-serif font-bold text-primary mb-4">Our Mission</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To empower individuals and organizations to achieve financial freedom and peace of mind through
-                    expert insurance and investment solutions.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Vision */}
-              <Card>
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                    <Eye className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="text-2xl font-serif font-bold text-primary mb-4">Our Vision</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To be Kenya's most trusted and innovative financial advisory agency — securing lives and growing
-                    wealth for generations.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Values */}
-              <Card>
-                <CardContent className="p-8">
-                  <div className="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
-                    <Shield className="h-7 w-7 text-secondary" />
-                  </div>
-                  <h3 className="text-2xl font-serif font-bold text-primary mb-4">Our Values</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Integrity, Excellence, Innovation, Partnership, and Commitment guide every decision we make and
-                    every service we provide.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
+              <div className="border-t-2 border-secondary pt-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Mission</p>
+                <p className="text-lg leading-relaxed text-primary">
+                  To empower individuals and organizations to achieve financial freedom and lasting security through
+                  expert insurance and investment solutions.
+                </p>
+              </div>
+              <div className="border-t-2 border-secondary pt-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Vision</p>
+                <p className="text-lg leading-relaxed text-primary">
+                  To be Kenya's most trusted and innovative financial advisory agency, securing lives and growing wealth
+                  for generations.
+                </p>
+              </div>
+              <div className="border-t-2 border-secondary pt-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Values</p>
+                <p className="text-lg leading-relaxed text-primary">
+                  Integrity, Excellence, Innovation, Partnership, and Commitment guide every decision we make and every
+                  service we provide.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -133,48 +111,30 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Integrity</h3>
-                <p className="text-sm text-muted-foreground">
-                  We build lasting trust through transparency and accountability
-                </p>
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="bg-background p-6">
+                <Shield className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Integrity</h3>
+                <p className="text-sm text-muted-foreground">We build lasting trust through transparency and accountability</p>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Excellence</h3>
-                <p className="text-sm text-muted-foreground">
-                  We deliver the highest standards in every service we offer
-                </p>
+              <div className="bg-background p-6">
+                <Award className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Excellence</h3>
+                <p className="text-sm text-muted-foreground">We deliver the highest standards in every service we offer</p>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Innovation</h3>
+              <div className="bg-background p-6">
+                <TrendingUp className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Innovation</h3>
                 <p className="text-sm text-muted-foreground">We continuously evolve to meet changing client needs</p>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Handshake className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Partnership</h3>
+              <div className="bg-background p-6">
+                <Handshake className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Partnership</h3>
                 <p className="text-sm text-muted-foreground">We value collaboration with clients and partners alike</p>
               </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Commitment</h3>
+              <div className="bg-background p-6">
+                <Heart className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Commitment</h3>
                 <p className="text-sm text-muted-foreground">We go the extra mile to deliver value and satisfaction</p>
               </div>
             </div>
@@ -193,30 +153,23 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {/* Team Member 1 */}
-              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <CardContent className="p-7 text-center">
-                  <h3 className="text-xl font-semibold mb-1">Lydia Wanjiku Mwangi</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Director & Founder</p>
-                  <p className="text-xs text-muted-foreground">
-                    Former Global Markets Specialist at Dyer & Blair. Over 20 years of experience in finance and insurance,
-                    combining deep market insight with a passion for client success.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Team Member 2 */}
-              <Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <CardContent className="p-7 text-center">
-                  <h3 className="text-xl font-semibold mb-1">Alvin Lee Waithaka</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Marketing Director</p>
-                  <p className="text-xs text-muted-foreground">
-                    Joined Golden Eagle in 2020. Instrumental in expanding the company's reach and brand presence. A
-                    dynamic strategist dedicated to client-focused marketing and digital transformation.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
+              <div className="border-l-2 border-secondary pl-6">
+                <h3 className="font-serif text-xl font-bold text-primary">Lydia Wanjiku Mwangi</h3>
+                <p className="mt-1 text-sm font-medium text-secondary">Director &amp; Founder</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Former Global Markets Specialist at Dyer &amp; Blair. Over 20 years of experience in finance and
+                  insurance, combining deep market insight with a passion for client success.
+                </p>
+              </div>
+              <div className="border-l-2 border-secondary pl-6">
+                <h3 className="font-serif text-xl font-bold text-primary">Alvin Lee Waithaka</h3>
+                <p className="mt-1 text-sm font-medium text-secondary">Marketing Director</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Joined Golden Eagle in 2020. Instrumental in expanding the company's reach and brand presence. A
+                  dynamic strategist dedicated to client-focused marketing and digital transformation.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -233,98 +186,20 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">AKI Awards 2024</h3>
-                      <p className="text-sm text-muted-foreground">Top 10 Agents – Nationwide</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">AKI Awards 2023</h3>
-                      <p className="text-sm text-muted-foreground">
-                        1st Position – Professional Indemnity Insurance Category
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">AKI Awards 2019</h3>
-                      <p className="text-sm text-muted-foreground">
-                        1st Position – Professional Indemnity Insurance Category
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">AKI Awards 2018</h3>
-                      <p className="text-sm text-muted-foreground">
-                        1st Position – Professional Indemnity Insurance Category
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Commercial Bank of Africa</h3>
-                      <p className="text-sm text-muted-foreground">Certificate of Excellence – Ruby Category</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Users className="h-6 w-6 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-2">Client-Centered Approach</h3>
-                      <p className="text-sm text-muted-foreground">
-                        We listen, advise, and deliver solutions that match your financial goals
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="mx-auto max-w-3xl">
+              <ol className="relative">
+                {milestones.map((m) => (
+                  <li key={m.year} className="relative border-l-2 border-primary/15 pb-10 pl-8 last:border-transparent last:pb-0">
+                    <span className="absolute -left-[7px] top-2 h-3 w-3 rotate-45 bg-secondary" aria-hidden="true" />
+                    <p className="font-serif text-xl font-bold text-secondary">{m.year}</p>
+                    <h3 className="mt-1 font-semibold text-primary">{m.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{m.desc}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-8 border-t border-primary/10 pt-6 text-sm text-muted-foreground">
+                Further recognition: Commercial Bank of Africa Certificate of Excellence, Ruby Category.
+              </p>
             </div>
           </div>
         </section>
@@ -336,7 +211,7 @@ export default function AboutPage() {
               Ready to Experience the Golden Eagle Difference?
             </h2>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
-              Join thousands of satisfied clients who trust us with their insurance and investment needs.
+              Join the many Kenyan families and businesses who trust us with their insurance and investment needs.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a href="/quote">
