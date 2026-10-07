@@ -17,16 +17,17 @@ import {
   Landmark,
   Compass,
   CheckCircle,
+  MessageSquareText,
 } from "lucide-react"
 
 export const metadata = buildPageMetadata({
   title: "Global Markets Investment Advisory | Golden Eagle",
   description:
-    "Golden Eagle Global Markets Investment Advisory builds and manages globally diversified investment portfolios for Kenyan investors. Disciplined, research-led wealth management through a regulated international platform.",
+    "Golden Eagle Global Markets Investment Advisory builds and manages diversified portfolios of global shares, funds and bonds for Kenyan investors, held on Investors Trust. Led by Lydia Wanjiku Mwangi in Nairobi.",
   path: "/advisory",
 })
 
-// Advisory (Lead Advisor) contact line, distinct from the general/insurance line.
+// Advisory line: Lydia Wanjiku Mwangi, Lead Advisor. Distinct from the general/insurance line.
 const ADVISORY_PHONE_DISPLAY = "0725 162 240"
 const ADVISORY_PHONE_TEL = "+254725162240"
 
@@ -38,7 +39,7 @@ export default function AdvisoryPage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden bg-primary text-white">
-          {/* Background photograph. TODO: replace with a licensed high-res Nairobi/office image.
+          {/* Background photograph. TODO: replace with a licensed high-res Nairobi image.
               Placeholder: Nairobi City County Skyline by Antony Trivet, Wikimedia Commons, CC BY-SA 4.0. */}
           <Image
             src="/nairobi-cityscape-hero.jpg"
@@ -59,24 +60,23 @@ export default function AdvisoryPage() {
             <div className="max-w-3xl">
               <div className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
                 <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                Global Markets Investment Advisory
+                Golden Eagle Global Markets Investment Advisory
               </div>
               <h1 className="mb-6 font-serif text-4xl font-bold text-balance text-white md:text-6xl">
-                Preserve Capital. Compound Wealth. Invest Globally.
+                Invest in Global Markets, With Every Holding Explained
               </h1>
               <p className="mb-8 max-w-2xl text-lg leading-relaxed text-gray-100 text-pretty md:text-xl">
-                We believe Kenyan investors deserve the same access to leading global markets as investors in New York,
-                London, or Singapore. We build and manage globally diversified portfolios tailored to your objectives,
-                risk appetite, and time horizon.
+                We build and manage portfolios of shares, funds and bonds listed in the US, UK, Europe and Asia, around
+                your goals, your appetite for risk and how long you can invest.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Button
-                    size="lg"
-                    className="bg-secondary font-semibold text-primary shadow-[0_12px_36px_rgba(197,161,0,0.3)] hover:bg-secondary/90"
-                    asChild
-                  >
+                  size="lg"
+                  className="bg-secondary font-semibold text-primary shadow-[0_12px_36px_rgba(197,161,0,0.3)] hover:bg-secondary/90"
+                  asChild
+                >
                   <Link href="/contact">
-                    Arrange a Consultation
+                    Book a Consultation
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -85,57 +85,60 @@ export default function AdvisoryPage() {
                   className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white"
                 >
                   <Phone className="h-4 w-4 text-secondary" />
-                  Speak to the Lead Advisor: {ADVISORY_PHONE_DISPLAY}
+                  Call Lydia, Lead Advisor: {ADVISORY_PHONE_DISPLAY}
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Who we are: mission */}
+        {/* Who we are + adviser */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Who We Are</p>
               <p className="font-serif text-2xl leading-relaxed text-primary text-balance md:text-3xl">
-                An independent global markets investment advisory based in Westlands, Nairobi, committed to building
-                long-term wealth through carefully researched, professionally managed portfolios.
+                The investment arm of Golden Eagle Insurance Agency, based in Nairobi. We help Kenyan individuals,
+                families and businesses invest beyond the local market, with a clear plan.
               </p>
-              <p className="mx-auto mt-6 max-w-2xl text-muted-foreground text-pretty">
-                Golden Eagle Global Markets Investment Advisory is the investment advisory division of Golden Eagle
-                Insurance Agency Ltd, helping individuals, families, and businesses invest with confidence and clarity.
+            </div>
+            <div className="mx-auto mt-12 max-w-3xl border-l-2 border-secondary pl-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Your Adviser</p>
+              <h2 className="mt-2 font-serif text-2xl font-bold text-primary">Lydia Wanjiku Mwangi, Lead Advisor</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Lydia founded Golden Eagle and leads the advisory. She has worked in insurance since 2003 and was
+                previously a Global Markets Specialist at Dyer &amp; Blair. You deal with her directly, in person and by
+                appointment.
               </p>
             </div>
           </div>
         </section>
 
-        {/* What we do: our role */}
+        {/* What we do */}
         <section className="bg-muted py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">What We Do</p>
                 <h2 className="mb-6 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                  Your Adviser, Not Just Your Access
+                  What Your Adviser Does
                 </h2>
                 <p className="mb-6 leading-relaxed text-muted-foreground">
-                  Our role extends far beyond providing access to global markets. We research companies, identify
-                  long-term opportunities, construct diversified portfolios, monitor changing market conditions, and
-                  help you make informed decisions throughout your wealth-building journey.
+                  We research companies and markets, build a diversified portfolio around your goals, and adjust it as
+                  conditions change.
                 </p>
                 <p className="leading-relaxed text-muted-foreground">
-                  Every portfolio is built on a disciplined philosophy centred on quality, diversification, and prudent
-                  risk management. Our education-first approach means you always understand what you own, why you own
-                  it, and how it fits your broader financial objectives.
+                  Before you invest, we explain what each holding is, why it&rsquo;s there and how it fits your plan.
+                  After that, we keep you updated.
                 </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 {[
-                  { icon: Compass, t: "Research-Led", d: "We study markets, sectors, and companies before we commit capital." },
-                  { icon: LineChart, t: "Portfolio Construction", d: "Diversified, benchmark-aware portfolios built around your goals." },
-                  { icon: ShieldCheck, t: "Risk Management", d: "Position sizing and discipline designed to protect capital." },
-                  { icon: Globe, t: "Education-First", d: "You understand every holding and the reasoning behind it." },
+                  { icon: Compass, t: "Research", d: "We study markets, sectors and companies before investing." },
+                  { icon: LineChart, t: "Portfolio Construction", d: "A spread of holdings, built around your goals." },
+                  { icon: ShieldCheck, t: "Risk Management", d: "Position sizes and diversification designed to protect capital." },
+                  { icon: MessageSquareText, t: "Plain Explanations", d: "Every holding, and the reason for it, explained before you invest." },
                 ].map((item) => (
                   <div key={item.t} className="rounded-xl border border-primary/10 bg-white p-5">
                     <item.icon className="mb-3 h-6 w-6 text-secondary" />
@@ -152,24 +155,23 @@ export default function AdvisoryPage() {
         <section id="universe" className="scroll-mt-24 py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Our Investment Universe</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">What You Can Invest In</p>
               <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                Investment-Grade Assets From Markets Worldwide
+                Shares, Funds and Bonds From Markets Worldwide
               </h2>
               <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
-                Access recognised stock exchanges across the United States, United Kingdom, Europe, and Asia. You are
-                not restricted to a single domestic market.
+                Investments listed on recognised exchanges in the United States, United Kingdom, Europe and Asia.
               </p>
             </div>
 
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { t: "Equities", d: "Shares in quality companies on major global exchanges." },
-                { t: "ETFs", d: "Low-cost, transparent exposure to markets and sectors." },
-                { t: "REITs", d: "Income and diversification through global real estate." },
-                { t: "Fixed Income", d: "Bonds for stability and capital preservation." },
-                { t: "Managed Funds", d: "Professionally managed, diversified strategies." },
-                { t: "Multi-Asset Portfolios", d: "Bespoke blends built around your mandate." },
+                { t: "Equities", d: "Shares in established companies on major exchanges." },
+                { t: "ETFs", d: "Low-cost funds that track a market or sector." },
+                { t: "REITs", d: "Income from property, through listed real estate funds." },
+                { t: "Fixed Income", d: "Bonds, to add stability to a portfolio." },
+                { t: "Managed Funds", d: "Diversified funds run by professional managers." },
+                { t: "Multi-Asset Portfolios", d: "A blend of the above, built around your goals." },
               ].map((a) => (
                 <div key={a.t} className="bg-white p-6">
                   <h3 className="mb-1 font-semibold text-primary">{a.t}</h3>
@@ -179,9 +181,7 @@ export default function AdvisoryPage() {
             </div>
 
             <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-muted-foreground">
-              Capital is allocated to sectors and companies offering the strongest long-term opportunities based on
-              prevailing market conditions, valuation, competitive advantage, and structural growth trends, and it
-              adapts as global markets evolve.
+              Where we invest changes with market conditions, valuations and long-term trends.
             </p>
           </div>
         </section>
@@ -193,14 +193,14 @@ export default function AdvisoryPage() {
               <div className="mb-10 text-center">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">The Platform</p>
                 <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                  Secure, Regulated Access to International Markets
+                  Where Your Investments Are Held
                 </h2>
               </div>
 
               <Card className="border-primary/10">
                 <CardContent className="p-8">
                   <div className="mb-6 flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary/10">
                       <Globe className="h-7 w-7 text-secondary" />
                     </div>
                     <div>
@@ -209,10 +209,9 @@ export default function AdvisoryPage() {
                     </div>
                   </div>
                   <p className="leading-relaxed text-muted-foreground">
-                    To provide clients with secure and efficient access to international markets, we partner with
-                    Investors Trust, a life assurance and investment company regulated in the Cayman Islands. Through its
-                    internationally recognised platform, clients benefit from regulatory stability, jurisdictional
-                    diversification, and the flexibility to build bespoke global portfolios around their goals.
+                    Your investments are held on Investors Trust, a life assurance and investment company regulated by
+                    the Cayman Islands Monetary Authority (CIMA). Its international platform gives you access to global
+                    markets and keeps part of your savings outside a single jurisdiction.
                   </p>
                   {/* TODO: confirm and reinstate the exact independent financial-strength rating (e.g. AM Best) before
                       publishing a specific rating figure. */}
@@ -221,7 +220,7 @@ export default function AdvisoryPage() {
                       <ShieldCheck className="h-4 w-4 text-secondary" /> Regulated by CIMA
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-white px-3 py-1.5 text-xs font-medium text-primary">
-                      <Globe className="h-4 w-4 text-secondary" /> International platform
+                      <Globe className="h-4 w-4 text-secondary" /> International Platform
                     </span>
                   </div>
                 </CardContent>
@@ -230,14 +229,14 @@ export default function AdvisoryPage() {
           </div>
         </section>
 
-        {/* Growth objective + prominent risk disclosure */}
+        {/* Growth objective + prominent risk disclosure. Wording agreed with the client; keep the disclosure adjacent. */}
         <section id="growth" className="scroll-mt-24 py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-8 text-center">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Our Growth Objective</p>
                 <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                  Guided by Two Principles: Preserve Capital, Compound Wealth
+                  Preserve Capital, Then Compound It
                 </h2>
               </div>
 
@@ -247,9 +246,8 @@ export default function AdvisoryPage() {
                 shapes how we select investments, size positions, and manage risk.
               </p>
 
-              {/* Prominent, adjacent risk disclosure (kept immediately beside the target figure). */}
               <div className="rounded-2xl border-2 border-secondary/40 bg-secondary/5 p-6 md:p-8">
-                <p className="mb-2 text-sm font-bold uppercase tracking-[0.12em] text-primary">Important information</p>
+                <p className="mb-2 text-sm font-bold uppercase tracking-[0.12em] text-primary">Important Information</p>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   This is a long-term target that informs how we build and manage portfolios. It is{" "}
                   <strong className="text-primary">not a promise or guarantee of returns</strong>. Investment values
@@ -267,13 +265,13 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-10 text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Plan Your Growth</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Try the Numbers</p>
                 <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                  Estimate What Disciplined Investing Could Build
+                  See How Regular Investing Can Compound
                 </h2>
                 <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
-                  Adjust the inputs to see how regular contributions can compound over time, then talk to us about a
-                  strategy built around your goals.
+                  Move the sliders to see how monthly contributions could grow. It&rsquo;s an illustration, not a
+                  forecast.
                 </p>
               </div>
               <GrowthEstimator />
@@ -286,13 +284,11 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold text-secondary text-balance md:text-4xl">
-                Tested Through Real Market Cycles
+                Experience Through Real Market Cycles
               </h2>
               <p className="leading-relaxed text-gray-200 text-pretty">
-                We bring years of experience navigating international markets, including the 2020 COVID-19 crash, the
-                2022 correction following Russia&rsquo;s invasion of Ukraine, and other periods of heightened
-                volatility. Managing through these cycles has shaped a disciplined, risk-aware approach to every mandate
-                we build today.
+                We&rsquo;ve invested through the 2020 COVID-19 crash, the 2022 correction after Russia&rsquo;s invasion
+                of Ukraine, and other volatile periods. That experience shapes how carefully we manage risk today.
               </p>
             </div>
           </div>
@@ -307,8 +303,7 @@ export default function AdvisoryPage() {
                 Investing With a Purpose
               </h2>
               <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
-                Whether you are building long-term wealth, planning for retirement, or funding an education, we tailor
-                strategy to the goal.
+                Tell us what the money is for, and we&rsquo;ll build the plan around it.
               </p>
             </div>
 
@@ -318,26 +313,26 @@ export default function AdvisoryPage() {
                   icon: GraduationCap,
                   img: "/education-funds-graduation-kenya.jpg",
                   t: "Education Funds",
-                  d: "Dedicated plans that grow over time, designed so funds are available for school and university when needed.",
+                  d: "Save steadily, so the fees are ready when school and university begin.",
                 },
                 {
                   icon: Landmark,
                   img: "/retirement-planning-couple-kenya.jpg",
                   t: "Retirement Planning",
-                  d: "Strategies aimed at building financial security and a comfortable, well-structured retirement.",
+                  d: "Build savings that can fund the years after you stop working.",
                 },
                 {
                   icon: Building2,
                   img: "/wealth-creation-financial-symbols-kenya.jpg",
                   t: "Wealth Creation",
-                  d: "Disciplined, diversified investing and professional management tailored to your risk profile.",
+                  d: "Grow long-term savings through a diversified, managed portfolio.",
                 },
               ].map((g) => (
                 <Card key={g.t} className="overflow-hidden border-primary/10 transition-all duration-300 hover:shadow-xl">
                   <div className="relative h-44 overflow-hidden">
                     <Image
                       src={g.img}
-                      alt={g.t}
+                      alt=""
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
                       quality={80}
@@ -365,15 +360,15 @@ export default function AdvisoryPage() {
                   Why Invest With Golden Eagle
                 </h2>
                 <p className="text-muted-foreground text-pretty">
-                  Clients invest through platforms, but they choose advisers for trust and expertise.
+                  The platform holds your investments. Your adviser is the person you deal with.
                 </p>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {[
-                  { t: "Independent & Aligned", d: "Independent advice focused on your objectives, not product sales." },
-                  { t: "Global Reach, Local Partner", d: "Leading global markets, guided by an adviser you can meet in Nairobi." },
-                  { t: "Disciplined Philosophy", d: "Quality, diversification, and prudent risk management on every mandate." },
-                  { t: "Transparent & Educational", d: "Clear reasoning and reporting so you always know where you stand." },
+                  { t: "Your Goals First", d: "We start from what you're saving for, then choose the investments." },
+                  { t: "Global Markets, Local Adviser", d: "Invest worldwide, with an adviser you meet in person in Nairobi." },
+                  { t: "A Disciplined Approach", d: "Quality holdings, diversification and careful risk management." },
+                  { t: "Clear Reporting", d: "Regular updates, with the reasoning written down." },
                 ].map((w) => (
                   <div key={w.t} className="flex gap-4">
                     <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary" />
@@ -392,24 +387,25 @@ export default function AdvisoryPage() {
         <section className="bg-primary py-16 text-white md:py-20">
           <div className="container mx-auto px-4 text-center">
             <h2 className="mb-4 font-serif text-3xl font-bold text-secondary text-balance md:text-4xl">
-              Start a Conversation About Your Portfolio
+              Talk to Lydia About Your Portfolio
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-200 text-pretty">
-              Arrange a confidential consultation with our Lead Advisor to explore a strategy built around your goals.
+              Book a confidential consultation. We&rsquo;ll talk through your goals and how a global portfolio could fit
+              them.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button size="lg" className="bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
                 <Link href="/contact">
-                  Arrange a Consultation
+                  Book a Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
-                  asChild
-                >
+                size="lg"
+                variant="outline"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
+                asChild
+              >
                 <a href={`tel:${ADVISORY_PHONE_TEL}`}>
                   <Phone className="mr-2 h-5 w-5" />
                   {ADVISORY_PHONE_DISPLAY}

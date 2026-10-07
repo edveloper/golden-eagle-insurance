@@ -38,13 +38,13 @@ const quoteSchema = z.object({
   email: z.string().trim().email().max(254),
   phone: z.string().trim().min(7).max(30),
   insuranceType: z.string().trim().min(2).max(120),
-  coverageAmount: z.string().trim().max(120).optional().default(""),
+  situation: z.string().trim().max(120).optional().default(""),
   additionalInfo: z.string().trim().max(5000).optional().default(""),
   website: z.string().optional().default(""),
 })
 
 const claimSchema = z.object({
-  policyNumber: z.string().trim().min(3).max(120),
+  policyNumber: z.string().trim().max(120).optional().default(""),
   claimType: z.string().trim().min(2).max(120),
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(254),
@@ -222,7 +222,7 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
           <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
           <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
           <p><strong>Insurance Type:</strong> ${escapeHtml(data.insuranceType)}</p>
-          <p><strong>Desired Coverage:</strong> ${escapeHtml(data.coverageAmount || "Not specified")}</p>
+          <p><strong>Situation:</strong> ${escapeHtml(data.situation || "Not specified")}</p>
           <p><strong>Additional Information:</strong></p>
           <p style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">${escapeHtml(data.additionalInfo || "No additional details provided")}</p>
           <hr />
@@ -265,7 +265,7 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
       email: data.email,
       phone: data.phone,
       insuranceType: data.insuranceType,
-      coverageAmount: data.coverageAmount || "",
+      situation: data.situation || "",
       additionalInfo: data.additionalInfo || "",
     },
     emailStatus,
@@ -309,7 +309,7 @@ export async function submitClaimForm(rawData: unknown): Promise<FormResult> {
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #1a3a5c;">New Claim Submission</h2>
           <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
-          <p><strong>Policy Number:</strong> ${escapeHtml(data.policyNumber)}</p>
+          <p><strong>Policy Number:</strong> ${escapeHtml(data.policyNumber || "Not provided")}</p>
           <p><strong>Claim Type:</strong> ${escapeHtml(data.claimType)}</p>
           <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>

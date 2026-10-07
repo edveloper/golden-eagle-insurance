@@ -2,7 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
-import { CONTACT_EMAIL } from "@/lib/site"
+import { CONTACT_EMAIL, PHONE_DISPLAY } from "@/lib/site"
 
 export const metadata = buildPageMetadata({
   title: "Terms of Use | Golden Eagle Insurance Agency",
@@ -39,7 +39,7 @@ export default function TermsOfUsePage() {
           title="Terms of Use"
           subtitle="The terms governing your use of this website and our services."
         >
-          <p className="mt-4 text-sm text-white/70">Last updated: 6 July 2026</p>
+          <p className="mt-4 text-sm text-white/70">Last updated: 7 October 2026</p>
         </PageHero>
 
         <section className="py-14 md:py-20">
@@ -71,8 +71,8 @@ export default function TermsOfUsePage() {
 
               <Clause title="4. Investment Services and Risk">
                 <p>
-                  Our Global Markets Advisory division facilitates international investment solutions through our
-                  regulated partner, Investors Trust. Investing involves risk, including the possible loss of capital.
+                  Our investment advisory division, Golden Eagle Global Markets Investment Advisory, facilitates
+                  international investment solutions through our regulated partner, Investors Trust. Investing involves risk, including the possible loss of capital.
                   The value of investments and any income from them can fall as well as rise, currency movements can
                   affect value, and past performance is not a reliable indicator of future results. No return is
                   guaranteed.
@@ -129,7 +129,7 @@ export default function TermsOfUsePage() {
                   <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline hover:text-primary/80">
                     {CONTACT_EMAIL}
                   </a>{" "}
-                  or +254 791 389 518.
+                  or {PHONE_DISPLAY}.
                 </p>
               </Clause>
             </div>

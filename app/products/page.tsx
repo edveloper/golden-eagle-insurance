@@ -4,16 +4,136 @@ import { PageHero } from "@/components/page-hero"
 import { CoverQuiz } from "@/components/cover-quiz"
 import { Button } from "@/components/ui/button"
 import { buildPageMetadata } from "@/lib/seo"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 import Image from "next/image"
 import { CheckCircle, ArrowRight } from "lucide-react"
 
 export const metadata = buildPageMetadata({
-  title: "Insurance Products | Golden Eagle Insurance Agency",
+  title: "Insurance Cover | Golden Eagle Insurance Agency, Nairobi",
   description:
-    "Explore our comprehensive range of insurance products including professional indemnity, health, cyber security, life, property, business, and travel insurance tailored for individuals and businesses.",
+    "Professional indemnity, medical, cyber, life, home, business and travel insurance from ten of Kenya's leading insurers, arranged by an AKI award-winning agency in Nairobi.",
   path: "/products",
 })
+
+type Product = {
+  id: string
+  name: string
+  indexNote?: string
+  badge?: string
+  intro: string
+  features: { title: string; desc: string }[]
+  image: string
+  quoteType: string
+  quoteLabel: string
+}
+
+// Section ids are linked from the homepage, footer and cover quiz; keep them stable.
+const products: Product[] = [
+  {
+    id: "professional-indemnity",
+    name: "Professional Indemnity",
+    indexNote: "AKI #1",
+    badge: "First in the AKI Professional Indemnity Category in 2018, 2019 and 2023",
+    intro:
+      "If a client says your advice or work cost them money, professional indemnity pays for your defence and any compensation you owe. We arrange it for doctors, lawyers, accountants, engineers, architects and consultants.",
+    features: [
+      { title: "Negligence, Errors and Omissions", desc: "Cover when a client says your work or advice caused them a loss." },
+      { title: "Legal Defence Costs", desc: "Lawyers' fees and court costs to defend the claim." },
+      { title: "Compensation and Settlements", desc: "Damages awarded against you or agreed in a settlement, up to your policy limit." },
+      { title: "Cover for Doctors", desc: "Doctors' indemnity starts from KES 6,000 a year, with limits up to KES 100 million." },
+    ],
+    image: "/professional-indemnity-insurance-kenya.jpg",
+    quoteType: "professional-indemnity",
+    quoteLabel: "Get a Professional Indemnity Quote",
+  },
+  {
+    id: "health",
+    name: "Medical Insurance",
+    intro: "Cover for hospital bills and doctor's visits, for you, your family or your staff.",
+    features: [
+      { title: "Inpatient and Outpatient", desc: "Hospital stays, and visits to the doctor." },
+      { title: "Maternity", desc: "Antenatal care, delivery and care for the newborn." },
+      { title: "Dental and Optical", desc: "Check-ups, treatment, glasses and lenses." },
+      { title: "Help With Approvals and Claims", desc: "Our team helps with hospital pre-approvals and follows up claims with the insurer." },
+    ],
+    image: "/health-insurance-medical-care-kenya.jpg",
+    quoteType: "medical",
+    quoteLabel: "Get a Medical Insurance Quote",
+  },
+  {
+    id: "cyber-security",
+    name: "Cyber Insurance",
+    intro:
+      "For businesses that hold customer data or rely on their systems. It pays for dealing with a breach or attack, and for the income you lose while you recover.",
+    features: [
+      { title: "Data Breaches", desc: "Investigating the breach, notifying customers and restoring data." },
+      { title: "Business Interruption", desc: "Income lost while your systems are down." },
+      { title: "Ransomware and Extortion", desc: "Costs from ransomware attacks, where the policy includes them." },
+      { title: "Specialist Help During an Attack", desc: "Many policies include access to IT and legal specialists when it happens." },
+    ],
+    image: "/cyber-security-insurance-kenya.jpg",
+    quoteType: "cyber",
+    quoteLabel: "Get a Cyber Insurance Quote",
+  },
+  {
+    id: "life",
+    name: "Life and Pension",
+    intro: "Money for your family if you pass away, and savings for the years after you stop working.",
+    features: [
+      { title: "Term Life", desc: "Cover for a set number of years, at a lower premium." },
+      { title: "Whole Life", desc: "Cover for the rest of your life, with a savings element." },
+      { title: "Education Plans", desc: "Save steadily towards school and university fees." },
+      { title: "Pension Plans", desc: "Build an income for when you stop working." },
+    ],
+    image: "/family-life-insurance-protection-kenya.jpg",
+    quoteType: "life",
+    quoteLabel: "Get a Life Cover Quote",
+  },
+  {
+    id: "property",
+    name: "Home and Property",
+    intro: "Cover for your house and what's in it, or for commercial buildings.",
+    features: [
+      { title: "Fire and Related Damage", desc: "Fire, lightning and explosion." },
+      { title: "Theft and Burglary", desc: "Stolen goods, and damage from a break-in." },
+      { title: "Floods and Storms", desc: "Weather damage, depending on the policy." },
+      { title: "Contents", desc: "Furniture, electronics and valuables." },
+    ],
+    image: "/home-property-insurance-kenya.jpg",
+    quoteType: "home",
+    quoteLabel: "Get a Home Insurance Quote",
+  },
+  {
+    id: "business",
+    name: "Business Insurance",
+    intro:
+      "Cover for the risks a business carries: claims from the public, your staff's medical costs, and lost income when something stops you trading.",
+    features: [
+      { title: "Public Liability", desc: "Claims from customers or the public for injury or damage." },
+      { title: "Professional Indemnity", desc: "Claims that your advice or service caused a loss." },
+      { title: "Group Medical", desc: "Medical cover for your staff." },
+      { title: "Business Interruption", desc: "Income lost after an insured event, such as a fire." },
+    ],
+    image: "/business-insurance-office-kenya.jpg",
+    quoteType: "business",
+    quoteLabel: "Get a Business Insurance Quote",
+  },
+  {
+    id: "travel",
+    name: "Travel Insurance",
+    intro: "Cover for medical emergencies, cancellations, delays and lost luggage when you travel abroad.",
+    features: [
+      { title: "Medical Emergencies", desc: "Treatment if you fall ill or are injured abroad." },
+      { title: "Cancelled or Cut-Short Trips", desc: "Costs you can't recover when plans change." },
+      { title: "Flight Delays", desc: "Compensation for long delays." },
+      { title: "Lost or Delayed Luggage", desc: "Replacing essentials while your bags are missing." },
+    ],
+    image: "/travel-insurance-vacation-kenya.jpg",
+    quoteType: "travel",
+    quoteLabel: "Get a Travel Insurance Quote",
+  },
+]
 
 export default function ProductsPage() {
   return (
@@ -24,56 +144,48 @@ export default function ProductsPage() {
         <PageHero
           image="/nairobi-skyline-hero.jpg"
           imageAlt="Nairobi city skyline"
-          eyebrow="Coverage Portfolio"
-          title="Comprehensive Insurance Solutions"
-          subtitle="Discover our wide range of insurance products designed to protect what matters most to you and your business."
+          eyebrow="Insurance"
+          title="Insurance, Explained Before You Buy It"
+          subtitle="We arrange cover with ten of Kenya's leading insurers. Below is what each type of policy usually includes. We'll go through the exact terms with you before you commit."
         />
 
         {/* Cover finder quiz */}
         <section className="border-b border-primary/10 bg-muted py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mb-8 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Not sure where to start?</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Not Sure Where to Start?</p>
               <h2 className="mb-3 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                Find the Right Cover in 30 Seconds
+                Two Questions to Narrow It Down
               </h2>
               <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
-                Answer two quick questions and we'll point you to the cover that fits.
+                Answer them and we&rsquo;ll suggest the cover to look at first.
               </p>
             </div>
             <CoverQuiz />
           </div>
         </section>
 
-        {/* Coverage index */}
+        {/* Index */}
         <section className="border-b border-primary/10 py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mb-8">
               <p className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                 <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                Coverage at a Glance
+                Types of Cover
               </p>
-              <h2 className="font-serif text-3xl font-bold text-primary text-balance md:text-4xl">Everything We Protect</h2>
+              <h2 className="font-serif text-3xl font-bold text-primary text-balance md:text-4xl">Jump to a Type of Cover</h2>
             </div>
             <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                { name: "Professional Indemnity", href: "#professional-indemnity", note: "Award-winning" },
-                { name: "Health Insurance", href: "#health" },
-                { name: "Cyber Security", href: "#cyber-security" },
-                { name: "Life Insurance", href: "#life" },
-                { name: "Property Insurance", href: "#property" },
-                { name: "Business Insurance", href: "#business" },
-                { name: "Travel Insurance", href: "#travel" },
-              ].map((c) => (
+              {products.map((p) => (
                 <a
-                  key={c.href}
-                  href={c.href}
+                  key={p.id}
+                  href={`#${p.id}`}
                   className="group flex items-center justify-between gap-3 bg-background p-6 transition-colors hover:bg-muted"
                 >
                   <span>
-                    <span className="font-serif text-lg font-semibold text-primary">{c.name}</span>
-                    {c.note ? (
-                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-secondary">{c.note}</span>
+                    <span className="font-serif text-lg font-semibold text-primary">{p.name}</span>
+                    {p.indexNote ? (
+                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-secondary">{p.indexNote}</span>
                     ) : null}
                   </span>
                   <ArrowRight className="h-4 w-4 shrink-0 text-secondary transition-transform group-hover:translate-x-1" />
@@ -83,507 +195,90 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section id="professional-indemnity" className="py-14 md:py-20 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="flex flex-col justify-center">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Professional Indemnity Insurance
-                </h2>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Protect your professional reputation and financial security with our comprehensive professional
-                  indemnity insurance. Designed for consultants, accountants, lawyers, engineers, and other
-                  professionals.
-                </p>
-                <p className="text-sm text-secondary font-semibold mb-6">
-                  Award-Winning Coverage: Multiple AKI Awards Winner (2018, 2019, 2023, 2024)
-                </p>
+        {products.map((p, i) => {
+          const imageFirst = i % 2 === 1
+          return (
+            <section key={p.id} id={p.id} className={cn("scroll-mt-20 py-14 md:py-20", imageFirst && "bg-muted")}>
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+                  <div className={cn("flex flex-col justify-center", imageFirst && "lg:order-2")}>
+                    <h2 className="mb-6 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">{p.name}</h2>
+                    <p className="mb-4 leading-relaxed text-muted-foreground">{p.intro}</p>
+                    {p.badge ? <p className="mb-6 text-sm font-semibold text-secondary">{p.badge}</p> : null}
 
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Professional Negligence Coverage</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Protection against claims of professional errors or omissions
-                      </p>
+                    <div className="mb-8 mt-2 space-y-4">
+                      {p.features.map((f) => (
+                        <div key={f.title} className="flex items-start gap-3">
+                          <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary" />
+                          <div>
+                            <h3 className="mb-1 font-semibold">{f.title}</h3>
+                            <p className="text-sm text-muted-foreground">{f.desc}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
+
+                    <Button className="self-start bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+                      <Link href={`/quote?type=${p.quoteType}`}>
+                        {p.quoteLabel}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Legal Defense Costs</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for legal fees and court expenses</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Damages & Settlements</h4>
-                      <p className="text-sm text-muted-foreground">Full coverage for awarded damages and settlements</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Tailored Coverage Options</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Customized policies for different professional sectors
-                      </p>
-                    </div>
+                  <div
+                    className={cn(
+                      "group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]",
+                      imageFirst && "lg:order-1",
+                    )}
+                  >
+                    <Image
+                      src={p.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 42vw, 92vw"
+                      quality={82}
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
                   </div>
                 </div>
+              </div>
+            </section>
+          )
+        })}
 
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Professional Indemnity Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/professional-indemnity-insurance-kenya.jpg"
-                  alt="Professional Indemnity Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-            </div>
+        <section className="border-t border-primary/10 py-10">
+          <div className="container mx-auto px-4">
+            <p className="mx-auto max-w-3xl text-center text-sm text-muted-foreground">
+              Exact cover, limits and exclusions depend on the insurer and the policy. We&rsquo;ll take you through
+              them before you buy.
+            </p>
           </div>
         </section>
 
-        {/* Health Insurance */}
-        <section id="health" className="py-14 md:py-20 bg-muted scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/health-insurance-medical-care-kenya.jpg"
-                  alt="Health Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-              <div className="order-1 flex flex-col justify-center lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Health Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Access quality healthcare for you and your family with our comprehensive health insurance plans.
-                  Choose from individual, family, or corporate packages.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Inpatient & Outpatient Cover</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Comprehensive coverage for hospital visits and treatments
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Maternity Coverage</h4>
-                      <p className="text-sm text-muted-foreground">Support for expectant mothers and newborns</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Dental & Optical</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for dental and eye care services</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Wide Hospital Network</h4>
-                      <p className="text-sm text-muted-foreground">Access to top hospitals across Kenya</p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Health Insurance Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="cyber-security" className="py-14 md:py-20 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="flex flex-col justify-center">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Cyber Security Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Protect your business from cyber threats and data breaches. Our comprehensive cyber security insurance
-                  covers financial losses and recovery costs from cyber incidents.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Data Breach Coverage</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Protection against costs of data breaches and cyber attacks
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Business Interruption</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for lost income due to cyber incidents</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Ransomware Protection</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for ransomware attacks and extortion</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">24/7 Incident Response</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Immediate support and expert guidance during cyber incidents
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Cyber Security Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/cyber-security-insurance-kenya.jpg"
-                  alt="Cyber Security Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Life Insurance */}
-        <section id="life" className="py-14 md:py-20 bg-muted scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/family-life-insurance-protection-kenya.jpg"
-                  alt="Life Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-              <div className="order-1 flex flex-col justify-center lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Life Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Secure your family's financial future with our flexible life insurance plans, so your loved ones are
-                  protected whatever happens.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Term Life Insurance</h4>
-                      <p className="text-sm text-muted-foreground">Affordable coverage for a specific period</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Whole Life Insurance</h4>
-                      <p className="text-sm text-muted-foreground">Lifetime protection with savings component</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Education Plans</h4>
-                      <p className="text-sm text-muted-foreground">Secure your children's educational future</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Retirement Planning</h4>
-                      <p className="text-sm text-muted-foreground">Build wealth for your golden years</p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Life Insurance Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Property Insurance */}
-        <section id="property" className="py-14 md:py-20 bg-muted scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/home-property-insurance-kenya.jpg"
-                  alt="Property Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-              <div className="order-1 flex flex-col justify-center lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Property Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Protect your home and belongings from unexpected events. Our property insurance covers residential and
-                  commercial properties.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Fire & Perils Coverage</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Protection against fire, lightning, and explosions
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Theft & Burglary</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for stolen or damaged property</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Natural Disasters</h4>
-                      <p className="text-sm text-muted-foreground">Protection from floods, storms, and earthquakes</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Contents Insurance</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for household items and valuables</p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Property Insurance Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Business Insurance */}
-        <section id="business" className="py-14 md:py-20 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="flex flex-col justify-center">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Business Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Comprehensive insurance solutions for businesses of all sizes. Protect your assets, employees, and
-                  operations from various risks.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Public Liability</h4>
-                      <p className="text-sm text-muted-foreground">Protection against third-party claims</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Professional Indemnity</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for professional negligence claims</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Group Medical Cover</h4>
-                      <p className="text-sm text-muted-foreground">Health insurance for your employees</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Business Interruption</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for loss of income due to disruptions</p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Business Insurance Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-              <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/business-insurance-office-kenya.jpg"
-                  alt="Business Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Travel Insurance */}
-        <section id="travel" className="py-14 md:py-20 bg-muted scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
-              <div className="order-2 lg:order-1 group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/travel-insurance-vacation-kenya.jpg"
-                  alt="Travel Insurance"
-                  fill
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  quality={82}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
-              </div>
-              <div className="order-1 flex flex-col justify-center lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-6 text-balance">
-                  Travel Insurance
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Travel with confidence knowing you're protected. Our travel insurance covers medical emergencies, trip
-                  cancellations, and more.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Medical Emergency Coverage</h4>
-                      <p className="text-sm text-muted-foreground">Healthcare costs while traveling abroad</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Trip Cancellation</h4>
-                      <p className="text-sm text-muted-foreground">Reimbursement for cancelled or interrupted trips</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Lost Luggage Protection</h4>
-                      <p className="text-sm text-muted-foreground">Coverage for lost or delayed baggage</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold mb-1">24/7 Travel Assistance</h4>
-                      <p className="text-sm text-muted-foreground">Round-the-clock support wherever you are</p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
-                  <Link href="/quote">
-                    Get Travel Insurance Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
+        {/* CTA */}
         <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">
-              Not Sure Which Product is Right for You?
+            <h2 className="mb-4 text-3xl font-serif font-bold text-secondary text-balance md:text-4xl">
+              Not Sure Which Cover You Need?
             </h2>
-            <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
-              Our insurance experts are here to help you find the perfect coverage for your needs.
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-200 text-pretty">
+              Tell us about your situation and we&rsquo;ll suggest where to start. We reply within one business day.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" className="bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
                 <Link href="/contact">
-                  Speak to an Expert
+                  Talk to Us
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
-                  asChild
-                >
-                <Link href="/quote">
-                  Get a Quote
-                </Link>
+                size="lg"
+                variant="outline"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
+                asChild
+              >
+                <Link href="/quote">Get a Quote</Link>
               </Button>
             </div>
           </div>
@@ -594,4 +289,3 @@ export default function ProductsPage() {
     </div>
   )
 }
-

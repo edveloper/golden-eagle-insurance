@@ -4,7 +4,7 @@ import ClaimsPage from "./claims-page"
 export const metadata = buildPageMetadata({
   title: "File a Claim | Golden Eagle Insurance Agency",
   description:
-    "Submit an insurance claim with Golden Eagle Insurance Agency and get support from our team through the claims process.",
+    "File an insurance claim with Golden Eagle Insurance Agency. We help you prepare it and follow it up with your insurer until it's settled.",
   path: "/claims",
 })
 

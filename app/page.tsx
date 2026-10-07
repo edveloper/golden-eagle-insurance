@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button"
 import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import Image from "next/image"
-import { YEARS_IN_BUSINESS } from "@/lib/site"
+import { INSURERS, PHONE_DISPLAY, PHONE_TEL, YEARS_IN_BUSINESS } from "@/lib/site"
 import {
   Home,
   CheckCircle,
-  Clock,
+  Scale,
+  ShieldCheck,
   Award,
   TrendingUp,
   ArrowRight,
@@ -22,9 +23,9 @@ import {
 } from "lucide-react"
 
 export const metadata = buildPageMetadata({
-  title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions",
+  title: "Golden Eagle Insurance Agency | Insurance & Investment Advice in Nairobi",
   description:
-    "Golden Eagle Insurance Agency provides comprehensive insurance and investment solutions for individuals and businesses.",
+    "IRA-licensed insurance agency in Nairobi, since 2006. Medical, life, professional indemnity, property, business and travel cover from Kenya's leading insurers, plus global investment advice.",
   path: "/",
 })
 
@@ -59,15 +60,14 @@ export default function HomePage() {
             <div className="max-w-3xl">
               <div className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
                 <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                Insurance + Global Markets Advisory
+                Insurance Agency · Nairobi
               </div>
               <h1 className="mb-6 text-4xl font-serif font-bold text-balance text-white md:text-6xl">
-                Trusted Financial &amp; Insurance Partner Since 2006
+                The Right Cover From Kenya&rsquo;s Leading Insurers, and Help When You Claim
               </h1>
               <p className="mb-8 max-w-2xl text-lg leading-relaxed text-gray-100 text-pretty md:text-xl">
-                Golden Eagle Insurance Agency Limited offers trusted financial and risk management solutions. We
-                represent multiple reputable insurance companies and investment partners globally, providing tailored
-                services that empower our clients to protect, grow, and secure their wealth.
+                Founded in 2006 and licensed by the IRA. Ranked first in the AKI&rsquo;s professional indemnity
+                category in 2018, 2019 and 2023.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button
@@ -87,7 +87,7 @@ export default function HomePage() {
                     asChild
                   >
                   <Link href="/contact">
-                    Contact Us
+                    Talk to Us
                   </Link>
                 </Button>
               </div>
@@ -104,19 +104,19 @@ export default function HomePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-primary/10">
               <div className="px-4 py-3 text-center">
                 <div className="font-serif text-4xl font-bold text-primary md:text-5xl">{YEARS_IN_BUSINESS}+</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Years of Excellence</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Years in Business</div>
               </div>
               <div className="px-4 py-3 text-center">
-                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">2</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Powerful Divisions</div>
+                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">3×</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">AKI #1, Professional Indemnity</div>
               </div>
               <div className="px-4 py-3 text-center">
-                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">9+</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Insurance Partners</div>
+                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">{INSURERS.length}</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Insurers We Work With</div>
               </div>
               <div className="px-4 py-3 text-center">
-                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">AKI</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Award Winner</div>
+                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">Top 10</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">AKI Agents Nationwide, 2024</div>
               </div>
             </div>
           </div>
@@ -126,77 +126,76 @@ export default function HomePage() {
         <section className="py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Integrated Advisory</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">What We Do</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
-                Two Powerful Divisions
+                Protect What You Have, Grow What You Save
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                A considered blend of insurance protection and investment growth for your financial future.
+                Most people need both, so we do both. One team can arrange your cover and manage your investments.
               </p>
             </div>
 
             <div className="mb-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
               {/* Insurance Division: light panel */}
               <div className="rounded-2xl border border-primary/10 bg-white p-8 shadow-[0_10px_30px_rgba(10,29,55,0.06)] md:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Insurance Division</p>
-                <h3 className="mt-3 font-serif text-2xl font-bold text-primary md:text-3xl">Protect What You've Built</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Insurance</p>
+                <h3 className="mt-3 font-serif text-2xl font-bold text-primary md:text-3xl">Cover for What You&rsquo;ve Built</h3>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  Comprehensive cover across Kenya's leading insurers: medical, life, professional indemnity, property,
-                  business and travel.
+                  We place cover with ten of Kenya&rsquo;s leading insurers and help you choose between them.
                 </p>
                 <ul className="mt-6 space-y-3">
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Medical &amp; Life Insurance</span>
+                    <span>Medical and life cover</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Professional Indemnity (award-winning)</span>
+                    <span>Professional indemnity, our award-winning speciality</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Home, Business &amp; Travel Insurance</span>
+                    <span>Home, business and travel cover</span>
                   </li>
                 </ul>
                 <p className="mt-6 text-xs text-muted-foreground">
-                  Partners: ICEA Lion, Heritage, Old Mutual, Britam, Prudential, AAR, Jubilee, CIC, NCBA
+                  Insurers: {INSURERS.join(", ")}
                 </p>
                 <Link
                   href="/products"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3"
                 >
-                  Explore insurance <ArrowRight className="h-4 w-4" />
+                  See Insurance Cover <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
 
               {/* Global Markets Advisory: navy panel */}
               <div className="relative overflow-hidden rounded-2xl bg-primary p-8 text-white shadow-[0_18px_40px_rgba(10,29,55,0.18)] md:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Global Markets Advisory</p>
-                <h3 className="mt-3 font-serif text-2xl font-bold md:text-3xl">Grow Your Wealth, Globally</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Investment Advisory</p>
+                <h3 className="mt-3 font-serif text-2xl font-bold md:text-3xl">Invest Beyond the Nairobi Securities Exchange</h3>
                 <p className="mt-4 leading-relaxed text-gray-300">
-                  Access global instruments (equities, funds, ETFs and bonds) built into diversified portfolios, with
-                  expert guidance at every step.
+                  We build diversified portfolios of global shares, funds, ETFs and bonds, and explain every holding to
+                  you.
                 </p>
                 <ul className="mt-6 space-y-3">
                   <li className="flex items-start gap-3 text-sm text-gray-100">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Children's education &amp; college funds</span>
+                    <span>School and university fees</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm text-gray-100">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Retirement &amp; pension planning</span>
+                    <span>Income for retirement</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm text-gray-100">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" />
-                    <span>Long-term wealth creation</span>
+                    <span>Long-term savings</span>
                   </li>
                 </ul>
-                <p className="mt-6 text-xs text-gray-400">Platform: Investors Trust (Cayman Islands)</p>
+                <p className="mt-6 text-xs text-gray-400">Investments are held on Investors Trust, regulated in the Cayman Islands</p>
                 <Link
                   href="/advisory"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-secondary transition-all hover:gap-3"
                 >
-                  Explore the advisory <ArrowRight className="h-4 w-4" />
+                  See the Advisory <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -207,12 +206,12 @@ export default function HomePage() {
         <section className="py-14 md:py-20 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Insurance Coverage</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Insurance</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
-                Our Insurance Products
+                Cover We Arrange
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                Comprehensive protection for every aspect of your life and business.
+                Pick a category to see what&rsquo;s included.
               </p>
             </div>
 
@@ -236,13 +235,13 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/45 to-transparent" />
                   {p.award ? (
                     <span className="absolute left-4 top-4 rounded-sm bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
-                      Award-winning
+                      AKI #1 · 3 Times
                     </span>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <h3 className="font-serif text-xl font-bold text-white">{p.title}</h3>
                     <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-secondary">
-                      Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      What&rsquo;s Covered <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
                 </Link>
@@ -258,35 +257,35 @@ export default function HomePage() {
               <div>
                 <div className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                   <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                  Global Markets Advisory
+                  Investment Advisory
                 </div>
                 <h2 className="font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
-                  The Same Access as New York, London or Singapore
+                  Global Markets, With an Adviser Who Explains Them
                 </h2>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  Golden Eagle is your adviser, not just your access. We research global markets, construct diversified
-                  portfolios, and manage them with discipline, so Kenyan investors can build wealth on the world stage.
-                  Every client understands what they own, why they own it, and how it fits their goals.
+                  Our advisory gives you shares, funds and bonds listed in the US, UK, Europe and Asia. We research the
+                  markets, build a portfolio around your goals and manage it over time. Before you invest, we explain
+                  what each holding is and why it&rsquo;s there.
                 </p>
                 <ul className="mt-6 space-y-3">
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                    <span>Globally diversified portfolios across US, UK, European and Asian markets</span>
+                    <span>Portfolios spread across several countries and asset types</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                    <span>Access through Investors Trust, a regulated international platform</span>
+                    <span>Held on Investors Trust, a platform regulated in the Cayman Islands</span>
                   </li>
                   <li className="flex items-start gap-3 text-sm">
                     <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                    <span>An education-first approach, built on preserving and compounding capital</span>
+                    <span>Regular reviews, with the reasoning written down</span>
                   </li>
                 </ul>
                 <Link
                   href="/advisory"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3"
                 >
-                  Explore the Advisory <ArrowRight className="h-4 w-4 text-secondary" />
+                  How the Advisory Works <ArrowRight className="h-4 w-4 text-secondary" />
                 </Link>
               </div>
               <figure className="rounded-2xl border border-primary/10 bg-muted p-8 md:p-10">
@@ -301,10 +300,10 @@ export default function HomePage() {
             <div className="mt-16">
               <div className="mb-8 text-center">
                 <h3 className="font-serif text-2xl font-bold text-primary md:text-3xl">
-                  See What Disciplined Investing Could Build
+                  Try the Numbers
                 </h3>
                 <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
-                  Adjust the inputs, then talk to us about a strategy built around your goals.
+                  Move the sliders to see how regular saving can compound. It&rsquo;s an illustration, not a forecast.
                 </p>
               </div>
               <GrowthEstimator />
@@ -318,26 +317,26 @@ export default function HomePage() {
             <div className="mb-10 max-w-2xl">
               <div className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                 <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                Planning ahead
+                Planning Ahead
               </div>
               <h2 className="font-serif text-3xl font-bold text-balance md:text-4xl">What Are You Planning For?</h2>
               <p className="mt-3 text-gray-300 text-pretty">
-                Whatever stage you're at, we help you protect it and build on it.
+                Pick the one closest to home. We&rsquo;ll start there.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { icon: GraduationCap, title: "Your Children's Education", desc: "Dedicated plans so school and university fees are ready when needed.", href: "/advisory#goals" },
-                { icon: Home, title: "Your Home", desc: "Protect the place your family lives, and everything in it.", href: "/products#property" },
-                { icon: Landmark, title: "A Secure Retirement", desc: "Build an income that lasts well beyond your working years.", href: "/advisory#goals" },
-                { icon: Building2, title: "Your Business", desc: "Cover the risks, and invest the surplus as your business grows.", href: "/products#business" },
+                { icon: GraduationCap, title: "School and University Fees", desc: "Start early, and the money is there when the admission letter arrives.", href: "/advisory#goals" },
+                { icon: Home, title: "Your Home", desc: "Cover the house and what's in it against fire, theft and damage.", href: "/products#property" },
+                { icon: Landmark, title: "Retirement", desc: "Build an income for the years after your last payslip.", href: "/advisory#goals" },
+                { icon: Building2, title: "Your Business", desc: "Insure the risks you carry, and invest what the business earns.", href: "/products#business" },
               ].map((m) => (
                 <Link key={m.title} href={m.href} className="group border-t border-white/15 pt-5">
                   <m.icon className="mb-3 h-6 w-6 text-secondary" />
                   <h3 className="font-serif text-lg font-bold">{m.title}</h3>
                   <p className="mt-2 text-sm text-gray-300">{m.desc}</p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-secondary">
-                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Start Here <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               ))}
@@ -351,33 +350,30 @@ export default function HomePage() {
             <div className="text-center mb-10">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">Why Golden Eagle</p>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
-                Why Choose Golden Eagle?
+                What You Get From Us
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                We're committed to exceptional service and comprehensive coverage that gives you genuine confidence.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-4">
               <div className="bg-background p-6">
-                <CheckCircle className="mb-3 h-6 w-6 text-secondary" />
-                <h3 className="mb-2 font-semibold text-primary">{YEARS_IN_BUSINESS}+ Years of Excellence</h3>
-                <p className="text-sm text-muted-foreground">Trusted by clients across Kenya since 2006</p>
+                <Scale className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Ten Insurers, One Conversation</h3>
+                <p className="text-sm text-muted-foreground">We compare cover across insurers, so you don&rsquo;t have to call each one.</p>
               </div>
               <div className="bg-background p-6">
-                <TrendingUp className="mb-3 h-6 w-6 text-secondary" />
-                <h3 className="mb-2 font-semibold text-primary">Two Powerful Divisions</h3>
-                <p className="text-sm text-muted-foreground">A considered blend of insurance protection and investment growth</p>
+                <ShieldCheck className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Help When You Claim</h3>
+                <p className="text-sm text-muted-foreground">We help you prepare the claim and follow it up with the insurer.</p>
               </div>
               <div className="bg-background p-6">
                 <Award className="mb-3 h-6 w-6 text-secondary" />
-                <h3 className="mb-2 font-semibold text-primary">Award-Winning Performance</h3>
-                <p className="text-sm text-muted-foreground">Multiple AKI Awards for outstanding service</p>
+                <h3 className="mb-2 font-semibold text-primary">Professional Indemnity Specialists</h3>
+                <p className="text-sm text-muted-foreground">First in the AKI&rsquo;s professional indemnity category in 2018, 2019 and 2023.</p>
               </div>
               <div className="bg-background p-6">
-                <Clock className="mb-3 h-6 w-6 text-secondary" />
-                <h3 className="mb-2 font-semibold text-primary">Global Partnerships</h3>
-                <p className="text-sm text-muted-foreground">Access to leading international investment platforms and insurers</p>
+                <TrendingUp className="mb-3 h-6 w-6 text-secondary" />
+                <h3 className="mb-2 font-semibold text-primary">Cover and Investments Together</h3>
+                <p className="text-sm text-muted-foreground">The team that insures your family can also help you invest for it.</p>
               </div>
             </div>
           </div>
@@ -389,14 +385,14 @@ export default function HomePage() {
         {/* CTA Section */}
         <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Ready to Get Protected?</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Tell Us What You Need Covered</h2>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
-              Get a free, no-obligation quote today and discover how we can help you protect and grow your wealth.
+              The quote is free and you&rsquo;re under no obligation. We&rsquo;ll compare insurers and reply within one business day.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
                 <Link href="/quote">
-                  Get Your Free Quote
+                  Get a Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -406,9 +402,9 @@ export default function HomePage() {
                   className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
                   asChild
                 >
-                <a href="tel:+254791389518">
+                <a href={`tel:${PHONE_TEL}`}>
                   <Phone className="mr-2 h-5 w-5" />
-                  Call Us Now
+                  Call {PHONE_DISPLAY}
                 </a>
               </Button>
             </div>

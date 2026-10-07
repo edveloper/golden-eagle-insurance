@@ -4,7 +4,7 @@ import QuotePage from "./quote-page"
 export const metadata = buildPageMetadata({
   title: "Get an Insurance Quote | Golden Eagle Insurance Agency",
   description:
-    "Request a tailored insurance quote for personal, family, travel, property, motor, or business coverage from Golden Eagle Insurance Agency.",
+    "Get a free insurance quote for medical, life, professional indemnity, property, travel, cyber or business cover. We compare ten insurers and reply within one business day.",
   path: "/quote",
 })
 

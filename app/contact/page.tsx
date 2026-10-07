@@ -4,7 +4,7 @@ import ContactPage from "./contact-page"
 export const metadata = buildPageMetadata({
   title: "Contact Golden Eagle Insurance Agency",
   description:
-    "Contact Golden Eagle Insurance Agency for insurance advice, product guidance, quote support, or claims assistance.",
+    "Call, WhatsApp or email Golden Eagle Insurance Agency in Nairobi for insurance quotes, claims help and investment advice. We reply within one business day.",
   path: "/contact",
 })
 

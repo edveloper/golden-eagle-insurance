@@ -2,9 +2,9 @@ import Link from "next/link"
 import { FileText, ShieldCheck, MessageSquare, ArrowRight } from "lucide-react"
 
 const actions = [
-  { href: "/quote", icon: FileText, title: "Get a Quote", desc: "Free, no-obligation cover quote" },
-  { href: "/claims", icon: ShieldCheck, title: "File a Claim", desc: "Fast, supported claims assistance" },
-  { href: "/contact", icon: MessageSquare, title: "Talk to an Adviser", desc: "Speak with our team" },
+  { href: "/quote", icon: FileText, title: "Get a Quote", desc: "Compared across insurers, back within one business day" },
+  { href: "/claims", icon: ShieldCheck, title: "File a Claim", desc: "We help with the forms and follow up with the insurer" },
+  { href: "/contact", icon: MessageSquare, title: "Talk to an Adviser", desc: "Call, WhatsApp or email our team" },
 ]
 
 export function QuickActions() {

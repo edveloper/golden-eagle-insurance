@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Search, ChevronDown, MessageCircle, Phone, Mail } from "lucide-react"
 import { useState } from "react"
-import { CLAIMS_EMAIL, CONTACT_EMAIL } from "@/lib/site"
+import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_NUMBER } from "@/lib/site"
+import { FAQS } from "./faqs"
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -18,116 +19,7 @@ export default function FAQPage() {
     setOpenItems((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]))
   }
 
-  const faqs = [
-    {
-      category: "General Questions",
-      questions: [
-        {
-          q: "What types of insurance does Golden Eagle offer?",
-          a: "We offer a comprehensive range of insurance products including Motor Insurance, Health Insurance, Life Insurance, Property Insurance, Business Insurance, and Travel Insurance. Each product is designed to meet specific needs and can be customized to your requirements.",
-        },
-        {
-          q: "How do I get a quote?",
-          a: "You can get a free quote by filling out our online quote form, calling us at +254 791 389 518, or messaging us on WhatsApp. We'll send a personalised quote within one business day.",
-        },
-        {
-          q: "Is Golden Eagle Insurance licensed?",
-          a: "Yes, Golden Eagle Insurance Agency is fully licensed and regulated by the Insurance Regulatory Authority (IRA) of Kenya. We have been operating since 2006 and maintain the highest standards of professionalism and compliance.",
-        },
-        {
-          q: "How can I pay my insurance premium?",
-          a: "We offer multiple payment options including bank transfer, M-Pesa, credit/debit cards, and direct debit. You can also pay in person at our office. We offer flexible payment plans including monthly, quarterly, and annual options.",
-        },
-      ],
-    },
-    {
-      category: "Motor Insurance",
-      questions: [
-        {
-          q: "What's the difference between third party and comprehensive motor insurance?",
-          a: "Third party insurance is the legal minimum requirement and covers liability to third parties for injury or property damage. Comprehensive insurance covers third party liability plus damage to your own vehicle from accidents, theft, fire, and other perils.",
-        },
-        {
-          q: "What documents do I need for motor insurance?",
-          a: "You'll need a copy of your driving license, vehicle logbook (registration certificate), current insurance certificate (if renewing), and a valid vehicle inspection certificate. For new vehicles, you'll need the purchase invoice.",
-        },
-        {
-          q: "Does motor insurance cover windscreen damage?",
-          a: "Yes, our comprehensive motor insurance includes windscreen coverage. You can get your windscreen repaired or replaced at our approved service centers with minimal or no excess depending on your policy.",
-        },
-      ],
-    },
-    {
-      category: "Health Insurance",
-      questions: [
-        {
-          q: "Which hospitals are covered under your health insurance?",
-          a: "Through our insurer partners, you gain access to an extensive hospital network across Kenya, including major facilities such as Aga Khan Hospital, Nairobi Hospital, and MP Shah Hospital. The exact panel depends on your chosen insurer and plan; contact us for the current provider list.",
-        },
-        {
-          q: "Does health insurance cover pre-existing conditions?",
-          a: "Pre-existing conditions may be covered after a waiting period, typically 12 months, depending on the specific condition and policy terms. We recommend discussing your medical history with our advisors for accurate guidance.",
-        },
-        {
-          q: "Can I add family members to my health insurance?",
-          a: "Yes, we offer family health insurance plans that cover you, your spouse, and your children. Family plans are often more cost-effective than individual policies and ensure your entire family has access to quality healthcare.",
-        },
-      ],
-    },
-    {
-      category: "Life Insurance",
-      questions: [
-        {
-          q: "What's the difference between term and whole life insurance?",
-          a: "Term life insurance provides coverage for a specific period (e.g., 10, 20, or 30 years) at lower premiums. Whole life insurance provides lifetime coverage and includes a savings component that builds cash value over time.",
-        },
-        {
-          q: "How much life insurance coverage do I need?",
-          a: "A general rule is to have coverage worth 10-12 times your annual income. However, the right amount depends on your financial obligations, dependents, debts, and future goals. Our advisors can help you determine the appropriate coverage.",
-        },
-        {
-          q: "Can I change my life insurance beneficiaries?",
-          a: "Yes, you can change your beneficiaries at any time by submitting a written request to us. We recommend reviewing your beneficiaries regularly, especially after major life events like marriage, divorce, or the birth of a child.",
-        },
-      ],
-    },
-    {
-      category: "Claims",
-      questions: [
-        {
-          q: "How long does it take to process a claim?",
-          a: "Most claims are processed within 7-14 business days once we receive all required documentation. Emergency and medical claims are prioritized and can be processed faster. We guide you through every step to give your claim the best chance of a smooth outcome.",
-        },
-        {
-          q: "What documents do I need to file a claim?",
-          a: "Required documents vary by claim type but generally include your policy document, claim form, police report (if applicable), medical reports (for health claims), photos of damage (for motor/property claims), and any other relevant documentation.",
-        },
-        {
-          q: "Can I track my claim status?",
-          a: `Yes, once you submit a claim, you'll receive a claim reference number. You can track your claim status by calling our claims department at +254 791 389 518 or emailing ${CLAIMS_EMAIL} with your reference number.`,
-        },
-      ],
-    },
-    {
-      category: "Policy Management",
-      questions: [
-        {
-          q: "How do I renew my insurance policy?",
-          a: "We'll send you a renewal notice 30 days before your policy expires. You can renew online, by phone, or in person at our office. We recommend renewing early to avoid any gaps in coverage.",
-        },
-        {
-          q: "Can I cancel my insurance policy?",
-          a: "Yes, you can cancel your policy at any time. Depending on when you cancel and your policy terms, you may be eligible for a pro-rata refund of your premium. Contact us to discuss the cancellation process and any applicable fees.",
-        },
-        {
-          q: "What happens if I miss a premium payment?",
-          a: "Most policies have a grace period of 14-30 days for premium payments. If payment is not received within the grace period, your policy may lapse. Contact us immediately if you're having difficulty making a payment to discuss options.",
-        },
-      ],
-    },
-  ]
-
-  const filteredFaqs = faqs
+  const filteredFaqs = FAQS
     .map((category) => ({
       ...category,
       questions: category.questions.filter(
@@ -147,15 +39,15 @@ export default function FAQPage() {
           image="/nairobi-cityscape-hero.jpg"
           imageAlt="Nairobi cityscape"
           align="center"
-          eyebrow="Knowledge Base"
+          eyebrow="FAQ"
           title="Frequently Asked Questions"
-          subtitle="Find answers to common questions about our insurance products and services"
+          subtitle="Answers to the questions clients ask us most. Can't find yours? Call or WhatsApp us."
         >
           <div className="relative mx-auto mt-8 max-w-2xl">
             <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
             <Input
               type="text"
-              placeholder="Search for answers..."
+              placeholder="Search the questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-white py-6 pl-12 text-lg text-gray-900"
@@ -204,6 +96,8 @@ export default function FAQPage() {
                           return (
                             <div key={itemIndex}>
                               <button
+                                type="button"
+                                aria-expanded={isOpen}
                                 onClick={() => toggleItem(globalIndex)}
                                 className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors hover:bg-muted/50"
                               >
@@ -236,24 +130,29 @@ export default function FAQPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-serif text-3xl font-bold text-primary">Still Have Questions?</h2>
-              <p className="mt-2 text-muted-foreground">Our team is here to help you find the answers you need.</p>
+              <p className="mt-2 text-muted-foreground">Call, WhatsApp or email us. We reply within one business day.</p>
             </div>
             <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-3">
-              <a href="tel:+254791389518" className="bg-background p-6 text-center transition-colors hover:bg-muted">
+              <a href={`tel:${PHONE_TEL}`} className="bg-background p-6 text-center transition-colors hover:bg-muted">
                 <Phone className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">Call Us</h3>
-                <p className="mt-1 text-sm text-muted-foreground">+254 791 389 518</p>
+                <p className="mt-1 text-sm text-muted-foreground">{PHONE_DISPLAY}</p>
+              </a>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-background p-6 text-center transition-colors hover:bg-muted"
+              >
+                <MessageCircle className="mx-auto mb-3 h-6 w-6 text-secondary" />
+                <h3 className="font-semibold text-primary">WhatsApp Us</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{PHONE_DISPLAY}</p>
               </a>
               <a href={`mailto:${CONTACT_EMAIL}`} className="bg-background p-6 text-center transition-colors hover:bg-muted">
                 <Mail className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">Email Us</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{CONTACT_EMAIL}</p>
+                <p className="mt-1 break-all text-sm text-muted-foreground">{CONTACT_EMAIL}</p>
               </a>
-              <Link href="/contact" className="bg-background p-6 text-center transition-colors hover:bg-muted">
-                <MessageCircle className="mx-auto mb-3 h-6 w-6 text-secondary" />
-                <h3 className="font-semibold text-primary">Contact Form</h3>
-                <p className="mt-1 text-sm text-muted-foreground">Send us a message</p>
-              </Link>
             </div>
           </div>
         </section>
@@ -261,13 +160,13 @@ export default function FAQPage() {
         {/* CTA Section */}
         <section className="py-16 md:py-24 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Ready to Get Protected?</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Tell Us What You Need Covered</h2>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
-              Get a free quote today and discover how affordable comprehensive insurance can be.
+              The quote is free and you&rsquo;re under no obligation. We&rsquo;ll compare insurers and reply within one business day.
             </p>
             <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
               <Link href="/quote">
-                Get Your Free Quote
+                Get a Free Quote
               </Link>
             </Button>
           </div>

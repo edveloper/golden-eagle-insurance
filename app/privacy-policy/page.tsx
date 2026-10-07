@@ -2,7 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
-import { CONTACT_EMAIL } from "@/lib/site"
+import { CONTACT_EMAIL, PHONE_DISPLAY } from "@/lib/site"
 
 export const metadata = buildPageMetadata({
   title: "Privacy Policy | Golden Eagle Insurance Agency",
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
           title="Privacy Policy"
           subtitle="How Golden Eagle collects, uses, and protects your personal information."
         >
-          <p className="mt-4 text-sm text-white/70">Last updated: 6 July 2026</p>
+          <p className="mt-4 text-sm text-white/70">Last updated: 7 October 2026</p>
         </PageHero>
 
         <section className="py-14 md:py-20">
@@ -55,17 +55,17 @@ export default function PrivacyPolicyPage() {
               <Clause title="1. Who We Are">
                 <p>
                   Golden Eagle Insurance Agency Ltd is an insurance agency licensed by the Insurance Regulatory
-                  Authority of Kenya (IRA Reg. No. 11611), based at Maruti Court, East Church Road, Westlands, Nairobi.
-                  Our Global Markets Advisory division facilitates international investment solutions through our
-                  regulated partner, Investors Trust.
+                  Authority of Kenya (IRA Reg. No. 11611). Registered address: Maruti Court, East Church Road, Westlands, Nairobi.
+                  Our investment advisory division, Golden Eagle Global Markets Investment Advisory, facilitates
+                  international investment solutions through our regulated partner, Investors Trust.
                 </p>
               </Clause>
 
               <Clause title="2. Information We Collect">
                 <p>
                   We collect information you provide directly, such as your name and contact details, and the
-                  information needed to prepare quotations, arrange cover, service policies, assess claims, or provide
-                  investment advisory services. Where required for underwriting, know-your-customer (KYC), or
+                  information needed to prepare quotations, arrange cover, service policies, help you with claims, or
+                  provide investment advisory services. Where required for underwriting, know-your-customer (KYC), or
                   anti-money-laundering checks, this may include identification and financial details. We also collect
                   limited technical information (such as usage and analytics data) when you use this website.
                 </p>
@@ -92,15 +92,18 @@ export default function PrivacyPolicyPage() {
                 <p>
                   We share information only where needed to deliver the services you request or to meet legal
                   obligations. This may include insurers and underwriters, our investment platform partner (Investors
-                  Trust), technology and professional-service providers acting on our behalf, and regulators or
-                  authorities such as the IRA and the ODPC where required by law. We do not sell your personal data.
+                  Trust), service providers acting on our behalf, and regulators or authorities such as the IRA and the
+                  ODPC where required by law. Our service providers include our website host (Vercel), our email
+                  providers (Resend and Google), Google Analytics (only if you accept analytics cookies) and WhatsApp
+                  (if you message us there). We do not sell your personal data.
                 </p>
               </Clause>
 
               <Clause title="6. International Transfers">
                 <p>
-                  Some services, including international investment solutions, involve transferring information outside
-                  Kenya (for example, to Investors Trust in the Cayman Islands). Where we transfer personal data abroad,
+                  Some services involve transferring information outside Kenya: international investment solutions
+                  (Investors Trust, in the Cayman Islands), and the website, email and analytics providers named
+                  above, which may store data in the United States or elsewhere. Where we transfer personal data abroad,
                   we take steps to ensure an appropriate level of protection consistent with the Data Protection Act,
                   2019.
                 </p>
@@ -158,7 +161,7 @@ export default function PrivacyPolicyPage() {
                   <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline hover:text-primary/80">
                     {CONTACT_EMAIL}
                   </a>{" "}
-                  or +254 791 389 518.
+                  or {PHONE_DISPLAY}.
                 </p>
               </Clause>
             </div>

@@ -11,10 +11,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { FileText, Clock, CheckCircle, Phone, AlertCircle } from "lucide-react"
+import { FileText, Clock, Phone, AlertCircle, MessageCircle } from "lucide-react"
 import { useState } from "react"
 import { submitClaimForm } from "@/lib/actions"
-import { CLAIMS_EMAIL } from "@/lib/site"
+import { BUSINESS_HOURS, CLAIMS_EMAIL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_NUMBER } from "@/lib/site"
 
 export default function ClaimsPage() {
   const [formData, setFormData] = useState({
@@ -85,18 +85,18 @@ export default function ClaimsPage() {
           imageAlt="Nairobi city skyline"
           eyebrow="Claims Support"
           title="File a Claim"
-          subtitle="We're here to support you when you need us most. File your claim quickly and easily, and our team will process it promptly."
+          subtitle="Tell us what happened. We'll help you prepare the claim and follow it up with your insurer until it's settled."
         />
 
-        {/* Claims Process */}
+        {/* How a claim works */}
         <section className="py-16 md:py-24 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
-                Our Claims Process
+                How a Claim Works
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                Simple, transparent and efficient, so filing a claim is easy
+                We handle the paperwork and the follow-up. Your insurer assesses the claim and pays it.
               </p>
             </div>
 
@@ -106,38 +106,41 @@ export default function ClaimsPage() {
                 aria-hidden="true"
               />
               {[
-                { t: "Submit Claim", d: "Fill out the claim form with all the necessary details and documentation." },
-                { t: "Review", d: "Our team reviews your claim and may contact you for more information." },
-                { t: "Approval", d: "Once approved, you'll receive confirmation and the next steps." },
-                { t: "Settlement", d: "Receive your settlement according to your policy terms." },
-              ].map((s, i) => (
-                <div key={s.t} className="relative text-center">
+                { t: "Tell Us", d: "Use the form below, call or WhatsApp us. Do it as soon as you can after the incident." },
+                { t: "We Prepare It", d: "We tell you which documents are needed and help you complete the insurer's claim form." },
+                { t: "We Follow It Up", d: "We submit the claim, chase the insurer and keep you posted." },
+                { t: "Settlement", d: "The insurer pays according to your policy terms." },
+              ].map((step, i) => (
+                <div key={step.t} className="relative text-center">
                   <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border-2 border-secondary bg-background font-serif text-lg font-bold text-secondary">
                     {i + 1}
                   </div>
-                  <h3 className="mt-4 font-semibold text-primary">{s.t}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
+                  <h3 className="mt-4 font-semibold text-primary">{step.t}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{step.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Emergency Contact */}
-        <section className="py-8 bg-accent text-white">
+        {/* Urgent contact */}
+        <section className="py-8 bg-primary text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <AlertCircle className="h-8 w-8 flex-shrink-0" />
+                <AlertCircle className="h-8 w-8 flex-shrink-0 text-secondary" />
                 <div>
-                  <h3 className="font-semibold text-lg">Emergency Claims Hotline</h3>
-                  <p className="text-sm text-white/90">Available 24/7 for urgent claims</p>
+                  <h3 className="font-semibold text-lg">Urgent Claim?</h3>
+                  <p className="text-sm text-white/80">
+                    Don&apos;t wait for the form. Call or WhatsApp us during working hours. Out of hours, use the
+                    emergency number on your policy or medical card, then tell us the next working day.
+                  </p>
                 </div>
               </div>
-              <Button size="lg" className="bg-white text-accent hover:bg-white/90 font-semibold" asChild>
-                <a href="tel:+254791389518">
+              <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 font-semibold" asChild>
+                <a href={`tel:${PHONE_TEL}`}>
                   <Phone className="mr-2 h-5 w-5" />
-                  Call +254 791 389 518
+                  Call {PHONE_DISPLAY}
                 </a>
               </Button>
             </div>
@@ -150,31 +153,30 @@ export default function ClaimsPage() {
             <div className="max-w-3xl mx-auto">
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-serif font-bold text-primary mb-6">Submit Your Claim</h2>
+                  <h2 className="text-2xl font-serif font-bold text-primary mb-6">Tell Us What Happened</h2>
 
                   {submitStatus === "success" && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                      Your claim has been submitted successfully. Our team will review it and contact you within one business
-                      day.
+                      Thank you. We&apos;ve received your claim and will contact you within one business day.
                       {reference ? <span className="mt-1 block text-sm">Your reference: <strong>{reference}</strong></span> : null}
                     </div>
                   )}
                   {submitStatus === "error" && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                      We couldn&apos;t submit your claim online. Please call +254 791 389 518 or message us on WhatsApp and we&apos;ll take it by phone.
+                      We couldn&apos;t submit your claim online. Please call {PHONE_DISPLAY} or message us on WhatsApp
+                      and we&apos;ll take it by phone.
                     </div>
                   )}
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="policyNumber">Policy Number *</Label>
+                      <Label htmlFor="policyNumber">Policy Number (If You Have It)</Label>
                       <Input
                         id="policyNumber"
                         name="policyNumber"
                         value={formData.policyNumber}
                         onChange={handleChange}
-                        placeholder="GE-2024-XXXXX"
-                        required
+                        placeholder="As shown on your policy document"
                       />
                     </div>
 
@@ -185,19 +187,19 @@ export default function ClaimsPage() {
                         onValueChange={(value) => handleSelectChange("claimType", value)}
                         required
                       >
-                        <SelectTrigger>
+                        <SelectTrigger id="claimType">
                           <SelectValue placeholder="Select claim type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="motor-accident">Motor - Accident</SelectItem>
-                          <SelectItem value="motor-theft">Motor - Theft</SelectItem>
-                          <SelectItem value="health-medical">Health - Medical Treatment</SelectItem>
-                          <SelectItem value="health-hospitalization">Health - Hospitalization</SelectItem>
-                          <SelectItem value="life-death">Life - Death Benefit</SelectItem>
-                          <SelectItem value="property-fire">Property - Fire Damage</SelectItem>
-                          <SelectItem value="property-theft">Property - Theft/Burglary</SelectItem>
-                          <SelectItem value="business-liability">Business - Liability</SelectItem>
-                          <SelectItem value="travel-medical">Travel - Medical Emergency</SelectItem>
+                          <SelectItem value="health-medical">Medical – Treatment</SelectItem>
+                          <SelectItem value="health-hospitalization">Medical – Hospitalisation</SelectItem>
+                          <SelectItem value="life-death">Life – Death Benefit</SelectItem>
+                          <SelectItem value="property-fire">Property – Fire Damage</SelectItem>
+                          <SelectItem value="property-theft">Property – Theft or Burglary</SelectItem>
+                          <SelectItem value="business-liability">Business – Liability</SelectItem>
+                          <SelectItem value="professional-indemnity">Professional Indemnity – Claim Against You</SelectItem>
+                          <SelectItem value="cyber-incident">Cyber – Data Breach or Attack</SelectItem>
+                          <SelectItem value="travel-medical">Travel – Medical Emergency</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -206,14 +208,7 @@ export default function ClaimsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="John Doe"
-                          required
-                        />
+                        <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
                       </div>
 
                       <div className="space-y-2">
@@ -224,7 +219,6 @@ export default function ClaimsPage() {
                           type="email"
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="john@example.com"
                           required
                         />
                       </div>
@@ -239,7 +233,7 @@ export default function ClaimsPage() {
                           type="tel"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+254 700 000 000"
+                          placeholder="+254 7XX XXX XXX"
                           required
                         />
                       </div>
@@ -258,32 +252,32 @@ export default function ClaimsPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="description">Incident Description *</Label>
+                      <Label htmlFor="description">What Happened? *</Label>
                       <Textarea
                         id="description"
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
-                        placeholder="Please provide detailed information about the incident, including what happened, when, where, and any other relevant details..."
+                        placeholder="What happened, when and where. Include anything the insurer will need to know."
                         rows={6}
                         required
                       />
                     </div>
 
                     <div className="bg-muted p-4 rounded-lg text-sm text-muted-foreground">
-                      <p className="font-semibold mb-2">Required Documents (to be submitted separately):</p>
+                      <p className="font-semibold mb-2 text-primary">Documents You&apos;ll Usually Need</p>
                       <ul className="list-disc list-inside space-y-1">
-                        <li>Copy of your insurance policy</li>
-                        <li>Police report (if applicable)</li>
-                        <li>Medical reports (for health claims)</li>
-                        <li>Photos of damage (for motor/property claims)</li>
-                        <li>Any other relevant documentation</li>
+                        <li>Your policy document or policy number</li>
+                        <li>A police abstract, for theft or break-ins</li>
+                        <li>Medical reports and receipts, for medical claims</li>
+                        <li>Photos of the damage, for property claims</li>
                       </ul>
                       <p className="mt-2">
-                        You can email documents to{" "}
-                        <a href={`mailto:${CLAIMS_EMAIL}`} className="text-accent hover:underline">
+                        Don&apos;t wait until you have everything. Send the form now, then email documents to{" "}
+                        <a href={`mailto:${CLAIMS_EMAIL}`} className="text-primary underline hover:text-primary/80">
                           {CLAIMS_EMAIL}
-                        </a>
+                        </a>{" "}
+                        or send photos of them on WhatsApp.
                       </p>
                     </div>
 
@@ -306,42 +300,54 @@ export default function ClaimsPage() {
         <section className="py-16 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Need Help with Your Claim?</h2>
-              <p className="text-muted-foreground">Our claims team is here to assist you</p>
+              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Need Help With Your Claim?</h2>
+              <p className="text-muted-foreground">Call or WhatsApp us, or email your documents.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <Card>
                 <CardContent className="p-6 text-center">
-                  <Phone className="h-8 w-8 text-accent mx-auto mb-4" />
+                  <Phone className="h-8 w-8 text-secondary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Call Us</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Speak to a claims specialist</p>
-                  <a href="tel:+254791389518" className="text-accent hover:underline text-sm">
-                    +254 791 389 518
+                  <p className="text-sm text-muted-foreground mb-2">Talk your claim through with us</p>
+                  <a href={`tel:${PHONE_TEL}`} className="text-primary underline hover:text-primary/80 text-sm">
+                    {PHONE_DISPLAY}
                   </a>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="p-6 text-center">
-                  <FileText className="h-8 w-8 text-accent mx-auto mb-4" />
+                  <MessageCircle className="h-8 w-8 text-secondary mx-auto mb-4" />
+                  <h3 className="font-semibold mb-2">WhatsApp Us</h3>
+                  <p className="text-sm text-muted-foreground mb-2">Send photos of documents and damage</p>
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline hover:text-primary/80 text-sm"
+                  >
+                    {PHONE_DISPLAY}
+                  </a>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <FileText className="h-8 w-8 text-secondary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Email Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Send your claim documents</p>
-                  <a href={`mailto:${CLAIMS_EMAIL}`} className="text-accent hover:underline text-sm">
+                  <a href={`mailto:${CLAIMS_EMAIL}`} className="break-all text-primary underline hover:text-primary/80 text-sm">
                     {CLAIMS_EMAIL}
                   </a>
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardContent className="p-6 text-center">
-                  <Clock className="h-8 w-8 text-accent mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Office Hours</h3>
-                  <p className="text-sm text-muted-foreground">Monday - Friday: 8AM - 6PM</p>
-                  <p className="text-sm text-muted-foreground">Saturday: 9AM - 2PM</p>
-                </CardContent>
-              </Card>
             </div>
+
+            <p className="mt-8 flex flex-wrap items-center justify-center gap-2 text-center text-sm text-muted-foreground">
+              <Clock className="h-4 w-4 text-secondary" />
+              {BUSINESS_HOURS.join(" · ")}
+            </p>
           </div>
         </section>
       </main>
@@ -350,4 +356,3 @@ export default function ClaimsPage() {
     </div>
   )
 }
-

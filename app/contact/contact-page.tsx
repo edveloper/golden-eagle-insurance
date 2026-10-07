@@ -10,10 +10,18 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { submitContactForm } from "@/lib/actions"
-import { CONTACT_EMAIL } from "@/lib/site"
+import {
+  ADVISORY_PHONE_DISPLAY,
+  ADVISORY_PHONE_TEL,
+  BUSINESS_HOURS,
+  CONTACT_EMAIL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  WHATSAPP_NUMBER,
+} from "@/lib/site"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -70,9 +78,9 @@ export default function ContactPage() {
         <PageHero
           image="/nairobi-cityscape-hero.jpg"
           imageAlt="Nairobi cityscape"
-          eyebrow="Reach Our Team"
+          eyebrow="Contact"
           title="Get in Touch"
-          subtitle="Have questions about our insurance products? Our team is here to help you find the perfect coverage for your needs."
+          subtitle="Call, WhatsApp or write to us. We reply within one business day, and meet clients in person by appointment."
         />
 
         {/* Contact Information & Form */}
@@ -85,23 +93,40 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4 p-6">
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Visit Us</h3>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Meet Us</h3>
                       <p className="mt-1 text-sm text-primary">
-                        Maruti Court
-                        <br />
-                        East Church Road, Westlands
-                        <br />
-                        Nairobi, Kenya
+                        Based in Nairobi. We meet clients in person, by appointment.
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 p-6">
                     <Phone className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Call Us</h3>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Call or WhatsApp</h3>
                       <p className="mt-1 text-sm text-primary">
-                        <a href="tel:+254791389518" className="transition-colors hover:text-accent">
-                          +254 791 389 518
+                        <a href={`tel:${PHONE_TEL}`} className="transition-colors hover:text-secondary">
+                          {PHONE_DISPLAY}
+                        </a>
+                      </p>
+                      <a
+                        href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-block text-sm text-primary underline hover:text-primary/80"
+                      >
+                        Open WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-6">
+                    <TrendingUp className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Investment Advisory</h3>
+                      <p className="mt-1 text-sm text-primary">
+                        Lydia Wanjiku Mwangi, Lead Advisor
+                        <br />
+                        <a href={`tel:${ADVISORY_PHONE_TEL}`} className="transition-colors hover:text-secondary">
+                          {ADVISORY_PHONE_DISPLAY}
                         </a>
                       </p>
                     </div>
@@ -111,7 +136,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Email Us</h3>
                       <p className="mt-1 text-sm text-primary">
-                        <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-accent">
+                        <a href={`mailto:${CONTACT_EMAIL}`} className="break-all transition-colors hover:text-secondary">
                           {CONTACT_EMAIL}
                         </a>
                       </p>
@@ -121,13 +146,11 @@ export default function ContactPage() {
                     <Clock className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Business Hours</h3>
-                      <p className="mt-1 text-sm text-primary">
-                        Monday to Friday: 8:00 AM to 5:00 PM
-                        <br />
-                        Saturday: 9:00 AM to 1:00 PM
-                        <br />
-                        Sunday: Closed
-                      </p>
+                      <ul className="mt-1 text-sm text-primary">
+                        {BUSINESS_HOURS.map((line) => (
+                          <li key={line}>{line}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -141,14 +164,14 @@ export default function ContactPage() {
 
                     {submitStatus === "success" && (
                       <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                        Thank you for contacting us! We'll get back to you within one business day.
+                        Thank you. We&apos;ll get back to you within one business day.
                         {reference ? <span className="mt-1 block text-sm">Your reference: <strong>{reference}</strong></span> : null}
                       </div>
                     )}
 
                     {submitStatus === "error" && (
                       <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                        Sorry, there was an error sending your message. {errorMessage || "Please try again or contact us directly."}
+                        {errorMessage || `We couldn't send your message. Please call or WhatsApp us on ${PHONE_DISPLAY}.`}
                       </div>
                     )}
 
@@ -171,7 +194,6 @@ export default function ContactPage() {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            placeholder="John Doe"
                             required
                           />
                         </div>
@@ -184,7 +206,6 @@ export default function ContactPage() {
                             type="email"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder="john@example.com"
                             required
                           />
                         </div>
@@ -199,7 +220,7 @@ export default function ContactPage() {
                             type="tel"
                             value={formData.phone}
                             onChange={handleChange}
-                            placeholder="+254 700 000 000"
+                            placeholder="+254 7XX XXX XXX"
                             required
                           />
                         </div>
@@ -211,7 +232,7 @@ export default function ContactPage() {
                             name="subject"
                             value={formData.subject}
                             onChange={handleChange}
-                            placeholder="How can we help?"
+                            placeholder="e.g. Medical cover for my family"
                             required
                           />
                         </div>
@@ -224,7 +245,7 @@ export default function ContactPage() {
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
-                          placeholder="Tell us more about your insurance needs..."
+                          placeholder="Tell us what you need help with."
                           rows={6}
                           required
                         />
@@ -239,7 +260,7 @@ export default function ContactPage() {
                         {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                       <p className="text-xs text-muted-foreground">
-                        By submitting, you agree to our{" "}
+                        By sending this form, you agree that we can contact you about your enquiry. See our{" "}
                         <a href="/privacy-policy" className="text-primary underline hover:text-primary/80">
                           Privacy Policy
                         </a>{" "}
@@ -257,24 +278,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="py-16 bg-muted">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-serif font-bold text-primary mb-4">Find Us on the Map</h2>
-              <p className="text-muted-foreground">Visit our office in the heart of Nairobi</p>
-            </div>
-            <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-primary/10">
-              <iframe
-                title="Golden Eagle office location, Westlands, Nairobi"
-                src="https://www.google.com/maps?q=Maruti+Court,+East+Church+Road,+Westlands,+Nairobi&output=embed"
-                className="h-96 w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-          </div>
-          </div>
-        </section>
       </main>
 
       <SiteFooter />

@@ -8,19 +8,19 @@ import { ArrowRight, RotateCcw } from "lucide-react"
 type Audience = "individual" | "business" | "both"
 type Priority = "health" | "life" | "property" | "professional" | "travel" | "wealth"
 
-const CATALOG: Record<string, { title: string; desc: string; href: string }> = {
-  health: { title: "Health Insurance", desc: "Inpatient, outpatient, maternity, dental and optical cover.", href: "/products#health" },
-  life: { title: "Life & Pension", desc: "Protect your family's future and plan for retirement.", href: "/products#life" },
-  property: { title: "Property Insurance", desc: "Cover your home and belongings against fire, theft and more.", href: "/products#property" },
-  professional: { title: "Professional Indemnity", desc: "Award-winning cover against professional negligence claims.", href: "/products#professional-indemnity" },
-  business: { title: "Business Insurance", desc: "Protect your assets, employees and operations.", href: "/products#business" },
-  cyber: { title: "Cyber Security", desc: "Cover for data breaches, ransomware and business interruption.", href: "/products#cyber-security" },
-  travel: { title: "Travel Insurance", desc: "Medical emergencies, cancellations and lost luggage abroad.", href: "/products#travel" },
-  advisory: { title: "Global Markets Advisory", desc: "Grow wealth through globally diversified portfolios.", href: "/advisory" },
+const CATALOG: Record<string, { title: string; desc: string; href: string; quoteType?: string }> = {
+  health: { title: "Medical Insurance", desc: "Hospital stays, doctor's visits, maternity, dental and optical.", href: "/products#health", quoteType: "medical" },
+  life: { title: "Life and Pension", desc: "Money for your family, and savings for retirement.", href: "/products#life", quoteType: "life" },
+  property: { title: "Home and Property", desc: "Your house and its contents, against fire, theft and damage.", href: "/products#property", quoteType: "home" },
+  professional: { title: "Professional Indemnity", desc: "Cover if a client says your work cost them money.", href: "/products#professional-indemnity", quoteType: "professional-indemnity" },
+  business: { title: "Business Insurance", desc: "Public liability, staff medical and lost income.", href: "/products#business", quoteType: "business" },
+  cyber: { title: "Cyber Insurance", desc: "The cost of a data breach or attack, and the income you lose.", href: "/products#cyber-security", quoteType: "cyber" },
+  travel: { title: "Travel Insurance", desc: "Medical emergencies, cancellations and lost luggage abroad.", href: "/products#travel", quoteType: "travel" },
+  advisory: { title: "Investment Advisory", desc: "Global portfolios, managed for you and explained clearly.", href: "/advisory" },
 }
 
 const AUDIENCE_OPTIONS: { value: Audience; label: string; hint: string }[] = [
-  { value: "individual", label: "Myself & family", hint: "Personal and household cover" },
+  { value: "individual", label: "Me and my family", hint: "Personal and household cover" },
   { value: "business", label: "My business", hint: "Commercial and staff cover" },
   { value: "both", label: "Both", hint: "Personal and business" },
 ]
@@ -66,6 +66,8 @@ export function CoverQuiz() {
   }
 
   const recs = audience && priority ? recommend(audience, priority) : []
+  const firstQuoteType = recs.map((k) => CATALOG[k].quoteType).find(Boolean)
+  const quoteHref = firstQuoteType ? `/quote?type=${firstQuoteType}` : "/quote"
 
   return (
     <div className="mx-auto max-w-3xl rounded-2xl border border-primary/10 bg-white p-6 shadow-[0_10px_30px_rgba(10,29,55,0.06)] md:p-10">
@@ -75,7 +77,7 @@ export function CoverQuiz() {
 
       {step === 1 ? (
         <>
-          <h3 className="mb-6 font-serif text-2xl font-bold text-primary">Who Are You Looking to Protect?</h3>
+          <h3 className="mb-6 font-serif text-2xl font-bold text-primary">Who Do You Want to Cover?</h3>
           <div className="grid gap-3 sm:grid-cols-3">
             {AUDIENCE_OPTIONS.map((o) => (
               <button
@@ -125,9 +127,9 @@ export function CoverQuiz() {
 
       {step === 3 ? (
         <>
-          <h3 className="mb-2 font-serif text-2xl font-bold text-primary">Cover Worth Considering</h3>
+          <h3 className="mb-2 font-serif text-2xl font-bold text-primary">Cover to Look at First</h3>
           <p className="mb-6 text-sm text-muted-foreground">
-            Based on your answers. Our advisers can tailor this to your exact situation.
+            Based on your answers. We&rsquo;ll tailor it once we know more about you.
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             {recs.map((key) => {
@@ -149,8 +151,8 @@ export function CoverQuiz() {
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Button className="rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
-              <Link href="/quote">
-                Get a tailored quote <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href={quoteHref}>
+                Get a Quote <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <button

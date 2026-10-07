@@ -61,7 +61,8 @@ export function CookieConsent() {
     <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-primary/10 bg-white/95 backdrop-blur">
       <div className="container mx-auto flex flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between">
         <p className="text-sm text-muted-foreground md:max-w-3xl">
-          We use essential cookies to run this site and optional analytics cookies to improve your experience.
+          We use essential cookies to run this site. With your permission, we also use Google Analytics to see
+          which pages are useful.
           See our{" "}
           <Link href="/cookie-policy" className="text-primary underline hover:text-primary/80">
             Cookie Policy

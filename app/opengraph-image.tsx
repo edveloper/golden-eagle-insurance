@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-export const alt = "Golden Eagle Insurance Agency, Westlands, Nairobi"
+export const alt = "Golden Eagle Insurance Agency, Nairobi"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -31,12 +31,12 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.05 }}>Golden Eagle</div>
           <div style={{ fontSize: 40, color: "rgba(255,255,255,0.85)" }}>
-            Three-time AKI winner for Professional Indemnity
+            Three-Time AKI Winner for Professional Indemnity
           </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "rgba(255,255,255,0.6)" }}>
-          <div>Westlands, Nairobi · Since 2006</div>
+          <div>Nairobi · Since 2006</div>
           <div>Licensed by the IRA · Reg. No. 11611</div>
         </div>
       </div>

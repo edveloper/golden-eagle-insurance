@@ -1,3 +1,4 @@
+import { INSTAGRAM_URL } from "@/lib/site"
 import type { Metadata } from "next"
 
 export const SITE_URL = "https://www.goldeneagleltd.org"
@@ -40,5 +41,5 @@ export const organizationSchema = {
   name: ORGANIZATION_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/icon.png`,
-  sameAs: [],
+  sameAs: [INSTAGRAM_URL],
 }

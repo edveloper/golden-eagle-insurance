@@ -20,9 +20,9 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Golden Eagle Insurance Agency | Trusted Insurance Solutions",
+  title: "Golden Eagle Insurance Agency | Insurance & Investment Advice in Nairobi",
   description:
-    "Golden Eagle Insurance Agency provides comprehensive insurance solutions for individuals and businesses. Get protected today.",
+    "IRA-licensed insurance agency in Nairobi since 2006. Professional indemnity, medical, life, property, business and travel cover from ten of Kenya's leading insurers, plus global investment advice.",
   alternates: {
     canonical: "/",
   },
@@ -37,17 +37,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: ORGANIZATION_NAME,
     description:
-      "Reliable, professional, and comprehensive insurance solutions across Kenya.",
+      "IRA-licensed insurance agency in Nairobi since 2006. Professional indemnity, medical, life, property, business and travel cover from ten of Kenya's leading insurers, plus global investment advice.",
     url: SITE_URL,
     siteName: ORGANIZATION_NAME,
     type: "website",
-    locale: "en_US",
+    locale: "en_KE",
   },
   twitter: {
     card: "summary_large_image",
     title: ORGANIZATION_NAME,
     description:
-      "Comprehensive, reliable insurance solutions for individuals and businesses.",
+      "IRA-licensed insurance agency in Nairobi since 2006. Professional indemnity, medical, life, property, business and travel cover from ten of Kenya's leading insurers, plus global investment advice.",
   },
 };
 

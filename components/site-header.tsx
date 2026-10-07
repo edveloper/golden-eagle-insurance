@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site"
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -16,6 +17,7 @@ export function SiteHeader() {
     { href: "/about", label: "About" },
     { href: "/products", label: "Insurance" },
     { href: "/advisory", label: "Advisory" },
+    { href: "/claims", label: "Claims" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
   ]
@@ -27,10 +29,10 @@ export function SiteHeader() {
       {/* Utility bar (institutional: contact + regulatory) */}
       <div className="hidden bg-primary text-white/85 md:block">
         <div className="container mx-auto flex h-9 items-center justify-between px-4 text-xs">
-          <span className="tracking-wide">Insurance &amp; Global Markets Advisory · Westlands, Nairobi</span>
+          <span className="tracking-wide">Insurance &amp; Investment Advice · Nairobi</span>
           <div className="flex items-center gap-6">
-            <a href="tel:+254791389518" className="inline-flex items-center gap-1.5 transition-colors hover:text-secondary">
-              <Phone className="h-3.5 w-3.5 text-secondary" /> +254 791 389 518
+            <a href={`tel:${PHONE_TEL}`} className="inline-flex items-center gap-1.5 transition-colors hover:text-secondary">
+              <Phone className="h-3.5 w-3.5 text-secondary" /> {PHONE_DISPLAY}
             </a>
             <span className="text-white/45">Licensed by the IRA · Reg. No. 11611</span>
           </div>
@@ -59,7 +61,7 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop nav: clean links with a gold underline for the active page */}
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -77,14 +79,14 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-3">
-            <Button className="hidden md:inline-flex rounded-md bg-secondary px-5 font-semibold text-primary hover:bg-secondary/90" asChild>
+            <Button className="hidden lg:inline-flex rounded-md bg-secondary px-5 font-semibold text-primary hover:bg-secondary/90" asChild>
               <Link href="/quote">
                 Get a Quote
               </Link>
             </Button>
 
             <button
-              className="p-1 text-primary md:hidden"
+              className="p-1 text-primary lg:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
@@ -97,7 +99,7 @@ export function SiteHeader() {
 
       {/* Mobile nav */}
       {mobileMenuOpen ? (
-        <div className="border-t border-primary/10 bg-white md:hidden">
+        <div className="border-t border-primary/10 bg-white lg:hidden">
           <nav className="container mx-auto flex flex-col px-4 py-2">
             {navItems.map((item) => (
               <Link
@@ -114,10 +116,10 @@ export function SiteHeader() {
               </Link>
             ))}
             <a
-              href="tel:+254791389518"
+              href={`tel:${PHONE_TEL}`}
               className="mt-1 flex items-center gap-2 border-t border-primary/10 py-3 pl-4 text-sm text-primary/70"
             >
-              <Phone className="h-4 w-4 text-secondary" /> +254 791 389 518
+              <Phone className="h-4 w-4 text-secondary" /> {PHONE_DISPLAY}
             </a>
             <Button className="mb-3 mt-1 w-full rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
               <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>

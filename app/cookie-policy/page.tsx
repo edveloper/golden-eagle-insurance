@@ -38,7 +38,7 @@ export default function CookiePolicyPage() {
           title="Cookie Policy"
           subtitle="How we use cookies and similar technologies."
         >
-          <p className="mt-4 text-sm text-white/70">Last updated: 6 July 2026</p>
+          <p className="mt-4 text-sm text-white/70">Last updated: 7 October 2026</p>
         </PageHero>
 
         <section className="py-14 md:py-20">
@@ -53,29 +53,40 @@ export default function CookiePolicyPage() {
 
               <Clause title="2. How We Use Cookies">
                 <p>
-                  We use essential cookies to run core site features. We use optional analytics cookies only where you
-                  give consent through our cookie banner.
+                  We use only what the site needs to work, plus Google Analytics if you agree to it. We don&apos;t use
+                  advertising or marketing cookies.
                 </p>
               </Clause>
 
               <Clause title="3. Cookie Categories">
-                <p>Essential cookies: required for core site operations.</p>
-                <p>Analytics cookies: help us understand traffic and improve the experience (optional, consent-based).</p>
-                <p>Marketing cookies: not enabled by default.</p>
+                <p>
+                  <strong className="text-primary">Essential:</strong> your cookie choice, saved in your browser&apos;s
+                  local storage so we don&apos;t ask again on every page.
+                </p>
+                <p>
+                  <strong className="text-primary">Analytics (optional):</strong> Google Analytics cookies (named{" "}
+                  <code>_ga</code> and <code>_ga_&lt;ID&gt;</code>), which tell us which pages are visited and how
+                  people find the site. They&apos;re set only after you click &ldquo;Accept Analytics&rdquo;, and Google
+                  keeps them for up to two years.
+                </p>
+                <p>
+                  <strong className="text-primary">Marketing:</strong> none.
+                </p>
               </Clause>
 
               <Clause title="4. Your Consent">
                 <p>
                   In line with the Data Protection Act, 2019 of Kenya, non-essential cookies are set only after you
-                  consent. You can change or withdraw your choice at any time using the cookie banner or your browser
-                  settings.
+                  consent. You can change or withdraw your choice at any time using the &ldquo;Cookie Settings&rdquo;
+                  link at the bottom of every page, or through your browser settings.
                 </p>
               </Clause>
 
               <Clause title="5. Managing Preferences">
                 <p>
-                  You can choose your cookie preferences from the consent banner, and you can clear cookies through your
-                  browser settings at any time. Blocking essential cookies may affect how the site works.
+                  Use &ldquo;Cookie Settings&rdquo; in the footer to change your choice. You can also clear cookies and
+                  stored data through your browser settings at any time; if you do, we&apos;ll ask for your choice
+                  again.
                 </p>
               </Clause>
 

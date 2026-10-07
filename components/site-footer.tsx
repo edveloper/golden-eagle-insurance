@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Instagram, Mail, Phone, MapPin } from "lucide-react"
 import { CookieSettingsButton } from "@/components/cookie-settings-button"
-import { CONTACT_EMAIL } from "@/lib/site"
+import { CONTACT_EMAIL, INSTAGRAM_URL, INSURERS, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site"
 
 export function SiteFooter() {
   return (
@@ -19,11 +19,21 @@ export function SiteFooter() {
               </div>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-300">
-              A Nairobi-based insurance agency and global markets investment advisory, helping Kenyan families and
-              businesses protect and grow their wealth since 2006.
+              An IRA-licensed insurance agency and investment advisory in Nairobi, arranging cover for Kenyan
+              families and businesses since 2006.
             </p>
-            {/* Social links removed until the agency's real profile URLs are confirmed; add them here and to
-                organizationSchema.sameAs in lib/seo.ts. */}
+            {/* Keep in sync with organizationSchema.sameAs in lib/seo.ts. */}
+            <div className="mt-6 flex gap-5 text-gray-400">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Golden Eagle on Instagram"
+                className="transition-colors hover:text-secondary"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           {/* Explore */}
@@ -43,10 +53,11 @@ export function SiteFooter() {
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-white/50">Cover</h4>
             <ul className="space-y-2.5 text-sm text-gray-300">
               <li><Link href="/products#professional-indemnity" className="transition-colors hover:text-secondary">Professional Indemnity</Link></li>
-              <li><Link href="/products#health" className="transition-colors hover:text-secondary">Health</Link></li>
+              <li><Link href="/products#health" className="transition-colors hover:text-secondary">Medical</Link></li>
               <li><Link href="/products#life" className="transition-colors hover:text-secondary">Life</Link></li>
               <li><Link href="/products#property" className="transition-colors hover:text-secondary">Property</Link></li>
               <li><Link href="/products#business" className="transition-colors hover:text-secondary">Business</Link></li>
+              <li><Link href="/products#travel" className="transition-colors hover:text-secondary">Travel</Link></li>
             </ul>
           </div>
 
@@ -56,11 +67,11 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                <span>Maruti Court, East Church Road, Westlands, Nairobi</span>
+                <span>Nairobi, Kenya. Meetings by appointment.</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-secondary" />
-                <a href="tel:+254791389518" className="transition-colors hover:text-secondary">+254 791 389 518</a>
+                <a href={`tel:${PHONE_TEL}`} className="transition-colors hover:text-secondary">{PHONE_DISPLAY}</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-secondary" />
@@ -72,9 +83,9 @@ export function SiteFooter() {
 
         {/* Partner strip (credibility, borrowed from broker sites) */}
         <div className="mt-14 border-t border-white/10 pt-8">
-          <p className="text-xs uppercase tracking-[0.16em] text-white/40">Insurer &amp; platform partners</p>
+          <p className="text-xs uppercase tracking-[0.16em] text-white/40">Insurer &amp; Platform Partners</p>
           <p className="mt-2 text-sm text-gray-400">
-            ICEA Lion · Britam · Jubilee · CIC · AAR · Old Mutual · Heritage · Prudential · NCBA · Investors Trust
+            {[...INSURERS, "Investors Trust"].join(" · ")}
           </p>
         </div>
 
