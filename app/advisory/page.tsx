@@ -291,7 +291,7 @@ export default function AdvisoryPage() {
                   d: "Save steadily, so the fees are ready when school and university begin.",
                 },
                 {
-                  img: "/images/goal-retirement.jpg",
+                  img: "/images/goal-retirement-couple.jpg",
                   t: "Retirement Planning",
                   d: "Build savings that can fund the years after you stop working.",
                 },

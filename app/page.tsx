@@ -42,12 +42,12 @@ const proof = [
 ]
 
 // Professional indemnity leads as the award-winning speciality; business lines share the last row.
-const cover = [
+const cover: { title: string; href: string; img: string; wide?: boolean; pos?: string }[] = [
   { title: "Medical Insurance", href: "/products#health", img: "/images/cover-medical.jpg" },
   { title: "Life & Pension", href: "/products#life", img: "/images/cover-life-pension.jpg" },
-  { title: "Home Insurance", href: "/products#property", img: "/images/cover-home.jpg" },
+  { title: "Home Insurance", href: "/products#property", img: "/images/cover-home-mombasa.jpg" },
   { title: "Travel Insurance", href: "/products#travel", img: "/images/cover-travel.jpg" },
-  { title: "Business Insurance", href: "/products#business", img: "/images/cover-business.jpg", wide: true },
+  { title: "Business Insurance", href: "/products#business", img: "/images/cover-business-nairobi.jpg", wide: true, pos: "object-[center_22%]" },
   { title: "Cyber Insurance", href: "/products#cyber-security", img: "/images/cover-cyber.jpg", wide: true },
 ]
 
@@ -228,7 +228,7 @@ export default function HomePage() {
                     fill
                     sizes={c.wide ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"}
                     quality={80}
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={cn("object-cover transition-transform duration-700 group-hover:scale-105", c.pos)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" aria-hidden="true" />
                   <h3 className="relative flex items-center justify-between gap-2 font-serif text-2xl text-white">
