@@ -100,6 +100,18 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <p className="mt-6 text-[11px] text-white/35">
+          Website by{" "}
+          <a
+            href="https://www.eddie-ezekiel.com"
+            target="_blank"
+            rel="noopener"
+            className="transition-colors hover:text-secondary"
+          >
+            Eddie Ezekiel
+          </a>
+        </p>
+
       </div>
     </footer>
   )
