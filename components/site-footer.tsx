@@ -1,6 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Linkedin, Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
+import { CookieSettingsButton } from "@/components/cookie-settings-button"
+import { CONTACT_EMAIL } from "@/lib/site"
 
 export function SiteFooter() {
   return (
@@ -20,21 +22,8 @@ export function SiteFooter() {
               A Nairobi-based insurance agency and global markets investment advisory, helping Kenyan families and
               businesses protect and grow their wealth since 2006.
             </p>
-            {/* TODO: replace platform homepages with Golden Eagle's real profile URLs (or remove any without an active profile). */}
-            <div className="mt-6 flex gap-5 text-gray-400">
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-secondary">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="transition-colors hover:text-secondary">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="transition-colors hover:text-secondary">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="transition-colors hover:text-secondary">
-                <Twitter className="h-5 w-5" />
-              </a>
-            </div>
+            {/* Social links removed until the agency's real profile URLs are confirmed; add them here and to
+                organizationSchema.sameAs in lib/seo.ts. */}
           </div>
 
           {/* Explore */}
@@ -75,7 +64,7 @@ export function SiteFooter() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-secondary" />
-                <a href="mailto:info@goldeneagle.co.ke" className="transition-colors hover:text-secondary">info@goldeneagle.co.ke</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-secondary">{CONTACT_EMAIL}</a>
               </li>
             </ul>
           </div>
@@ -96,8 +85,26 @@ export function SiteFooter() {
             <Link href="/privacy-policy" className="transition-colors hover:text-secondary">Privacy Policy</Link>
             <Link href="/cookie-policy" className="transition-colors hover:text-secondary">Cookie Policy</Link>
             <Link href="/terms-of-use" className="transition-colors hover:text-secondary">Terms of Use</Link>
+            <CookieSettingsButton className="transition-colors hover:text-secondary" />
           </div>
         </div>
+
+        {/* CC BY-SA requires title, author, source, licence and a note of changes. Remove when the photos are replaced. */}
+        <p className="mt-4 text-[11px] leading-relaxed text-gray-500">
+          Photos:{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:Nairobi_skyline.jpg" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
+            Nairobi skyline
+          </a>{" "}
+          by Waceke Kamau and{" "}
+          <a href="https://commons.wikimedia.org/wiki/File:Nairobi_City_County_Skyline.jpg" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
+            Nairobi City County Skyline
+          </a>{" "}
+          by Antony Trivet, via Wikimedia Commons,{" "}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
+            CC BY-SA 4.0
+          </a>
+          . Colour-treated from the originals.
+        </p>
       </div>
     </footer>
   )

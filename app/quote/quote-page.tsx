@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle } from "lucide-react"
 import { useState } from "react"
 import { submitQuoteForm } from "@/lib/actions"
+import { CONTACT_EMAIL, YEARS_IN_BUSINESS } from "@/lib/site"
 
 export default function QuotePage() {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ export default function QuotePage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [reference, setReference] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,6 +41,7 @@ export default function QuotePage() {
       const result = await submitQuoteForm(formData)
 
       if (result.success) {
+        setReference(result.submissionId?.slice(0, 8).toUpperCase() ?? "")
         setSubmitStatus("success")
         setFormData({
           name: "",
@@ -49,17 +52,14 @@ export default function QuotePage() {
           additionalInfo: "",
           website: "",
         })
-        setTimeout(() => setSubmitStatus("idle"), 5000)
       } else {
         setSubmitStatus("error")
         setErrorMessage(result.error || "Please try again.")
-        setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
       console.error("Quote form submission error:", error)
       setSubmitStatus("error")
       setErrorMessage("Please try again.")
-      setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
       setIsSubmitting(false)
     }
@@ -85,11 +85,11 @@ export default function QuotePage() {
 
       <main className="flex-1">
         <PageHero
-          image="/nairobi-park-skyline-hero.jpg"
-          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          image="/nairobi-skyline-hero.jpg"
+          imageAlt="Nairobi city skyline"
           eyebrow="Fast Quotation"
           title="Get Your Free Quote"
-          subtitle="Fill out the form below and our insurance experts will provide you with a personalized quote within 24 hours."
+          subtitle="Fill out the form below and our insurance experts will provide you with a personalised quote within one business day."
         />
 
         {/* Quote Form */}
@@ -108,7 +108,7 @@ export default function QuotePage() {
                       { t: "Free & No Obligation", d: "Get a quote with no commitment required" },
                       { t: "Personalized Coverage", d: "Tailored to your specific needs" },
                       { t: "Competitive Rates", d: "Best value without compromising quality" },
-                      { t: "Fast Response", d: "Receive your quote within 24 hours" },
+                      { t: "Fast Response", d: "Receive your quote within one business day" },
                       { t: "Expert Guidance", d: "Professional advice from our team" },
                     ].map((b) => (
                       <li key={b.t} className="flex items-start gap-3">
@@ -130,8 +130,8 @@ export default function QuotePage() {
                     </p>
                     <p className="text-gray-300">
                       Email{" "}
-                      <a href="mailto:info@goldeneagle.co.ke" className="text-white transition-colors hover:text-secondary">
-                        info@goldeneagle.co.ke
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="text-white transition-colors hover:text-secondary">
+                        {CONTACT_EMAIL}
                       </a>
                     </p>
                   </div>
@@ -146,8 +146,9 @@ export default function QuotePage() {
 
                     {submitStatus === "success" && (
                       <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                        Thank you! Your quote request has been received. We'll contact you within 24 hours with your
+                        Thank you! Your quote request has been received. We'll contact you within one business day with your
                         personalized quote.
+                        {reference ? <span className="mt-1 block text-sm">Your reference: <strong>{reference}</strong></span> : null}
                       </div>
                     )}
 
@@ -297,11 +298,11 @@ export default function QuotePage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-serif font-bold text-primary mb-4">Trusted Since 2006</h2>
-              <p className="text-muted-foreground">Nearly two decades protecting Kenyan families and businesses</p>
+              <p className="text-muted-foreground">{YEARS_IN_BUSINESS} years protecting Kenyan families and businesses</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">18+</div>
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{YEARS_IN_BUSINESS}+</div>
                 <div className="text-sm text-muted-foreground">Years of Service</div>
               </div>
               <div className="text-center">

@@ -77,11 +77,11 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-3">
-            <Link href="/quote" className="hidden md:block">
-              <Button className="rounded-md bg-secondary px-5 font-semibold text-primary hover:bg-secondary/90">
+            <Button className="hidden md:inline-flex rounded-md bg-secondary px-5 font-semibold text-primary hover:bg-secondary/90" asChild>
+              <Link href="/quote">
                 Get a Quote
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             <button
               className="p-1 text-primary md:hidden"
@@ -119,11 +119,11 @@ export function SiteHeader() {
             >
               <Phone className="h-4 w-4 text-secondary" /> +254 791 389 518
             </a>
-            <Link href="/quote" onClick={() => setMobileMenuOpen(false)} className="mb-3 mt-1">
-              <Button className="w-full rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90">
+            <Button className="mb-3 mt-1 w-full rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+              <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>
                 Get a Quote
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </nav>
         </div>
       ) : null}

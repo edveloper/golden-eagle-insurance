@@ -13,6 +13,7 @@ type ConsentState = {
 
 export const CONSENT_KEY = "ge_cookie_consent_v1"
 export const CONSENT_EVENT = "ge-consent-updated"
+export const OPEN_CONSENT_EVENT = "ge-consent-open"
 
 function getDefaultConsent(): ConsentState {
   return {
@@ -27,16 +28,31 @@ export function CookieConsent() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const existing = window.localStorage.getItem(CONSENT_KEY)
+    let existing: string | null = null
+    try {
+      existing = window.localStorage.getItem(CONSENT_KEY)
+    } catch {}
     if (!existing) {
       setVisible(true)
     }
+    const open = () => setVisible(true)
+    window.addEventListener(OPEN_CONSENT_EVENT, open)
+    return () => window.removeEventListener(OPEN_CONSENT_EVENT, open)
   }, [])
 
   const saveConsent = (next: ConsentState) => {
-    window.localStorage.setItem(CONSENT_KEY, JSON.stringify(next))
-    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: next }))
+    let hadAnalytics = false
+    try {
+      hadAnalytics = JSON.parse(window.localStorage.getItem(CONSENT_KEY) || "{}").analytics === true
+      window.localStorage.setItem(CONSENT_KEY, JSON.stringify(next))
+    } catch {}
     setVisible(false)
+    // GA can't be unloaded once running, so a withdrawal reloads the page without it.
+    if (hadAnalytics && !next.analytics) {
+      window.location.reload()
+      return
+    }
+    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: next }))
   }
 
   if (!visible) return null

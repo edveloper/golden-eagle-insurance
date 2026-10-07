@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { useState } from "react"
 import { submitContactForm } from "@/lib/actions"
+import { CONTACT_EMAIL } from "@/lib/site"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [reference, setReference] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,19 +39,17 @@ export default function ContactPage() {
       const result = await submitContactForm(formData)
 
       if (result.success) {
+        setReference(result.submissionId?.slice(0, 8).toUpperCase() ?? "")
         setSubmitStatus("success")
         setFormData({ name: "", email: "", phone: "", subject: "", message: "", website: "" })
-        setTimeout(() => setSubmitStatus("idle"), 5000)
       } else {
         setSubmitStatus("error")
         setErrorMessage(result.error || "Please try again.")
-        setTimeout(() => setSubmitStatus("idle"), 5000)
       }
     } catch (error) {
       console.error("Contact form submission error:", error)
       setSubmitStatus("error")
       setErrorMessage("Please try again.")
-      setTimeout(() => setSubmitStatus("idle"), 5000)
     } finally {
       setIsSubmitting(false)
     }
@@ -111,12 +111,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Email Us</h3>
                       <p className="mt-1 text-sm text-primary">
-                        <a href="mailto:info@goldeneagle.co.ke" className="transition-colors hover:text-accent">
-                          info@goldeneagle.co.ke
-                        </a>
-                        <br />
-                        <a href="mailto:goldeneagleinsagency@gmail.com" className="transition-colors hover:text-accent">
-                          goldeneagleinsagency@gmail.com
+                        <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-accent">
+                          {CONTACT_EMAIL}
                         </a>
                       </p>
                     </div>
@@ -145,7 +141,8 @@ export default function ContactPage() {
 
                     {submitStatus === "success" && (
                       <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                        Thank you for contacting us! We'll get back to you within 24 hours.
+                        Thank you for contacting us! We'll get back to you within one business day.
+                        {reference ? <span className="mt-1 block text-sm">Your reference: <strong>{reference}</strong></span> : null}
                       </div>
                     )}
 

@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  generator: "v0.app",
   verification: {
     google: "google2f68f3c1ef3c003f",
   },
@@ -41,14 +40,6 @@ export const metadata: Metadata = {
       "Reliable, professional, and comprehensive insurance solutions across Kenya.",
     url: SITE_URL,
     siteName: ORGANIZATION_NAME,
-    images: [
-      {
-        url: "/icon.png",
-        width: 1200,
-        height: 630,
-        alt: ORGANIZATION_NAME,
-      },
-    ],
     type: "website",
     locale: "en_US",
   },
@@ -57,7 +48,6 @@ export const metadata: Metadata = {
     title: ORGANIZATION_NAME,
     description:
       "Comprehensive, reliable insurance solutions for individuals and businesses.",
-    images: ["/icon.png"],
   },
 };
 

@@ -22,8 +22,8 @@ export default function ProductsPage() {
 
       <main className="flex-1">
         <PageHero
-          image="/nairobi-park-skyline-hero.jpg"
-          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          image="/nairobi-skyline-hero.jpg"
+          imageAlt="Nairobi city skyline"
           eyebrow="Coverage Portfolio"
           title="Comprehensive Insurance Solutions"
           subtitle="Discover our wide range of insurance products designed to protect what matters most to you and your business."
@@ -134,12 +134,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Professional Indemnity Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
               <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
                 <Image
@@ -213,12 +213,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Health Insurance Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -271,12 +271,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Cyber Security Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
               <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
                 <Image
@@ -348,12 +348,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Life Insurance Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -416,12 +416,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Property Insurance Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -471,12 +471,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Business Insurance Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
               <div className="group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]">
                 <Image
@@ -548,12 +548,12 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <Link href="/quote">
-                  <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+                <Button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                  <Link href="/quote">
                     Get Travel Insurance Quote
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -569,21 +569,22 @@ export default function ProductsPage() {
               Our insurance experts are here to help you find the perfect coverage for your needs.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                <Link href="/contact">
                   Speak to an Expert
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/quote">
-                <Button
+                </Link>
+              </Button>
+              <Button
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+                  asChild
                 >
+                <Link href="/quote">
                   Get a Quote
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

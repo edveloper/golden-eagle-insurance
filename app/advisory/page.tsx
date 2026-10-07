@@ -70,15 +70,16 @@ export default function AdvisoryPage() {
                 risk appetite, and time horizon.
               </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Link href="/contact">
-                  <Button
+                <Button
                     size="lg"
                     className="bg-secondary font-semibold text-primary shadow-[0_12px_36px_rgba(197,161,0,0.3)] hover:bg-secondary/90"
+                    asChild
                   >
+                  <Link href="/contact">
                     Arrange a Consultation
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 <a
                   href={`tel:${ADVISORY_PHONE_TEL}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white"
@@ -397,22 +398,23 @@ export default function AdvisoryPage() {
               Arrange a confidential consultation with our Lead Advisor to explore a strategy built around your goals.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/contact">
-                <Button size="lg" className="bg-secondary font-semibold text-primary hover:bg-secondary/90">
+              <Button size="lg" className="bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+                <Link href="/contact">
                   Arrange a Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <a href={`tel:${ADVISORY_PHONE_TEL}`}>
-                <Button
+                </Link>
+              </Button>
+              <Button
                   size="lg"
                   variant="outline"
                   className="border-white bg-transparent text-white hover:bg-white hover:text-primary"
+                  asChild
                 >
+                <a href={`tel:${ADVISORY_PHONE_TEL}`}>
                   <Phone className="mr-2 h-5 w-5" />
                   {ADVISORY_PHONE_DISPLAY}
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </div>
         </section>

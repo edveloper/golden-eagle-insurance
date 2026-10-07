@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
+import { CONTACT_EMAIL } from "@/lib/site"
 
 export const metadata = buildPageMetadata({
   title: "Cookie Policy | Golden Eagle Insurance Agency",
@@ -81,8 +82,8 @@ export default function CookiePolicyPage() {
               <Clause title="6. Contact">
                 <p>
                   For cookie and tracking questions, contact us at{" "}
-                  <a href="mailto:info@goldeneagle.co.ke" className="text-primary underline hover:text-primary/80">
-                    info@goldeneagle.co.ke
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline hover:text-primary/80">
+                    {CONTACT_EMAIL}
                   </a>
                   .
                 </p>

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import Image from "next/image"
+import { YEARS_IN_BUSINESS } from "@/lib/site"
 import {
   Home,
   CheckCircle,
@@ -69,24 +70,26 @@ export default function HomePage() {
                 services that empower our clients to protect, grow, and secure their wealth.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/quote">
-                  <Button
+                <Button
                     size="lg"
                     className="bg-secondary font-semibold text-primary shadow-[0_12px_36px_rgba(197,161,0,0.35)] hover:bg-secondary/90"
+                    asChild
                   >
+                  <Link href="/quote">
                     Get a Free Quote
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button
+                  </Link>
+                </Button>
+                <Button
                     size="lg"
                     variant="outline"
                     className="border-white/60 bg-white/5 text-white hover:bg-white hover:text-primary"
+                    asChild
                   >
+                  <Link href="/contact">
                     Contact Us
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -100,7 +103,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-primary/10">
               <div className="px-4 py-3 text-center">
-                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">18+</div>
+                <div className="font-serif text-4xl font-bold text-primary md:text-5xl">{YEARS_IN_BUSINESS}+</div>
                 <div className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Years of Excellence</div>
               </div>
               <div className="px-4 py-3 text-center">
@@ -358,7 +361,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-4">
               <div className="bg-background p-6">
                 <CheckCircle className="mb-3 h-6 w-6 text-secondary" />
-                <h3 className="mb-2 font-semibold text-primary">18+ Years of Excellence</h3>
+                <h3 className="mb-2 font-semibold text-primary">{YEARS_IN_BUSINESS}+ Years of Excellence</h3>
                 <p className="text-sm text-muted-foreground">Trusted by clients across Kenya since 2006</p>
               </div>
               <div className="bg-background p-6">
@@ -391,22 +394,23 @@ export default function HomePage() {
               Get a free, no-obligation quote today and discover how we can help you protect and grow your wealth.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/quote">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+                <Link href="/quote">
                   Get Your Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <a href="tel:+254791389518">
-                <Button
+                </Link>
+              </Button>
+              <Button
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+                  asChild
                 >
+                <a href="tel:+254791389518">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Us Now
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </div>
         </section>

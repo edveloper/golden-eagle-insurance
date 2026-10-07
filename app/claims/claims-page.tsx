@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { FileText, Clock, CheckCircle, Phone, AlertCircle } from "lucide-react"
 import { useState } from "react"
 import { submitClaimForm } from "@/lib/actions"
+import { CLAIMS_EMAIL } from "@/lib/site"
 
 export default function ClaimsPage() {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ export default function ClaimsPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [reference, setReference] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,6 +39,7 @@ export default function ClaimsPage() {
       const result = await submitClaimForm(formData)
 
       if (result.success) {
+        setReference(result.submissionId?.slice(0, 8).toUpperCase() ?? "")
         setSubmitStatus("success")
         setFormData({
           policyNumber: "",
@@ -55,7 +58,6 @@ export default function ClaimsPage() {
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
-      setTimeout(() => setSubmitStatus("idle"), 5000)
     }
   }
 
@@ -79,8 +81,8 @@ export default function ClaimsPage() {
 
       <main className="flex-1">
         <PageHero
-          image="/nairobi-park-skyline-hero.jpg"
-          imageAlt="Nairobi skyline viewed from Nairobi National Park"
+          image="/nairobi-skyline-hero.jpg"
+          imageAlt="Nairobi city skyline"
           eyebrow="Claims Support"
           title="File a Claim"
           subtitle="We're here to support you when you need us most. File your claim quickly and easily, and our team will process it promptly."
@@ -132,12 +134,12 @@ export default function ClaimsPage() {
                   <p className="text-sm text-white/90">Available 24/7 for urgent claims</p>
                 </div>
               </div>
-              <a href="tel:+254791389518">
-                <Button size="lg" className="bg-white text-accent hover:bg-white/90 font-semibold">
+              <Button size="lg" className="bg-white text-accent hover:bg-white/90 font-semibold" asChild>
+                <a href="tel:+254791389518">
                   <Phone className="mr-2 h-5 w-5" />
                   Call +254 791 389 518
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </div>
         </section>
@@ -152,13 +154,14 @@ export default function ClaimsPage() {
 
                   {submitStatus === "success" && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                      Your claim has been submitted successfully. Our team will review it and contact you within 24-48
-                      business hours.
+                      Your claim has been submitted successfully. Our team will review it and contact you within one business
+                      day.
+                      {reference ? <span className="mt-1 block text-sm">Your reference: <strong>{reference}</strong></span> : null}
                     </div>
                   )}
                   {submitStatus === "error" && (
                     <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                      Sorry, we could not submit your claim right now. Please try again or contact us directly.
+                      We couldn&apos;t submit your claim online. Please call +254 791 389 518 or message us on WhatsApp and we&apos;ll take it by phone.
                     </div>
                   )}
 
@@ -278,8 +281,8 @@ export default function ClaimsPage() {
                       </ul>
                       <p className="mt-2">
                         You can email documents to{" "}
-                        <a href="mailto:claims@goldeneagle.co.ke" className="text-accent hover:underline">
-                          claims@goldeneagle.co.ke
+                        <a href={`mailto:${CLAIMS_EMAIL}`} className="text-accent hover:underline">
+                          {CLAIMS_EMAIL}
                         </a>
                       </p>
                     </div>
@@ -324,8 +327,8 @@ export default function ClaimsPage() {
                   <FileText className="h-8 w-8 text-accent mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Email Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Send your claim documents</p>
-                  <a href="mailto:claims@goldeneagle.co.ke" className="text-accent hover:underline text-sm">
-                    claims@goldeneagle.co.ke
+                  <a href={`mailto:${CLAIMS_EMAIL}`} className="text-accent hover:underline text-sm">
+                    {CLAIMS_EMAIL}
                   </a>
                 </CardContent>
               </Card>

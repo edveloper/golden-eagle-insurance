@@ -34,24 +34,24 @@ const PRIORITY_OPTIONS: { value: Priority; label: string }[] = [
   { value: "wealth", label: "Growing my wealth" },
 ]
 
+const PRIORITY_PICK: Record<Priority, string> = {
+  health: "health",
+  life: "life",
+  property: "property",
+  professional: "professional",
+  travel: "travel",
+  wealth: "advisory",
+}
+
+// "both" interleaves personal and business cover so neither side is crowded out by the 4-item cap.
+const AUDIENCE_PICKS: Record<Audience, string[]> = {
+  individual: ["health", "life", "property"],
+  business: ["business", "professional", "cyber"],
+  both: ["health", "business", "life", "professional"],
+}
+
 function recommend(aud: Audience, pri: Priority): string[] {
-  const set = new Set<string>()
-  if (pri === "health") set.add("health")
-  if (pri === "life") set.add("life")
-  if (pri === "property") set.add("property")
-  if (pri === "professional") set.add("professional")
-  if (pri === "travel") set.add("travel")
-  if (pri === "wealth") set.add("advisory")
-  if (aud === "business" || aud === "both") {
-    set.add("business")
-    set.add("professional")
-    set.add("cyber")
-  }
-  if (aud === "individual" || aud === "both") {
-    set.add("health")
-    set.add("life")
-  }
-  return Array.from(set).slice(0, 4)
+  return Array.from(new Set([PRIORITY_PICK[pri], ...AUDIENCE_PICKS[aud]])).slice(0, 4)
 }
 
 export function CoverQuiz() {
@@ -148,11 +148,11 @@ export function CoverQuiz() {
             })}
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link href="/quote">
-              <Button className="rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90">
+            <Button className="rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+              <Link href="/quote">
                 Get a tailored quote <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <button
               type="button"
               onClick={reset}

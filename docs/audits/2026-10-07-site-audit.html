@@ -1,0 +1,283 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Published copy: https://claude.ai/artifact/SVnsvAvGnSsn9zXDUgkVeR -->
+<title>Golden Eagle Site Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column with a sticky section index on wide screens; findings as ruled rows with a severity stripe. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#17202e; --muted:#5b6575; --rule:#dde1e8;
+  --accent:#1d4f8c; --accent-soft:#e6eef8;
+  --crit:#b3261e; --crit-soft:#fbeae8; --high:#a85d00; --high-soft:#fdf1e1; --med:#3d6b2e; --med-soft:#e9f3e5;
+  --code-bg:#eef1f5;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161e; --surface:#171e29; --fg:#e4e8ef; --muted:#9aa4b4; --rule:#2a3342;
+  --accent:#8fb6ec; --accent-soft:#1c2a3e;
+  --crit:#f08a80; --crit-soft:#3a1d1c; --high:#f0b062; --high-soft:#36281a; --med:#9fd08b; --med-soft:#1f2e1c;
+  --code-bg:#1f2734; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161e; --surface:#171e29; --fg:#e4e8ef; --muted:#9aa4b4; --rule:#2a3342;
+  --accent:#8fb6ec; --accent-soft:#1c2a3e;
+  --crit:#f08a80; --crit-soft:#3a1d1c; --high:#f0b062; --high-soft:#36281a; --med:#9fd08b; --med-soft:#1f2e1c;
+  --code-bg:#1f2734; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);padding-inline:16px;padding-block:0}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;padding-block:48px 80px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:28px 56px}nav.toc{display:none}}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13px}
+nav.toc p{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+nav.toc a{color:var(--muted);text-decoration:none}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent)}
+main{min-width:0}
+header.top{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:8px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 12px}
+h1{font:600 clamp(32px,5vw,46px)/1.1 var(--display);margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 20px}
+dl.meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin:0;font-size:13px}
+dl.meta div{display:flex;gap:8px}
+dl.meta dt{color:var(--muted)} dl.meta dd{margin:0;font-weight:500}
+.tally{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.high{background:var(--high-soft);color:var(--high)}
+.chip.med{background:var(--med-soft);color:var(--med)}
+.chip.info{background:var(--accent-soft);color:var(--accent)}
+section{padding-top:44px}
+h2{font:600 28px/1.2 var(--display);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 20px;max-width:65ch}
+h3{font:600 15px/1.4 var(--body);margin:0 0 4px}
+p{margin:0 0 12px} p:last-child{margin-bottom:0}
+code{font:13px var(--mono);background:var(--code-bg);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+a{color:var(--accent)}
+ol.findings{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+ol.findings>li{display:grid;grid-template-columns:4px minmax(0,1fr);gap:18px;padding:16px 0;border-bottom:1px solid var(--rule)}
+ol.findings>li::before{content:"";border-radius:2px;background:var(--rule)}
+ol.findings>li.crit::before{background:var(--crit)}
+ol.findings>li.high::before{background:var(--high)}
+ol.findings>li.med::before{background:var(--med)}
+.row-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-bottom:4px}
+.row-head h3{margin:0}
+.where{font:12px var(--mono);color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:8px}
+ul.plain li{padding-left:2px}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:20px 22px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.two{grid-template-columns:minmax(0,1fr)}}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.order{counter-reset:o;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.order li{counter-increment:o;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:baseline}
+.order li::before{content:counter(o);font:600 15px var(--display);color:var(--accent)}
+.note{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--muted);font-size:14px;margin-top:16px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Sections">
+  <p>Contents</p>
+  <ol>
+    <li><a href="#fix-first">Fix first</a></li>
+    <li><a href="#ai-tells">AI tells</a></li>
+    <li><a href="#visual">Visual &amp; structure</a></li>
+    <li><a href="#speed">Speed</a></li>
+    <li><a href="#motion">Motion</a></li>
+    <li><a href="#code">Code issues</a></li>
+    <li><a href="#opportunities">Opportunities</a></li>
+    <li><a href="#plan">Fix order</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <p class="kicker">Site audit · goldeneagleltd.org</p>
+  <h1>Golden Eagle Insurance Agency website</h1>
+  <p class="lede">A review of the live site and its Next.js codebase. It covers visual design, UX, AI-generated tells, performance, motion and code logic. The site is fast and mostly well built, but it reads as template-made, and a few bugs are costing leads today.</p>
+  <dl class="meta">
+    <div><dt>Date</dt><dd>7 October 2026</dd></div>
+    <div><dt>Build reviewed</dt><dd>commit 553b49e, “Style revamp &amp; copy update”</dd></div>
+    <div><dt>Stack</dt><dd>Next.js 15 · Tailwind 4 · Vercel</dd></div>
+  </dl>
+  <div class="tally">
+    <span class="chip crit">6 critical</span>
+    <span class="chip high">10 code issues</span>
+    <span class="chip info">8 AI tells</span>
+    <span class="chip med">6 opportunities</span>
+  </div>
+</header>
+
+<section id="fix-first">
+  <h2>Fix first</h2>
+  <p class="sub">These are bugs and compliance problems, not matters of taste. Each one is a small change.</p>
+  <ol class="findings">
+    <li class="crit"><div>
+      <div class="row-head"><h3>Every email address on the site bounces</h3><span class="chip crit">Critical</span></div>
+      <p><code>info@</code> and <code>claims@goldeneagle.co.ke</code> appear in the footer and on the contact, quote, claims, FAQ and policy pages. That domain does not resolve; Google DNS returns no record for it. The firm’s mail runs on <code>goldeneagleltd.org</code>.</p>
+      <p class="where">components/site-footer.tsx · app/*/page.tsx (12 occurrences)</p>
+    </div></li>
+    <li class="crit"><div>
+      <div class="row-head"><h3>Form leads can be lost while the visitor sees “Thank you”</h3><span class="chip crit">Critical</span></div>
+      <p>The form reports success even when the email fails to send. The fallback writes to a local file, which Vercel doesn’t allow, so it fails silently too. Mail is still sent from Resend’s test address <code>onboarding@resend.dev</code>. Verify the domain in Resend, and show an error with the phone number when sending fails.</p>
+      <p class="where">lib/actions.tsx · lib/lead-store.ts</p>
+    </div></li>
+    <li class="crit"><div>
+      <div class="row-head"><h3>The cookie banner doesn’t control anything</h3><span class="chip crit">Critical</span></div>
+      <p>GA4 loads whatever the visitor chooses; the stored consent is never read. That matters under Kenya’s Data Protection Act 2019. Use Google Consent Mode v2, with tracking off until the visitor accepts.</p>
+      <p class="where">components/google-analytics.tsx · components/cookie-consent.tsx</p>
+    </div></li>
+    <li class="crit"><div>
+      <div class="row-head"><h3>The live site says it was built with AI</h3><span class="chip crit">Critical</span></div>
+      <p>The page source contains <code>&lt;meta name="generator" content="v0.app"&gt;</code>. The package is also named <code>my-v0-project</code>.</p>
+      <p class="where">app/layout.tsx:28 · package.json</p>
+    </div></li>
+    <li class="crit"><div>
+      <div class="row-head"><h3>The placeholder hero photos break their licence</h3><span class="chip crit">Critical</span></div>
+      <p>The Nairobi skyline images are CC BY-SA from Wikimedia and are live without the required credit. Replace them with owned images, or credit them properly until then.</p>
+      <p class="where">public/nairobi-*.jpg</p>
+    </div></li>
+    <li class="crit"><div>
+      <div class="row-head"><h3>Stats are out of date</h3><span class="chip crit">Critical</span></div>
+      <p>“18+ years” and “nearly two decades” are hardcoded in three places. Since 2006 it is now 20 years. Work the figure out from the current year.</p>
+      <p class="where">app/page.tsx · app/quote/quote-page.tsx</p>
+    </div></li>
+  </ol>
+</section>
+
+<section id="ai-tells">
+  <h2>Does it look AI-generated?</h2>
+  <p class="sub">Yes. No single choice gives it away, but together they add up.</p>
+  <ul class="plain">
+    <li><strong>The same section pattern about 25 times:</strong> small gold uppercase label, gold line, centred serif heading, one grey sentence, then a grid of cards.</li>
+    <li><strong>Navy, gold and Playfair Display.</strong> This is the default “premium finance” look AI tools produce.</li>
+    <li><strong>The same hero on all 11 pages:</strong> a navy-tinted city photo, from only three images.</li>
+    <li><strong>Filler stats.</strong> “2 Powerful Divisions” is not a statistic, and “AKI” sits where a number should be.</li>
+    <li><strong>Repetition on the homepage.</strong> “Two Powerful Divisions” appears three times, “18+ years” three times, and the partner list three times.</li>
+    <li><strong>Icons in tinted squares and check-mark bullets everywhere.</strong> One icon doesn’t match its meaning: a clock for “Global Partnerships”.</li>
+    <li><strong>Copy that sounds model-written:</strong> “powerful”, “comprehensive”, “genuine confidence”, “a considered blend”, “beacon of trust”, “wealth-building journey”, and three-beat slogans.</li>
+    <li><strong>Generic stock photos and no people.</strong> There’s no named adviser and no on-page testimonials. The gold-bar photo carries another company’s branding.</li>
+  </ul>
+  <p class="note">The FAQ is written as if by an insurer, not an agency. It mentions “our approved service centers” and “pay in person at our office”. Check both claims against how the business actually operates.</p>
+</section>
+
+<section id="visual">
+  <h2>Visual design and structure</h2>
+  <div class="two">
+    <div class="panel">
+      <h3>Hero</h3>
+      <p>At 1366×650 the paragraph is cut off and both buttons fall below the fold. Bring the heading down to about <code>text-5xl</code> and cut the paragraph to one line. Lead with the firm’s real advantage, <strong>three AKI first places for Professional Indemnity (2018, 2019, 2023)</strong>, which is currently buried in the About timeline.</p>
+    </div>
+    <div class="panel">
+      <h3>Homepage order</h3>
+      <ol class="order">
+        <li>Hero with the quick actions built in</li>
+        <li>Products, split into Personal and Business</li>
+        <li>Awards and proof, with real numbers</li>
+        <li>Advisory teaser</li>
+        <li>Google reviews quoted on the page</li>
+        <li>Call to action</li>
+      </ol>
+    </div>
+  </div>
+  <ul class="plain" style="margin-top:20px">
+    <li><strong>Break the template.</strong> Use left-aligned headings, uneven layouts, one full-width photo band and large editorial numbers for the awards. A warm ivory in place of grey <code>#f5f5f5</code> makes the gold look richer.</li>
+    <li><strong>Gold text on white is hard to read.</strong> Contrast is about 2.5:1, and accessibility guidelines ask for 4.5:1. Use a darker gold for text on light backgrounds.</li>
+    <li><strong>A stray blue.</strong> <code>accent #0077be</code> shows up in the quick-action tiles and claims links but isn’t part of the palette.</li>
+    <li><strong>Navigation.</strong> Add Claims to the header. On mobile, add a call icon and a sticky bottom bar with Call, WhatsApp and Quote. The top bar, which holds the IRA licence, is hidden on phones.</li>
+    <li><strong>Advisory page.</strong> It has 12 sections. Add a named Lead Adviser with a bio and photo. Soften “Independent … not product sales”, since the firm uses one platform and is paid on commission.</li>
+    <li><strong>Partners.</strong> Show real insurer logos (with permission) instead of names set in serif type.</li>
+  </ul>
+</section>
+
+<section id="speed">
+  <h2>Speed</h2>
+  <p class="sub">The live site is already quick. These are refinements, not rescues.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Measure</th><th>Live result</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>JavaScript per page (gzip)</td><td class="num">≈ 170 KB</td><td>Make only the forms client-side on quote, contact, claims and FAQ</td></tr>
+      <tr><td>Hero image</td><td class="num">192 KB</td><td>Bake the greyscale and tint into the file at about q60 (around 60 KB), then drop the CSS filter and blend layer</td></tr>
+      <tr><td>Card images</td><td class="num">≈ 44 KB WebP</td><td>Fine as served; compress the 2.6–5.8 MB source files</td></tr>
+      <tr><td>Logo / icon sources</td><td class="num">1.4 MB / 1.9 MB</td><td>Replace with a clean SVG</td></tr>
+      <tr><td>Sticky header blur</td><td>—</td><td>Make it solid; blur is costly on low-end Android</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="motion">
+  <h2>Motion</h2>
+  <p class="sub">Restrained motion adds richness. Playful bouncing makes a financial firm look less trustworthy. Everything here should switch off when the visitor’s device asks for reduced motion.</p>
+  <div class="two">
+    <div class="panel">
+      <h3>Add</h3>
+      <ul class="plain">
+        <li>A slow parallax or zoom on the hero photo, with the heading and buttons fading up in sequence</li>
+        <li>Sections fading up as they scroll in (CSS <code>animation-timeline: view()</code>, no JavaScript needed)</li>
+        <li>Award figures counting up when they come into view</li>
+        <li>The growth estimator total animating smoothly as sliders move</li>
+        <li>Advisory philosophy pinned on one side while the steps scroll past</li>
+        <li>A header that shrinks on scroll, cards that lift on hover, and a slow insurer logo strip</li>
+        <li>Cross-fades between pages using View Transitions</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Use sparingly</h3>
+      <p>One bounce, once: a single nudge on the WhatsApp button about 10 seconds after the page loads.</p>
+      <p>If CSS alone isn’t enough, add the Motion library (about 35 KB). Remove the unused <code>float-slow</code> and <code>drift</code> animations already in the CSS.</p>
+    </div>
+  </div>
+</section>
+
+<section id="code">
+  <h2>Code issues</h2>
+  <ol class="findings">
+    <li class="high"><div><div class="row-head"><h3>Motor insurance has no product section</h3></div><p>It has an FAQ category, a quote option, claim types and an unused car photo. It’s the largest general insurance line in Kenya.</p></div></li>
+    <li class="high"><div><div class="row-head"><h3>Buttons nested inside links, about 20 times</h3></div><p><code>&lt;Link&gt;&lt;Button&gt;</code> renders <code>&lt;a&gt;&lt;button&gt;</code>. That’s invalid HTML, and keyboard users tab twice. Use <code>Button asChild</code>.</p></div></li>
+    <li class="high"><div><div class="row-head"><h3>The cover quiz drops personal cover</h3></div><p>When someone picks “Both”, business products fill all four slots. “Both + Wealth” recommends no personal cover at all.</p><p class="where">components/cover-quiz.tsx:56</p></div></li>
+    <li class="high"><div><div class="row-head"><h3>Link previews look broken</h3></div><p>The share image is the 20 KB square icon, declared as 1200×630. This is how links look on WhatsApp.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>Response times don’t match</h3></div><p>The quote page promises 24 hours, the email says 24–48 business hours, and the contact page says 24.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>The success message disappears after 5 seconds</h3></div><p>The form also clears, and the reference number is never shown to the visitor.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>Placeholders are live</h3></div><p>Footer social icons link to the LinkedIn and Facebook homepages. A personal Gmail address is shown on the contact page.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>Build errors are hidden</h3></div><p><code>ignoreBuildErrors</code> and <code>ignoreDuringBuilds</code> are on, so type errors ship silently.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>The spam limiter doesn’t hold</h3></div><p>It is kept in memory, which resets on every serverless instance.</p></div></li>
+    <li class="med"><div><div class="row-head"><h3>GA4 may drop the landing page view (unconfirmed)</h3></div><p>Script loading order makes this likely. Confirm in GA4 DebugView.</p></div></li>
+  </ol>
+</section>
+
+<section id="opportunities">
+  <h2>Missed opportunities</h2>
+  <ul class="plain">
+    <li><strong>A Professional Indemnity hub.</strong> Build pages for doctors, lawyers, engineers and architects, backed by the three AKI wins. This is the best search opportunity.</li>
+    <li><strong>Conversion tracking.</strong> Track form submissions, phone-number clicks and WhatsApp clicks in GA4. Nothing is tracked today.</li>
+    <li><strong>Prefilled quotes.</strong> Product cards and the quiz can open <code>/quote?type=health</code> with the type already chosen.</li>
+    <li><strong>Context-aware WhatsApp messages,</strong> such as “I’d like a PI quote” when the visitor is on that section.</li>
+    <li><strong>Structured data.</strong> Add <code>InsuranceAgency</code> details (address, phone, real social profiles) and FAQ markup.</li>
+    <li><strong>Search content.</strong> Publish a guide comparing SHA with private medical cover, motor guides, and a page on paying premiums by M-Pesa.</li>
+  </ul>
+</section>
+
+<section id="plan">
+  <h2>Fix order</h2>
+  <ol class="order">
+    <li>The six critical fixes above</li>
+    <li>Code issues: nested buttons, the quiz, link previews, consistent copy, success state</li>
+    <li>Rewrite the copy in the firm’s own voice, removing the AI phrasing</li>
+    <li>Restructure the homepage and the visual system</li>
+    <li>Motion pass</li>
+    <li>Content and search opportunities</li>
+  </ol>
+</section>
+
+<footer>Reviewed against the live site at www.goldeneagleltd.org and the repository on 7 October 2026.</footer>
+</main>
+</div>

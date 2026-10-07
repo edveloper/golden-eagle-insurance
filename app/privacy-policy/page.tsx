@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { buildPageMetadata } from "@/lib/seo"
+import { CONTACT_EMAIL } from "@/lib/site"
 
 export const metadata = buildPageMetadata({
   title: "Privacy Policy | Golden Eagle Insurance Agency",
@@ -154,8 +155,8 @@ export default function PrivacyPolicyPage() {
               <Clause title="11. Contact">
                 <p>
                   For privacy requests or questions, contact us at{" "}
-                  <a href="mailto:info@goldeneagle.co.ke" className="text-primary underline hover:text-primary/80">
-                    info@goldeneagle.co.ke
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline hover:text-primary/80">
+                    {CONTACT_EMAIL}
                   </a>{" "}
                   or +254 791 389 518.
                 </p>

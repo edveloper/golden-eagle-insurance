@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { PageHero } from "@/components/page-hero"
 import { Card, CardContent } from "@/components/ui/card"
 import { buildPageMetadata } from "@/lib/seo"
+import { YEARS_IN_BUSINESS } from "@/lib/site"
 import { Shield, Award, TrendingUp, Heart, Handshake } from "lucide-react"
 
 export const metadata = buildPageMetadata({
@@ -53,7 +54,7 @@ export default function AboutPage() {
                     two-division structure allows us to offer comprehensive financial solutions under one roof.
                   </p>
                   <p>
-                    For nearly two decades, Golden Eagle has been a beacon of trust and reliability, helping
+                    For {YEARS_IN_BUSINESS} years, Golden Eagle has been a beacon of trust and reliability, helping
                     individuals, families, and businesses achieve financial stability and confidence through
                     professionalism, integrity, and personalized financial guidance.
                   </p>

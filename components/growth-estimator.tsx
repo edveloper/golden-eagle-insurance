@@ -97,11 +97,11 @@ export function GrowthEstimator() {
           back less than you invest. Actual results depend on markets, charges, and your circumstances.
         </p>
 
-        <Link href="/contact" className="mt-6 inline-block">
-          <Button className="rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90">
+        <Button className="mt-6 rounded-md bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+          <Link href="/contact">
             Discuss your plan <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   )

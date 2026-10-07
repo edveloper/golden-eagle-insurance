@@ -8,8 +8,16 @@ import { persistLead } from "@/lib/lead-store"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const RECIPIENT_EMAILS = ["goldeneagleinsagency@gmail.com"]
-const FROM_EMAIL = "onboarding@resend.dev"
+// Override in Vercel env once goldeneagleltd.org is verified in Resend, e.g.
+// RESEND_FROM_EMAIL="Golden Eagle Website <website@goldeneagleltd.org>"
+// LEAD_RECIPIENT_EMAILS is optional; leads go straight to the agency Gmail by default.
+const RECIPIENT_EMAILS = (process.env.LEAD_RECIPIENT_EMAILS || "goldeneagleinsagency@gmail.com")
+  .split(",")
+  .map((e) => e.trim())
+  .filter(Boolean)
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+const DELIVERY_FAILED_ERROR =
+  "We couldn't send your request just now. Please call +254 791 389 518 or message us on WhatsApp."
 const SEND_USER_CONFIRMATIONS = process.env.SEND_USER_CONFIRMATIONS === "true"
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
@@ -107,14 +115,15 @@ export async function submitContactForm(rawData: unknown): Promise<FormResult> {
       throw new Error("Missing RESEND_API_KEY")
     }
 
-    await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: RECIPIENT_EMAILS,
+      replyTo: data.email,
       subject: `New Contact Form Submission - ${escapeHtml(data.subject)}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #1a3a5c;">New Contact Form Submission</h2>
-          <p><strong>Submission ID:</strong> ${submissionId}</p>
+          <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
           <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
           <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
@@ -126,6 +135,8 @@ export async function submitContactForm(rawData: unknown): Promise<FormResult> {
         </div>
       `,
     })
+    if (sendError) throw new Error(sendError.message)
+    emailStatus = "sent"
 
     if (SEND_USER_CONFIRMATIONS) {
       await resend.emails.send({
@@ -136,17 +147,16 @@ export async function submitContactForm(rawData: unknown): Promise<FormResult> {
           <div style="font-family: Arial, sans-serif; max-width: 600px;">
             <h2 style="color: #1a3a5c;">Thank You for Contacting Us</h2>
             <p>Hi ${escapeHtml(data.name)},</p>
-            <p>We've received your message and will respond within 24 business hours.</p>
-            <p><strong>Submission ID:</strong> ${submissionId}</p>
+            <p>We've received your message and will respond within one business day.</p>
+            <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
             <p>If urgent, call +254 791 389 518.</p>
           </div>
         `,
       })
     }
-
-    emailStatus = "sent"
   } catch (error) {
-    emailStatus = "failed"
+    // A failed confirmation to the visitor must not mark an already-delivered lead as failed.
+    if (emailStatus !== "sent") emailStatus = "failed"
     emailError = error instanceof Error ? error.message : "Unknown email error"
     console.error("[contact] Email pipeline failed:", error)
   }
@@ -166,6 +176,10 @@ export async function submitContactForm(rawData: unknown): Promise<FormResult> {
     emailStatus,
     emailError: emailError || undefined,
   })
+
+  if (emailStatus !== "sent") {
+    return { success: false, error: DELIVERY_FAILED_ERROR }
+  }
 
   return { success: true, submissionId }
 }
@@ -195,14 +209,15 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
       throw new Error("Missing RESEND_API_KEY")
     }
 
-    await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: RECIPIENT_EMAILS,
+      replyTo: data.email,
       subject: `New Quote Request - ${escapeHtml(data.insuranceType)}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #1a3a5c;">New Quote Request</h2>
-          <p><strong>Submission ID:</strong> ${submissionId}</p>
+          <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
           <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
           <p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
@@ -215,6 +230,8 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
         </div>
       `,
     })
+    if (sendError) throw new Error(sendError.message)
+    emailStatus = "sent"
 
     if (SEND_USER_CONFIRMATIONS) {
       await resend.emails.send({
@@ -225,16 +242,15 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
           <div style="font-family: Arial, sans-serif; max-width: 600px;">
             <h2 style="color: #1a3a5c;">Your Quote Request is Being Processed</h2>
             <p>Hi ${escapeHtml(data.name)},</p>
-            <p>We've received your request and will contact you within 24-48 business hours.</p>
-            <p><strong>Submission ID:</strong> ${submissionId}</p>
+            <p>We've received your request and will contact you within one business day.</p>
+            <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
           </div>
         `,
       })
     }
-
-    emailStatus = "sent"
   } catch (error) {
-    emailStatus = "failed"
+    // A failed confirmation to the visitor must not mark an already-delivered lead as failed.
+    if (emailStatus !== "sent") emailStatus = "failed"
     emailError = error instanceof Error ? error.message : "Unknown email error"
     console.error("[quote] Email pipeline failed:", error)
   }
@@ -255,6 +271,10 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
     emailStatus,
     emailError: emailError || undefined,
   })
+
+  if (emailStatus !== "sent") {
+    return { success: false, error: DELIVERY_FAILED_ERROR }
+  }
 
   return { success: true, submissionId }
 }
@@ -280,14 +300,15 @@ export async function submitClaimForm(rawData: unknown): Promise<FormResult> {
       throw new Error("Missing RESEND_API_KEY")
     }
 
-    await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
       to: RECIPIENT_EMAILS,
+      replyTo: data.email,
       subject: `New Claim Submission - ${escapeHtml(data.claimType)}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px;">
           <h2 style="color: #1a3a5c;">New Claim Submission</h2>
-          <p><strong>Submission ID:</strong> ${submissionId}</p>
+          <p><strong>Reference:</strong> ${submissionId.slice(0, 8).toUpperCase()}</p>
           <p><strong>Policy Number:</strong> ${escapeHtml(data.policyNumber)}</p>
           <p><strong>Claim Type:</strong> ${escapeHtml(data.claimType)}</p>
           <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
@@ -301,10 +322,11 @@ export async function submitClaimForm(rawData: unknown): Promise<FormResult> {
         </div>
       `,
     })
-
+    if (sendError) throw new Error(sendError.message)
     emailStatus = "sent"
   } catch (error) {
-    emailStatus = "failed"
+    // A failed confirmation to the visitor must not mark an already-delivered lead as failed.
+    if (emailStatus !== "sent") emailStatus = "failed"
     emailError = error instanceof Error ? error.message : "Unknown email error"
     console.error("[claim] Email pipeline failed:", error)
   }
@@ -318,6 +340,10 @@ export async function submitClaimForm(rawData: unknown): Promise<FormResult> {
     emailStatus,
     emailError: emailError || undefined,
   })
+
+  if (emailStatus !== "sent") {
+    return { success: false, error: DELIVERY_FAILED_ERROR }
+  }
 
   return { success: true, submissionId }
 }

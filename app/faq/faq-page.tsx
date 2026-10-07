@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Search, ChevronDown, MessageCircle, Phone, Mail } from "lucide-react"
 import { useState } from "react"
+import { CLAIMS_EMAIL, CONTACT_EMAIL } from "@/lib/site"
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -27,7 +28,7 @@ export default function FAQPage() {
         },
         {
           q: "How do I get a quote?",
-          a: "You can get a free quote by filling out our online quote form, calling us at +254 791 389 518, or visiting our office. Our insurance experts will provide you with a personalized quote within 24 hours based on your specific needs.",
+          a: "You can get a free quote by filling out our online quote form, calling us at +254 791 389 518, or messaging us on WhatsApp. We'll send a personalised quote within one business day.",
         },
         {
           q: "Is Golden Eagle Insurance licensed?",
@@ -103,7 +104,7 @@ export default function FAQPage() {
         },
         {
           q: "Can I track my claim status?",
-          a: "Yes, once you submit a claim, you'll receive a claim reference number. You can track your claim status by calling our claims department at +254 791 389 518 or emailing claims@goldeneagle.co.ke with your reference number.",
+          a: `Yes, once you submit a claim, you'll receive a claim reference number. You can track your claim status by calling our claims department at +254 791 389 518 or emailing ${CLAIMS_EMAIL} with your reference number.`,
         },
       ],
     },
@@ -243,10 +244,10 @@ export default function FAQPage() {
                 <h3 className="font-semibold text-primary">Call Us</h3>
                 <p className="mt-1 text-sm text-muted-foreground">+254 791 389 518</p>
               </a>
-              <a href="mailto:info@goldeneagle.co.ke" className="bg-background p-6 text-center transition-colors hover:bg-muted">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="bg-background p-6 text-center transition-colors hover:bg-muted">
                 <Mail className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">Email Us</h3>
-                <p className="mt-1 text-sm text-muted-foreground">info@goldeneagle.co.ke</p>
+                <p className="mt-1 text-sm text-muted-foreground">{CONTACT_EMAIL}</p>
               </a>
               <Link href="/contact" className="bg-background p-6 text-center transition-colors hover:bg-muted">
                 <MessageCircle className="mx-auto mb-3 h-6 w-6 text-secondary" />
@@ -264,11 +265,11 @@ export default function FAQPage() {
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
               Get a free quote today and discover how affordable comprehensive insurance can be.
             </p>
-            <Link href="/quote">
-              <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold">
+            <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold" asChild>
+              <Link href="/quote">
                 Get Your Free Quote
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </section>
       </main>
