@@ -72,7 +72,7 @@ export function CoverQuiz() {
   return (
     <div className="mx-auto max-w-3xl rounded-2xl border border-primary/10 bg-white p-6 shadow-[0_10px_30px_rgba(10,29,55,0.06)] md:p-10">
       {step !== 3 ? (
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Step {step} of 2</p>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Step {step} of 2</p>
       ) : null}
 
       {step === 1 ? (
@@ -142,7 +142,7 @@ export function CoverQuiz() {
                 >
                   <div className="flex items-center gap-1.5 font-semibold text-primary">
                     {p.title}
-                    <ArrowRight className="h-4 w-4 text-secondary transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 text-gold-ink transition-transform group-hover:translate-x-1" />
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
                 </Link>

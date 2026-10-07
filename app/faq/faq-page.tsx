@@ -6,7 +6,7 @@ import { PageHero } from "@/components/page-hero"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import { Search, ChevronDown, MessageCircle, Phone, Mail } from "lucide-react"
+import { Search, ChevronDown } from "lucide-react"
 import { useState } from "react"
 import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_NUMBER } from "@/lib/site"
 import { FAQS } from "./faqs"
@@ -34,10 +34,9 @@ export default function FAQPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main className="mode-functional flex-1">
         <PageHero
-          image="/nairobi-cityscape-hero.jpg"
-          imageAlt="Nairobi cityscape"
+          size="text"
           align="center"
           eyebrow="FAQ"
           title="Frequently Asked Questions"
@@ -103,7 +102,7 @@ export default function FAQPage() {
                               >
                                 <h3 className="font-semibold text-primary">{item.q}</h3>
                                 <ChevronDown
-                                  className={`h-5 w-5 flex-shrink-0 text-secondary transition-transform ${
+                                  className={`h-5 w-5 flex-shrink-0 text-gold-ink transition-transform ${
                                     isOpen ? "rotate-180" : ""
                                   }`}
                                 />
@@ -134,7 +133,6 @@ export default function FAQPage() {
             </div>
             <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-3">
               <a href={`tel:${PHONE_TEL}`} className="bg-background p-6 text-center transition-colors hover:bg-muted">
-                <Phone className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">Call Us</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{PHONE_DISPLAY}</p>
               </a>
@@ -144,12 +142,10 @@ export default function FAQPage() {
                 rel="noopener noreferrer"
                 className="bg-background p-6 text-center transition-colors hover:bg-muted"
               >
-                <MessageCircle className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">WhatsApp Us</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{PHONE_DISPLAY}</p>
               </a>
               <a href={`mailto:${CONTACT_EMAIL}`} className="bg-background p-6 text-center transition-colors hover:bg-muted">
-                <Mail className="mx-auto mb-3 h-6 w-6 text-secondary" />
                 <h3 className="font-semibold text-primary">Email Us</h3>
                 <p className="mt-1 break-all text-sm text-muted-foreground">{CONTACT_EMAIL}</p>
               </a>
@@ -160,7 +156,7 @@ export default function FAQPage() {
         {/* CTA Section */}
         <section className="py-16 md:py-24 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-secondary">Tell Us What You Need Covered</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-balance text-gold-ink">Tell Us What You Need Covered</h2>
             <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto text-pretty">
               The quote is free and you&rsquo;re under no obligation. We&rsquo;ll compare insurers and reply within one business day.
             </p>

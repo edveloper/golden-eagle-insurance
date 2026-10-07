@@ -12,21 +12,26 @@ const PREFILL_BY_PATH: Record<string, string> = {
 }
 const DEFAULT_PREFILL = "Hello Golden Eagle, I have a question."
 
+/** WhatsApp link whose opening message matches the page the visitor is on. */
+export function whatsappHref(pathname: string) {
+  const prefill = PREFILL_BY_PATH[pathname] ?? DEFAULT_PREFILL
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(prefill)}`
+}
+
+// Desktop only; phones get the bottom action bar instead.
 export function WhatsAppButton() {
   const pathname = usePathname()
-  const prefill = PREFILL_BY_PATH[pathname] ?? DEFAULT_PREFILL
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(prefill)}`
 
   return (
     <a
-      href={href}
+      href={whatsappHref(pathname)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+      className="wa-nudge fixed bottom-5 right-5 z-40 hidden items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 lg:flex"
     >
       <MessageCircle className="h-5 w-5" />
-      <span className="hidden sm:inline">Chat With Us</span>
+      <span>Chat With Us</span>
     </a>
   )
 }

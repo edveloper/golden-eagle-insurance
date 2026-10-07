@@ -15,7 +15,7 @@ function Clause({ title, children }: { title: string; children: React.ReactNode 
   const heading = rest.length ? rest.join(". ") : title
   return (
     <section className="flex gap-4 border-t border-primary/10 pt-6 first:border-t-0 first:pt-0 md:gap-6">
-      <span className="pt-1 font-serif text-sm font-bold tabular-nums text-secondary">
+      <span className="pt-1 font-serif text-sm font-bold tabular-nums text-gold-ink">
         {rest.length ? num.padStart(2, "0") : ""}
       </span>
       <div className="flex-1">
@@ -30,15 +30,14 @@ export default function CookiePolicyPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
-      <main className="flex-1">
+      <main className="mode-functional flex-1">
         <PageHero
-          image="/nairobi-cityscape-hero.jpg"
-          imageAlt="Nairobi cityscape"
+          size="text"
           eyebrow="Legal"
           title="Cookie Policy"
           subtitle="How we use cookies and similar technologies."
         >
-          <p className="mt-4 text-sm text-white/70">Last updated: 7 October 2026</p>
+          <p className="mt-4 text-sm text-muted-foreground">Last updated: 7 October 2026</p>
         </PageHero>
 
         <section className="py-14 md:py-20">

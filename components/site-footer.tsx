@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Instagram, Mail, Phone, MapPin } from "lucide-react"
+import { Instagram } from "lucide-react"
 import { CookieSettingsButton } from "@/components/cookie-settings-button"
 import { CONTACT_EMAIL, INSTAGRAM_URL, INSURERS, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site"
 
@@ -12,10 +12,12 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <Image src="/golden-eagle-logo.png" alt="Golden Eagle" width={44} height={44} className="h-11 w-11" />
-              <div className="leading-tight">
-                <span className="block font-serif text-xl font-bold text-secondary">Golden Eagle</span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-white/50">Insurance &amp; Investments</span>
+              <Image src="/images/eagle-mark.png" alt="Golden Eagle" width={893} height={660} className="h-9 w-auto" />
+              <div className="inline-flex flex-col">
+                <span className="font-serif text-[1.4rem] uppercase leading-none tracking-[0.09em] text-white">Golden Eagle</span>
+                <span className="mt-1.5 whitespace-nowrap border-t border-gold-ink/50 pt-1.5 text-[8.5px] font-semibold uppercase leading-none tracking-[0.3em] text-gold-ink">
+                  Insurance &amp; Investments
+                </span>
               </div>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-300">
@@ -66,15 +68,12 @@ export function SiteFooter() {
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-white/50">Contact</h4>
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
                 <span>Nairobi, Kenya. Meetings by appointment.</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-secondary" />
                 <a href={`tel:${PHONE_TEL}`} className="transition-colors hover:text-secondary">{PHONE_DISPLAY}</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-secondary" />
                 <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-secondary">{CONTACT_EMAIL}</a>
               </li>
             </ul>
@@ -96,26 +95,11 @@ export function SiteFooter() {
             <Link href="/privacy-policy" className="transition-colors hover:text-secondary">Privacy Policy</Link>
             <Link href="/cookie-policy" className="transition-colors hover:text-secondary">Cookie Policy</Link>
             <Link href="/terms-of-use" className="transition-colors hover:text-secondary">Terms of Use</Link>
+            <Link href="/credits" className="transition-colors hover:text-secondary">Photo Credits</Link>
             <CookieSettingsButton className="transition-colors hover:text-secondary" />
           </div>
         </div>
 
-        {/* CC BY-SA requires title, author, source, licence and a note of changes. Remove when the photos are replaced. */}
-        <p className="mt-4 text-[11px] leading-relaxed text-gray-500">
-          Photos:{" "}
-          <a href="https://commons.wikimedia.org/wiki/File:Nairobi_skyline.jpg" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
-            Nairobi skyline
-          </a>{" "}
-          by Waceke Kamau and{" "}
-          <a href="https://commons.wikimedia.org/wiki/File:Nairobi_City_County_Skyline.jpg" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
-            Nairobi City County Skyline
-          </a>{" "}
-          by Antony Trivet, via Wikimedia Commons,{" "}
-          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" className="underline hover:text-secondary">
-            CC BY-SA 4.0
-          </a>
-          . Colour-treated from the originals.
-        </p>
       </div>
     </footer>
   )

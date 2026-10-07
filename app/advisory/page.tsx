@@ -6,19 +6,7 @@ import { buildPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import Image from "next/image"
 import { GrowthEstimator } from "@/components/growth-estimator"
-import {
-  ArrowRight,
-  Phone,
-  Globe,
-  LineChart,
-  ShieldCheck,
-  Building2,
-  GraduationCap,
-  Landmark,
-  Compass,
-  CheckCircle,
-  MessageSquareText,
-} from "lucide-react"
+import { ArrowRight, Phone } from "lucide-react"
 
 export const metadata = buildPageMetadata({
   title: "Global Markets Investment Advisory | Golden Eagle",
@@ -36,19 +24,17 @@ export default function AdvisoryPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main className="theme-private flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden bg-primary text-white">
-          {/* Background photograph. TODO: replace with a licensed high-res Nairobi image.
-              Placeholder: Nairobi City County Skyline by Antony Trivet, Wikimedia Commons, CC BY-SA 4.0. */}
           <Image
-            src="/nairobi-cityscape-hero.jpg"
-            alt="Nairobi cityscape"
+            src="/images/hero-advisory-blue-hour.jpg"
+            alt="Nairobi at blue hour"
             fill
             priority
             sizes="100vw"
             quality={80}
-            className="object-cover object-center [filter:grayscale(100%)_contrast(1.05)_brightness(0.78)]"
+            className="parallax-img object-cover object-center [filter:grayscale(100%)_contrast(1.05)_brightness(0.78)]"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color" aria-hidden="true" />
           <div
@@ -57,17 +43,15 @@ export default function AdvisoryPage() {
           />
 
           <div className="container relative mx-auto px-4 py-20 md:py-28">
-            <div className="max-w-3xl">
-              <div className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-                <span className="h-px w-8 bg-secondary" aria-hidden="true" />
+            <div className="anim-hero max-w-3xl">
+              <div className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold-ink">
                 Golden Eagle Global Markets Investment Advisory
               </div>
-              <h1 className="mb-6 font-serif text-4xl font-bold text-balance text-white md:text-6xl">
-                Invest in Global Markets, With Every Holding Explained
+              <h1 className="mb-6 font-serif text-4xl text-balance text-white md:text-6xl">
+                Global Markets, Clearly Explained
               </h1>
               <p className="mb-8 max-w-2xl text-lg leading-relaxed text-gray-100 text-pretty md:text-xl">
-                We build and manage portfolios of shares, funds and bonds listed in the US, UK, Europe and Asia, around
-                your goals, your appetite for risk and how long you can invest.
+                Portfolios of shares, funds and bonds from the US, UK, Europe and Asia, built around your goals.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Button
@@ -84,7 +68,7 @@ export default function AdvisoryPage() {
                   href={`tel:${ADVISORY_PHONE_TEL}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white"
                 >
-                  <Phone className="h-4 w-4 text-secondary" />
+                  <Phone className="h-4 w-4 text-gold-ink" />
                   Call Lydia, Lead Advisor: {ADVISORY_PHONE_DISPLAY}
                 </a>
               </div>
@@ -96,14 +80,14 @@ export default function AdvisoryPage() {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Who We Are</p>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Who We Are</p>
               <p className="font-serif text-2xl leading-relaxed text-primary text-balance md:text-3xl">
                 The investment arm of Golden Eagle Insurance Agency, based in Nairobi. We help Kenyan individuals,
                 families and businesses invest beyond the local market, with a clear plan.
               </p>
             </div>
-            <div className="mx-auto mt-12 max-w-3xl border-l-2 border-secondary pl-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Your Adviser</p>
+            <div className="reveal mx-auto mt-12 max-w-3xl border-l-2 border-secondary pl-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Your Adviser</p>
               <h2 className="mt-2 font-serif text-2xl font-bold text-primary">Lydia Wanjiku Mwangi, Lead Advisor</h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
                 Lydia founded Golden Eagle and leads the advisory. She has worked in insurance since 2003 and was
@@ -119,8 +103,8 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">What We Do</p>
-                <h2 className="mb-6 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">What We Do</p>
+                <h2 className="mb-6 font-serif text-3xl text-primary text-balance md:text-4xl">
                   What Your Adviser Does
                 </h2>
                 <p className="mb-6 leading-relaxed text-muted-foreground">
@@ -133,16 +117,15 @@ export default function AdvisoryPage() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="reveal-stagger grid gap-4 sm:grid-cols-2">
                 {[
-                  { icon: Compass, t: "Research", d: "We study markets, sectors and companies before investing." },
-                  { icon: LineChart, t: "Portfolio Construction", d: "A spread of holdings, built around your goals." },
-                  { icon: ShieldCheck, t: "Risk Management", d: "Position sizes and diversification designed to protect capital." },
-                  { icon: MessageSquareText, t: "Plain Explanations", d: "Every holding, and the reason for it, explained before you invest." },
+                  { t: "Research", d: "We study markets, sectors and companies before investing." },
+                  { t: "Portfolio Construction", d: "A spread of holdings, built around your goals." },
+                  { t: "Risk Management", d: "Position sizes and diversification designed to protect capital." },
+                  { t: "Plain Explanations", d: "Every holding, and the reason for it, explained before you invest." },
                 ].map((item) => (
-                  <div key={item.t} className="rounded-xl border border-primary/10 bg-white p-5">
-                    <item.icon className="mb-3 h-6 w-6 text-secondary" />
-                    <h3 className="mb-1 font-semibold text-primary">{item.t}</h3>
+                  <div key={item.t} className="border-t-2 border-secondary bg-white p-5">
+                    <h3 className="mb-1 font-serif text-xl text-primary">{item.t}</h3>
                     <p className="text-sm text-muted-foreground">{item.d}</p>
                   </div>
                 ))}
@@ -154,17 +137,17 @@ export default function AdvisoryPage() {
         {/* Investment universe */}
         <section id="universe" className="scroll-mt-24 py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">What You Can Invest In</p>
-              <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+            <div className="mb-12 max-w-3xl">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">What You Can Invest In</p>
+              <h2 className="mb-4 font-serif text-3xl text-primary text-balance md:text-4xl">
                 Shares, Funds and Bonds From Markets Worldwide
               </h2>
-              <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
+              <p className="max-w-2xl text-muted-foreground text-pretty">
                 Investments listed on recognised exchanges in the United States, United Kingdom, Europe and Asia.
               </p>
             </div>
 
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="reveal-stagger grid grid-cols-1 gap-px overflow-hidden border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 { t: "Equities", d: "Shares in established companies on major exchanges." },
                 { t: "ETFs", d: "Low-cost funds that track a market or sector." },
@@ -174,41 +157,35 @@ export default function AdvisoryPage() {
                 { t: "Multi-Asset Portfolios", d: "A blend of the above, built around your goals." },
               ].map((a) => (
                 <div key={a.t} className="bg-white p-6">
-                  <h3 className="mb-1 font-semibold text-primary">{a.t}</h3>
+                  <h3 className="mb-1 font-serif text-xl text-primary">{a.t}</h3>
                   <p className="text-sm text-muted-foreground">{a.d}</p>
                 </div>
               ))}
             </div>
 
-            <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-muted-foreground">
+            <p className="mt-6 max-w-2xl text-sm text-muted-foreground">
               Where we invest changes with market conditions, valuations and long-term trends.
             </p>
           </div>
         </section>
 
         {/* The platform */}
-        <section id="platform" className="scroll-mt-24 bg-muted py-16 md:py-24">
+        <section id="platform" className="scroll-mt-24 bg-primary py-16 text-white md:py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-10 text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">The Platform</p>
-                <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">The Platform</p>
+                <h2 className="mb-4 font-serif text-3xl text-balance md:text-4xl">
                   Where Your Investments Are Held
                 </h2>
               </div>
 
-              <Card className="border-primary/10">
-                <CardContent className="p-8">
-                  <div className="mb-6 flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary/10">
-                      <Globe className="h-7 w-7 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-primary">Investors Trust</h3>
-                      <p className="text-sm text-muted-foreground">Cayman Islands</p>
-                    </div>
+              <div className="border-l border-secondary/60 pl-8">
+                  <div className="mb-6">
+                    <h3 className="font-serif text-3xl">Investors Trust</h3>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Cayman Islands</p>
                   </div>
-                  <p className="leading-relaxed text-muted-foreground">
+                  <p className="leading-relaxed text-white/80">
                     Your investments are held on Investors Trust, a life assurance and investment company regulated by
                     the Cayman Islands Monetary Authority (CIMA). Its international platform gives you access to global
                     markets and keeps part of your savings outside a single jurisdiction.
@@ -216,15 +193,14 @@ export default function AdvisoryPage() {
                   {/* TODO: confirm and reinstate the exact independent financial-strength rating (e.g. AM Best) before
                       publishing a specific rating figure. */}
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-white px-3 py-1.5 text-xs font-medium text-primary">
-                      <ShieldCheck className="h-4 w-4 text-secondary" /> Regulated by CIMA
+                    <span className="rounded-full border border-secondary/50 px-3 py-1.5 text-xs font-medium text-white">
+                      Regulated by CIMA
                     </span>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-white px-3 py-1.5 text-xs font-medium text-primary">
-                      <Globe className="h-4 w-4 text-secondary" /> International Platform
+                    <span className="rounded-full border border-secondary/50 px-3 py-1.5 text-xs font-medium text-white">
+                      International Platform
                     </span>
                   </div>
-                </CardContent>
-              </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -234,8 +210,8 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-8 text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Our Growth Objective</p>
-                <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Our Growth Objective</p>
+                <h2 className="mb-4 font-serif text-3xl text-primary text-balance md:text-4xl">
                   Preserve Capital, Then Compound It
                 </h2>
               </div>
@@ -246,7 +222,7 @@ export default function AdvisoryPage() {
                 shapes how we select investments, size positions, and manage risk.
               </p>
 
-              <div className="rounded-2xl border-2 border-secondary/40 bg-secondary/5 p-6 md:p-8">
+              <div className="border-l-4 border-secondary bg-white p-6 shadow-[0_12px_32px_rgba(10,29,55,0.06)] md:p-8">
                 <p className="mb-2 text-sm font-bold uppercase tracking-[0.12em] text-primary">Important Information</p>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   This is a long-term target that informs how we build and manage portfolios. It is{" "}
@@ -265,8 +241,8 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-10 text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Try the Numbers</p>
-                <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Try the Numbers</p>
+                <h2 className="mb-4 font-serif text-3xl text-primary text-balance md:text-4xl">
                   See How Regular Investing Can Compound
                 </h2>
                 <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
@@ -283,7 +259,7 @@ export default function AdvisoryPage() {
         <section className="bg-primary py-16 text-white md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 font-serif text-3xl font-bold text-secondary text-balance md:text-4xl">
+              <h2 className="mb-4 font-serif text-3xl text-gold-ink text-balance md:text-4xl">
                 Experience Through Real Market Cycles
               </h2>
               <p className="leading-relaxed text-gray-200 text-pretty">
@@ -297,39 +273,36 @@ export default function AdvisoryPage() {
         {/* Planning around your goals */}
         <section id="goals" className="scroll-mt-24 py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Planning Around Your Goals</p>
-              <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+            <div className="mb-12 max-w-3xl">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Planning Around Your Goals</p>
+              <h2 className="mb-4 font-serif text-3xl text-primary text-balance md:text-4xl">
                 Investing With a Purpose
               </h2>
-              <p className="mx-auto max-w-2xl text-muted-foreground text-pretty">
+              <p className="max-w-2xl text-muted-foreground text-pretty">
                 Tell us what the money is for, and we&rsquo;ll build the plan around it.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="reveal-stagger grid grid-cols-1 gap-8 md:grid-cols-3">
               {[
                 {
-                  icon: GraduationCap,
-                  img: "/education-funds-graduation-kenya.jpg",
+                  img: "/images/goal-education.jpg",
                   t: "Education Funds",
                   d: "Save steadily, so the fees are ready when school and university begin.",
                 },
                 {
-                  icon: Landmark,
-                  img: "/retirement-planning-couple-kenya.jpg",
+                  img: "/images/goal-retirement.jpg",
                   t: "Retirement Planning",
                   d: "Build savings that can fund the years after you stop working.",
                 },
                 {
-                  icon: Building2,
-                  img: "/wealth-creation-financial-symbols-kenya.jpg",
+                  img: "/images/goal-wealth-upper-hill.jpg",
                   t: "Wealth Creation",
                   d: "Grow long-term savings through a diversified, managed portfolio.",
                 },
               ].map((g) => (
-                <Card key={g.t} className="overflow-hidden border-primary/10 transition-all duration-300 hover:shadow-xl">
-                  <div className="relative h-44 overflow-hidden">
+                <Card key={g.t} className="gap-0 overflow-hidden rounded-none border-0 bg-white py-0 shadow-none">
+                  <div className="relative h-52 overflow-hidden">
                     <Image
                       src={g.img}
                       alt=""
@@ -340,9 +313,8 @@ export default function AdvisoryPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent" />
                   </div>
-                  <CardContent className="p-6">
-                    <g.icon className="mb-3 h-6 w-6 text-secondary" />
-                    <h3 className="mb-2 font-serif text-xl font-bold text-primary">{g.t}</h3>
+                  <CardContent className="border-t-2 border-secondary p-6">
+                    <h3 className="mb-2 font-serif text-2xl text-primary">{g.t}</h3>
                     <p className="text-sm text-muted-foreground">{g.d}</p>
                   </CardContent>
                 </Card>
@@ -356,14 +328,14 @@ export default function AdvisoryPage() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <div className="mb-10 text-center">
-                <h2 className="mb-4 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
+                <h2 className="mb-4 font-serif text-3xl text-primary text-balance md:text-4xl">
                   Why Invest With Golden Eagle
                 </h2>
                 <p className="text-muted-foreground text-pretty">
                   The platform holds your investments. Your adviser is the person you deal with.
                 </p>
               </div>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="reveal-stagger grid grid-cols-1 gap-6 md:grid-cols-2">
                 {[
                   { t: "Your Goals First", d: "We start from what you're saving for, then choose the investments." },
                   { t: "Global Markets, Local Adviser", d: "Invest worldwide, with an adviser you meet in person in Nairobi." },
@@ -371,9 +343,9 @@ export default function AdvisoryPage() {
                   { t: "Clear Reporting", d: "Regular updates, with the reasoning written down." },
                 ].map((w) => (
                   <div key={w.t} className="flex gap-4">
-                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary" />
+                    <span className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-secondary" aria-hidden="true" />
                     <div>
-                      <h3 className="mb-1 font-semibold text-primary">{w.t}</h3>
+                      <h3 className="mb-1 font-serif text-xl text-primary">{w.t}</h3>
                       <p className="text-sm text-muted-foreground">{w.d}</p>
                     </div>
                   </div>
@@ -386,7 +358,7 @@ export default function AdvisoryPage() {
         {/* CTA */}
         <section className="bg-primary py-16 text-white md:py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="mb-4 font-serif text-3xl font-bold text-secondary text-balance md:text-4xl">
+            <h2 className="mb-4 font-serif text-3xl text-gold-ink text-balance md:text-4xl">
               Talk to Lydia About Your Portfolio
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-200 text-pretty">

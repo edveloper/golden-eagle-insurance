@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { MapPin, Phone, Mail, Clock, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { submitContactForm } from "@/lib/actions"
 import {
@@ -74,10 +73,9 @@ export default function ContactPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main className="mode-functional flex-1">
         <PageHero
-          image="/nairobi-cityscape-hero.jpg"
-          imageAlt="Nairobi cityscape"
+          size="text"
           eyebrow="Contact"
           title="Get in Touch"
           subtitle="Call, WhatsApp or write to us. We reply within one business day, and meet clients in person by appointment."
@@ -90,8 +88,7 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="lg:col-span-1">
                 <div className="divide-y divide-primary/10 rounded-2xl border border-primary/10">
-                  <div className="flex items-start gap-4 p-6">
-                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                  <div className="p-6">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Meet Us</h3>
                       <p className="mt-1 text-sm text-primary">
@@ -99,8 +96,7 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-6">
-                    <Phone className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                  <div className="p-6">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Call or WhatsApp</h3>
                       <p className="mt-1 text-sm text-primary">
@@ -118,8 +114,7 @@ export default function ContactPage() {
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-6">
-                    <TrendingUp className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                  <div className="p-6">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Investment Advisory</h3>
                       <p className="mt-1 text-sm text-primary">
@@ -131,8 +126,7 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-6">
-                    <Mail className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                  <div className="p-6">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Email Us</h3>
                       <p className="mt-1 text-sm text-primary">
@@ -142,8 +136,7 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4 p-6">
-                    <Clock className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                  <div className="p-6">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Business Hours</h3>
                       <ul className="mt-1 text-sm text-primary">

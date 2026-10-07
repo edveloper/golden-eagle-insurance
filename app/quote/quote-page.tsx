@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { CheckCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 import { submitQuoteForm } from "@/lib/actions"
 import { CONTACT_EMAIL, INSURERS, PHONE_DISPLAY, PHONE_TEL, YEARS_IN_BUSINESS } from "@/lib/site"
@@ -99,10 +98,9 @@ export default function QuotePage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main className="mode-functional flex-1">
         <PageHero
-          image="/nairobi-skyline-hero.jpg"
-          imageAlt="Nairobi city skyline"
+          size="text"
           eyebrow="Free Quote"
           title="Get a Free Quote"
           subtitle="Tell us what you need covered. We'll compare insurers and reply within one business day."
@@ -115,8 +113,7 @@ export default function QuotePage() {
               {/* Benefits rail */}
               <div className="lg:col-span-1">
                 <div className="rounded-2xl bg-primary p-8 text-white">
-                  <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                    <span className="h-px w-8 bg-secondary" aria-hidden="true" />
+                  <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">
                     Why Ask Us
                   </p>
                   <ul className="space-y-5">
@@ -127,7 +124,7 @@ export default function QuotePage() {
                       { t: "Help When You Claim", d: "We prepare claims and follow them up with the insurer." },
                     ].map((b) => (
                       <li key={b.t} className="flex items-start gap-3">
-                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-secondary" />
+                        <span className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-secondary" aria-hidden="true" />
                         <div>
                           <p className="text-sm font-semibold">{b.t}</p>
                           <p className="text-xs text-gray-300">{b.d}</p>
@@ -136,7 +133,7 @@ export default function QuotePage() {
                     ))}
                   </ul>
                   <div className="mt-8 border-t border-white/15 pt-6 text-sm">
-                    <p className="font-semibold text-secondary">Rather Talk It Through?</p>
+                    <p className="font-semibold text-gold-ink">Rather Talk It Through?</p>
                     <p className="mt-2 text-gray-300">
                       Call or WhatsApp{" "}
                       <a href={`tel:${PHONE_TEL}`} className="text-white transition-colors hover:text-secondary">

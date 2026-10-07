@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import Image from "next/image"
-import { CheckCircle, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 export const metadata = buildPageMetadata({
   title: "Insurance Cover | Golden Eagle Insurance Agency, Nairobi",
@@ -43,7 +43,7 @@ const products: Product[] = [
       { title: "Compensation and Settlements", desc: "Damages awarded against you or agreed in a settlement, up to your policy limit." },
       { title: "Cover for Doctors", desc: "Doctors' indemnity starts from KES 6,000 a year, with limits up to KES 100 million." },
     ],
-    image: "/professional-indemnity-insurance-kenya.jpg",
+    image: "/images/cover-professional-indemnity.jpg",
     quoteType: "professional-indemnity",
     quoteLabel: "Get a Professional Indemnity Quote",
   },
@@ -57,7 +57,7 @@ const products: Product[] = [
       { title: "Dental and Optical", desc: "Check-ups, treatment, glasses and lenses." },
       { title: "Help With Approvals and Claims", desc: "Our team helps with hospital pre-approvals and follows up claims with the insurer." },
     ],
-    image: "/health-insurance-medical-care-kenya.jpg",
+    image: "/images/cover-medical.jpg",
     quoteType: "medical",
     quoteLabel: "Get a Medical Insurance Quote",
   },
@@ -72,7 +72,7 @@ const products: Product[] = [
       { title: "Ransomware and Extortion", desc: "Costs from ransomware attacks, where the policy includes them." },
       { title: "Specialist Help During an Attack", desc: "Many policies include access to IT and legal specialists when it happens." },
     ],
-    image: "/cyber-security-insurance-kenya.jpg",
+    image: "/images/cover-cyber.jpg",
     quoteType: "cyber",
     quoteLabel: "Get a Cyber Insurance Quote",
   },
@@ -86,7 +86,7 @@ const products: Product[] = [
       { title: "Education Plans", desc: "Save steadily towards school and university fees." },
       { title: "Pension Plans", desc: "Build an income for when you stop working." },
     ],
-    image: "/family-life-insurance-protection-kenya.jpg",
+    image: "/images/cover-life-pension.jpg",
     quoteType: "life",
     quoteLabel: "Get a Life Cover Quote",
   },
@@ -100,7 +100,7 @@ const products: Product[] = [
       { title: "Floods and Storms", desc: "Weather damage, depending on the policy." },
       { title: "Contents", desc: "Furniture, electronics and valuables." },
     ],
-    image: "/home-property-insurance-kenya.jpg",
+    image: "/images/cover-home.jpg",
     quoteType: "home",
     quoteLabel: "Get a Home Insurance Quote",
   },
@@ -115,7 +115,7 @@ const products: Product[] = [
       { title: "Group Medical", desc: "Medical cover for your staff." },
       { title: "Business Interruption", desc: "Income lost after an insured event, such as a fire." },
     ],
-    image: "/business-insurance-office-kenya.jpg",
+    image: "/images/cover-business.jpg",
     quoteType: "business",
     quoteLabel: "Get a Business Insurance Quote",
   },
@@ -129,7 +129,7 @@ const products: Product[] = [
       { title: "Flight Delays", desc: "Compensation for long delays." },
       { title: "Lost or Delayed Luggage", desc: "Replacing essentials while your bags are missing." },
     ],
-    image: "/travel-insurance-vacation-kenya.jpg",
+    image: "/images/cover-travel.jpg",
     quoteType: "travel",
     quoteLabel: "Get a Travel Insurance Quote",
   },
@@ -142,18 +142,18 @@ export default function ProductsPage() {
 
       <main className="flex-1">
         <PageHero
-          image="/nairobi-skyline-hero.jpg"
-          imageAlt="Nairobi city skyline"
+          image="/images/hero-insurance-kicc-trees.jpg"
+          imageAlt="Nairobi skyline with the KICC and Times Tower above the trees"
           eyebrow="Insurance"
-          title="Insurance, Explained Before You Buy It"
-          subtitle="We arrange cover with ten of Kenya's leading insurers. Below is what each type of policy usually includes. We'll go through the exact terms with you before you commit."
+          title="Insurance, Explained"
+          subtitle="Cover from ten of Kenya's leading insurers, with the terms explained before you buy."
         />
 
         {/* Cover finder quiz */}
         <section className="border-b border-primary/10 bg-muted py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mb-8 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Not Sure Where to Start?</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Not Sure Where to Start?</p>
               <h2 className="mb-3 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">
                 Two Questions to Narrow It Down
               </h2>
@@ -165,51 +165,42 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Index */}
-        <section className="border-b border-primary/10 py-14 md:py-20">
-          <div className="container mx-auto px-4">
-            <div className="mb-8">
-              <p className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                <span className="h-px w-8 bg-secondary" aria-hidden="true" />
-                Types of Cover
-              </p>
-              <h2 className="font-serif text-3xl font-bold text-primary text-balance md:text-4xl">Jump to a Type of Cover</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((p) => (
-                <a
-                  key={p.id}
-                  href={`#${p.id}`}
-                  className="group flex items-center justify-between gap-3 bg-background p-6 transition-colors hover:bg-muted"
-                >
-                  <span>
-                    <span className="font-serif text-lg font-semibold text-primary">{p.name}</span>
-                    {p.indexNote ? (
-                      <span className="ml-2 text-[10px] font-bold uppercase tracking-wider text-secondary">{p.indexNote}</span>
-                    ) : null}
-                  </span>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-secondary transition-transform group-hover:translate-x-1" />
-                </a>
-              ))}
-            </div>
+        {/* Sticky product nav (sits under the slim header) */}
+        <nav
+          aria-label="Types of cover"
+          className="sticky top-16 z-30 md:top-20 border-b border-primary/10 bg-paper/95 backdrop-blur-sm"
+        >
+          <div className="container mx-auto flex gap-6 overflow-x-auto px-4 [scrollbar-width:none]">
+            {products.map((p) => (
+              <a
+                key={p.id}
+                href={`#${p.id}`}
+                className="shrink-0 whitespace-nowrap border-b-2 border-transparent py-4 text-sm font-medium text-primary/70 transition-colors hover:border-secondary hover:text-primary"
+              >
+                {p.name}
+                {p.indexNote ? (
+                  <span className="ml-1.5 text-[10px] font-bold uppercase tracking-wider text-gold-ink">{p.indexNote}</span>
+                ) : null}
+              </a>
+            ))}
           </div>
-        </section>
+        </nav>
 
         {products.map((p, i) => {
           const imageFirst = i % 2 === 1
           return (
-            <section key={p.id} id={p.id} className={cn("scroll-mt-20 py-14 md:py-20", imageFirst && "bg-muted")}>
+            <section key={p.id} id={p.id} className={cn("scroll-mt-32 py-14 md:scroll-mt-40 md:py-20", imageFirst && "bg-muted")}>
               <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
+                <div className="reveal-stagger grid grid-cols-1 items-stretch gap-10 lg:grid-cols-2">
                   <div className={cn("flex flex-col justify-center", imageFirst && "lg:order-2")}>
-                    <h2 className="mb-6 font-serif text-3xl font-bold text-primary text-balance md:text-4xl">{p.name}</h2>
+                    <h2 className="mb-5 font-serif text-4xl text-primary text-balance md:text-5xl">{p.name}</h2>
                     <p className="mb-4 leading-relaxed text-muted-foreground">{p.intro}</p>
-                    {p.badge ? <p className="mb-6 text-sm font-semibold text-secondary">{p.badge}</p> : null}
+                    {p.badge ? <p className="mb-6 text-sm font-semibold text-gold-ink">{p.badge}</p> : null}
 
                     <div className="mb-8 mt-2 space-y-4">
                       {p.features.map((f) => (
                         <div key={f.title} className="flex items-start gap-3">
-                          <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-secondary" />
+                          <span className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-secondary" aria-hidden="true" />
                           <div>
                             <h3 className="mb-1 font-semibold">{f.title}</h3>
                             <p className="text-sm text-muted-foreground">{f.desc}</p>
@@ -227,7 +218,7 @@ export default function ProductsPage() {
                   </div>
                   <div
                     className={cn(
-                      "group relative h-72 overflow-hidden rounded-2xl border border-primary/10 shadow-[0_18px_40px_rgba(10,29,55,0.14)] md:h-80 lg:h-full lg:min-h-[24rem]",
+                      "group relative h-72 overflow-hidden md:h-80 lg:h-full lg:min-h-[24rem]",
                       imageFirst && "lg:order-1",
                     )}
                   >
@@ -235,8 +226,8 @@ export default function ProductsPage() {
                       src={p.image}
                       alt=""
                       fill
-                      sizes="(min-width: 1024px) 42vw, 92vw"
-                      quality={82}
+                      sizes="(min-width: 1024px) 60vw, 100vw"
+                      quality={80}
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/18 via-transparent to-transparent" />
@@ -259,7 +250,7 @@ export default function ProductsPage() {
         {/* CTA */}
         <section className="py-14 md:py-20 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="mb-4 text-3xl font-serif font-bold text-secondary text-balance md:text-4xl">
+            <h2 className="mb-4 text-3xl font-serif font-bold text-gold-ink text-balance md:text-4xl">
               Not Sure Which Cover You Need?
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-200 text-pretty">

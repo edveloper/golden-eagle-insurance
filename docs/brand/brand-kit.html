@@ -1,0 +1,177 @@
+<title>Golden Eagle Brand Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500&display=swap">
+<style>
+/* Layout: a single guide column; asset previews sit on fixed brand-colour tiles so they read the same in either theme. */
+:root{
+  --bg:#fbfbf9; --surface:#ffffff; --fg:#13233d; --muted:#5b6576; --rule:#e2e6ec; --accent:#7a5c10; --chip:#eef2f7;
+  --display:"Libre Caslon Display",Georgia,"Times New Roman",serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1626; --surface:#122039; --fg:#e7ebf2; --muted:#a3adbd; --rule:#24324a; --accent:#d4b04c; --chip:#1a2a45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1626; --surface:#122039; --fg:#e7ebf2; --muted:#a3adbd; --rule:#24324a; --accent:#d4b04c; --chip:#1a2a45; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);padding-inline:16px;padding-block:0;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-block:48px 88px}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+h1{font:400 clamp(36px,6vw,58px)/1.05 var(--display);margin:0 0 14px;letter-spacing:-.01em}
+h2{font:400 32px/1.15 var(--display);margin:0 0 8px}
+h3{font:600 15px/1.4 var(--body);margin:0 0 4px}
+p{margin:0 0 12px} p:last-child{margin-bottom:0}
+.lede{color:var(--muted);max-width:64ch;font-size:17px}
+.sub{color:var(--muted);max-width:64ch;margin-bottom:24px}
+section{padding-top:64px}
+nav.jump{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px;font-size:14px}
+nav.jump a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:4px}
+nav.jump a:hover,nav.jump a:focus-visible{text-decoration-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font:13px ui-monospace,Consolas,monospace;background:var(--chip);padding:1px 6px;border-radius:4px;overflow-wrap:anywhere}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+figure{margin:0;background:var(--surface);border:1px solid var(--rule);min-width:0}
+figure .tile{display:flex;align-items:center;justify-content:center;padding:28px;min-height:180px}
+figure .tile img{max-width:100%;height:auto;display:block}
+figure .tile.full{padding:0}
+figcaption{padding:12px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+figcaption b{color:var(--fg);font-weight:600}
+.t-paper{background:#fbfbf9} .t-navy{background:#0a1d37} .t-mist{background:#eef2f7}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.badge{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--accent);white-space:nowrap}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px}
+.sw{border:1px solid var(--rule);background:var(--surface)}
+.sw i{display:block;height:84px}
+.sw div{padding:10px 12px;font-size:13px}
+.sw b{display:block;font-size:14px}
+.sw code{background:none;padding:0;color:var(--muted)}
+.type{display:grid;gap:12px}
+.type .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:16px;align-items:baseline;border-top:1px solid var(--rule);padding-top:14px}
+@media (max-width:640px){.type .row{grid-template-columns:minmax(0,1fr)}}
+.type .sample{font-size:34px;line-height:1.1}
+.type .meta{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+ul.rules{margin:0;padding-left:20px;display:grid;gap:6px}
+.dont{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.dont div{border-top:2px solid #b3261e;background:var(--surface);padding:14px 16px;font-size:14px}
+.note{border-left:3px solid var(--accent);padding:6px 0 6px 16px;color:var(--muted);font-size:14px;margin-top:20px}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="kicker">Brand Kit · October 2026</p>
+  <h1>Golden Eagle Brand Kit</h1>
+  <p class="lede">The logo, colours, typefaces and ready-made images for social media, WhatsApp and email, matching the new website. Every file is in the website repo under <code>docs/brand/kit/</code>.</p>
+  <nav class="jump" aria-label="Sections"><a href="#choose">Choose the Wordmark</a><a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Typefaces</a><a href="#social">Social Media</a><a href="#use">Using the Logo</a></nav>
+</header>
+
+<section id="choose">
+  <h2>Choose the Wordmark</h2>
+  <p class="sub">The eagle stays as it is. Only the name beside it changes. Capitals with wide spacing give the name the presence the plain version lacks. Everything in this kit uses the recommended version.</p>
+  <div class="choice">
+    <figure><div class="tile t-paper"><img src="kit/logo-horizontal-navy.png" alt="Recommended wordmark: GOLDEN EAGLE in spaced capitals with Insurance and Investments beneath a hairline"></div>
+      <figcaption><b>A · Spaced Capitals</b><span class="badge">Recommended</span></figcaption></figure>
+    <figure><div class="tile t-paper"><img src="kit/alt-logo-horizontal-mixedcase.png" alt="Alternative wordmark: Golden Eagle in mixed case"></div>
+      <figcaption><b>B · Mixed Case, Refined</b><span>Closest to today</span></figcaption></figure>
+  </div>
+</section>
+
+<section id="logo">
+  <h2>Logo</h2>
+  <p class="sub">Use navy on light backgrounds and white with gold on navy. Use the stacked version for square spaces, and the eagle on its own where the name won't fit or is already nearby.</p>
+  <div class="grid g2">
+    <figure><div class="tile t-paper"><img src="kit/logo-horizontal-navy.png" alt="Horizontal logo, navy"></div><figcaption><b>Horizontal, navy</b><code>logo-horizontal-navy.png</code></figcaption></figure>
+    <figure><div class="tile t-navy"><img src="kit/logo-horizontal-white.png" alt="Horizontal logo, white and gold"></div><figcaption><b>Horizontal, white</b><code>logo-horizontal-white.png</code></figcaption></figure>
+    <figure><div class="tile t-paper"><img src="kit/logo-stacked-navy.png" alt="Stacked logo, navy" style="max-width:300px"></div><figcaption><b>Stacked, navy</b><code>logo-stacked-navy.png</code></figcaption></figure>
+    <figure><div class="tile t-navy"><img src="kit/logo-stacked-white.png" alt="Stacked logo, white and gold" style="max-width:300px"></div><figcaption><b>Stacked, white</b><code>logo-stacked-white.png</code></figcaption></figure>
+  </div>
+  <p class="note">The eagle only exists as a PNG today. For print (signage, letterheads, merchandise), ask whoever designed it for the original vector file (.ai, .eps, .svg or .pdf).</p>
+</section>
+
+<section id="colour">
+  <h2>Colour</h2>
+  <p class="sub">Navy leads, gold accents. Gold has two versions: a bright gold for buttons, lines and the eagle, and a darker gold for small text on light backgrounds, where the bright gold is too faint to read.</p>
+  <div class="swatches">
+    <div class="sw"><i style="background:#0a1d37"></i><div><b>Navy</b><code>#0A1D37</code><br>Backgrounds, headings</div></div>
+    <div class="sw"><i style="background:#c9a227"></i><div><b>Gold</b><code>#C9A227</code><br>Buttons, lines, eagle</div></div>
+    <div class="sw"><i style="background:#7a5c10"></i><div><b>Gold Text</b><code>#7A5C10</code><br>Small text on light</div></div>
+    <div class="sw"><i style="background:#d4b04c"></i><div><b>Light Gold</b><code>#D4B04C</code><br>Small text on navy</div></div>
+    <div class="sw"><i style="background:#fbfbf9;border-bottom:1px solid #e2e6ec"></i><div><b>Paper</b><code>#FBFBF9</code><br>Page background</div></div>
+    <div class="sw"><i style="background:#eef2f7"></i><div><b>Mist</b><code>#EEF2F7</code><br>Panels, forms</div></div>
+  </div>
+</section>
+
+<section id="type">
+  <h2>Typefaces</h2>
+  <p class="sub">All three are free from Google Fonts, so anyone making posts or documents can install them.</p>
+  <div class="type">
+    <div class="row"><div class="sample" style="font-family:'Libre Caslon Display',Georgia,serif">The Right Cover, and Help When You Claim</div><div class="meta"><b>Libre Caslon Display</b><br>Headings and the wordmark</div></div>
+    <div class="row"><div class="sample" style="font-family:Manrope,sans-serif;font-size:20px;line-height:1.5">Free quotes from ten of Kenya&rsquo;s leading insurers, back within one business day.</div><div class="meta"><b>Manrope</b><br>Body text, buttons, labels</div></div>
+    <div class="row"><div class="sample" style="font-family:'Playfair Display',Georgia,serif;font-weight:500">Global Markets, Clearly Explained</div><div class="meta"><b>Playfair Display 500</b><br>Investment advisory only</div></div>
+  </div>
+</section>
+
+<section id="social">
+  <h2>Social Media and Sharing</h2>
+  <p class="sub">Each image is sized for its platform. Profile pictures keep the eagle inside the central circle, because every platform crops them round. Cover text stays clear of where each platform places your profile picture.</p>
+
+  <div class="grid g3">
+    <figure><div class="tile t-mist"><img src="kit/profile-navy-1080.png" alt="Profile picture: gold eagle on navy" style="max-width:200px;border-radius:50%"></div><figcaption><b>Profile Picture, Navy</b><span>WhatsApp · Instagram · LinkedIn · X · Facebook</span></figcaption></figure>
+    <figure><div class="tile t-mist"><img src="kit/profile-paper-1080.png" alt="Profile picture: gold eagle on paper" style="max-width:200px;border-radius:50%"></div><figcaption><b>Profile Picture, Light</b><span>Alternative</span></figcaption></figure>
+    <figure><div class="tile t-mist"><img src="kit/email-signature-600x150.png" alt="Email signature banner"></div><figcaption><b>Email Signature</b><span>600 × 150</span></figcaption></figure>
+  </div>
+
+  <div class="grid" style="margin-top:16px">
+    <figure><div class="tile full"><img src="kit/cover-facebook-1640x624.png" alt="Facebook cover with the headline over the Nairobi skyline"></div><figcaption><b>Facebook Cover</b><span>1640 × 624 · shows at 820 × 312 on desktop</span></figcaption></figure>
+    <figure><div class="tile full"><img src="kit/cover-x-1500x500.png" alt="X header with the headline on the right"></div><figcaption><b>X Header</b><span>1500 × 500</span></figcaption></figure>
+    <figure><div class="tile full"><img src="kit/cover-linkedin-1128x191.png" alt="LinkedIn company page cover"></div><figcaption><b>LinkedIn Company Cover</b><span>1128 × 191</span></figcaption></figure>
+    <figure><div class="tile full"><img src="kit/share-link-1200x630.png" alt="Link preview image with the logo and headline"></div><figcaption><b>Link Preview</b><span>1200 × 630 · WhatsApp, LinkedIn, X and Facebook link shares</span></figcaption></figure>
+  </div>
+
+  <div class="grid g3" style="margin-top:16px">
+    <figure><div class="tile full"><img src="kit/post-awards-1080x1350.png" alt="Instagram post: First in Professional Indemnity, 2018, 2019, 2023"></div><figcaption><b>Post · Awards</b><span>1080 × 1350</span></figcaption></figure>
+    <figure><div class="tile full"><img src="kit/post-claims-1080x1350.png" alt="Instagram post: we help you prepare the claim"></div><figcaption><b>Post · Claims Help</b><span>1080 × 1350</span></figcaption></figure>
+    <figure><div class="tile full"><img src="kit/story-whatsapp-1080x1920.png" alt="WhatsApp status and Instagram story: Need Cover? Talk to Us"></div><figcaption><b>Status and Story</b><span>1080 × 1920</span></figcaption></figure>
+  </div>
+
+  <div class="tbl" style="margin-top:20px"><table>
+    <thead><tr><th>Where</th><th>File</th><th>Size</th></tr></thead>
+    <tbody>
+      <tr><td>WhatsApp Business profile photo</td><td><code>profile-navy-1080.png</code></td><td class="num">1080 × 1080</td></tr>
+      <tr><td>Instagram, Facebook, LinkedIn, X profile</td><td><code>profile-navy-1080.png</code></td><td class="num">1080 × 1080</td></tr>
+      <tr><td>Facebook page cover</td><td><code>cover-facebook-1640x624.png</code></td><td class="num">1640 × 624</td></tr>
+      <tr><td>LinkedIn company page cover</td><td><code>cover-linkedin-1128x191.png</code></td><td class="num">1128 × 191</td></tr>
+      <tr><td>X (Twitter) header</td><td><code>cover-x-1500x500.png</code></td><td class="num">1500 × 500</td></tr>
+      <tr><td>Link previews</td><td><code>share-link-1200x630.png</code></td><td class="num">1200 × 630</td></tr>
+      <tr><td>Instagram and Facebook posts</td><td><code>post-*.png</code></td><td class="num">1080 × 1350</td></tr>
+      <tr><td>WhatsApp status, Instagram story</td><td><code>story-whatsapp-1080x1920.png</code></td><td class="num">1080 × 1920</td></tr>
+      <tr><td>Email signature</td><td><code>email-signature-600x150.png</code></td><td class="num">600 × 150</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="use">
+  <h2>Using the Logo</h2>
+  <ul class="rules">
+    <li><b>Clear space:</b> keep empty space around the logo at least as tall as the eagle&rsquo;s head.</li>
+    <li><b>Minimum size:</b> the horizontal logo at 140px wide on screen (35mm in print); the eagle on its own at 24px.</li>
+    <li><b>Photos:</b> place the logo only on photos darkened with navy, as in the covers above.</li>
+  </ul>
+  <div class="dont" style="margin-top:18px">
+    <div>Don&rsquo;t stretch or squash the eagle. Resize it with its proportions locked.</div>
+    <div>Don&rsquo;t recolour it outside navy, gold and white.</div>
+    <div>Don&rsquo;t add shadows, outlines or gradients.</div>
+    <div>Don&rsquo;t set the name in another typeface.</div>
+  </div>
+</section>
+
+<footer>Golden Eagle Insurance Agency Ltd · Licensed by the IRA, Reg. No. 11611 · goldeneagleltd.org</footer>
+</div>

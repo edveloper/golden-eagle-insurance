@@ -1,0 +1,354 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Published copy: https://claude.ai/artifact/W3xQ7pVd79LeCwBMxxRqBq -->
+<title>Golden Eagle Visual Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&family=Libre+Caslon+Text:wght@400;700&family=Manrope:wght@400;600;800&family=Playfair+Display:wght@500;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: one reading column for the proposal; direction specimens are fixed-colour "swatch boards" that look the same in either theme. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --fg:#141b26; --muted:#5a6474; --rule:#dde1e7;
+  --accent:#1f4f86; --accent-soft:#e7eef7; --rec:#2f6b3a; --rec-soft:#e6f2e6;
+  --ui:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  /* Golden Eagle palette (proposed) */
+  --ge-navy:#0a1d37; --ge-ink:#13233d; --ge-gold-fill:#c9a227; --ge-gold-text:#7a5c10; --ge-gold-on-navy:#d4b04c; --ge-paper:#fbfbf9; --ge-mist:#eef2f7;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151d; --surface:#161d28; --fg:#e3e7ee; --muted:#9ba5b5; --rule:#2a3341;
+  --accent:#8db4e8; --accent-soft:#1b2a3f; --rec:#9fd39a; --rec-soft:#1d2f1e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151d; --surface:#161d28; --fg:#e3e7ee; --muted:#9ba5b5; --rule:#2a3341;
+  --accent:#8db4e8; --accent-soft:#1b2a3f; --rec:#9fd39a; --rec-soft:#1d2f1e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--ui);padding-inline:16px;padding-block:0}
+.wrap{max-width:1040px;margin:0 auto;padding-block:44px 80px}
+header.top{border-bottom:1px solid var(--rule);padding-bottom:26px}
+.kicker{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+h1{font:600 clamp(30px,4.6vw,42px)/1.12 var(--ui);margin:0 0 12px;letter-spacing:-.015em;text-wrap:balance}
+h2{font:600 26px/1.2 var(--ui);margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+h3{font:600 16px/1.35 var(--ui);margin:0 0 6px}
+p{margin:0 0 12px} p:last-child{margin-bottom:0}
+.lede{color:var(--muted);max-width:66ch}
+.sub{color:var(--muted);max-width:66ch;margin-bottom:22px}
+section{padding-top:52px}
+nav.jump{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:14px}
+nav.jump a{color:var(--accent);text-decoration:none} nav.jump a:hover,nav.jump a:focus-visible{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font:13px var(--mono);background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+.chip{display:inline-flex;align-items:center;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.chip.rec{background:var(--rec-soft);color:var(--rec)}
+.chip.alt{background:var(--accent-soft);color:var(--accent)}
+
+/* Givens */
+.givens{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.given{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;font-size:14px;min-width:0}
+.given b{display:block;font-size:13px;margin-bottom:4px}
+
+/* Direction boards */
+.dir{border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--surface);margin-top:22px}
+.dir-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;padding:18px 22px;border-bottom:1px solid var(--rule)}
+.dir-head h3{font-size:19px;margin:0}
+.dir-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+@media (max-width:820px){.dir-body{grid-template-columns:minmax(0,1fr)}}
+.dir-notes{padding:20px 22px;font-size:14px;border-left:1px solid var(--rule);min-width:0}
+@media (max-width:820px){.dir-notes{border-left:0;border-top:1px solid var(--rule)}}
+.dir-notes dl{margin:0;display:grid;gap:10px}
+.dir-notes dt{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dir-notes dd{margin:2px 0 0}
+.swatches{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.sw{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--fg)}
+.sw i{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.15);display:inline-block}
+
+/* Specimen: fixed colours by design (it previews the client's site) */
+.spec{position:relative;min-width:0;padding:28px 26px 24px;display:flex;flex-direction:column;gap:14px;min-height:340px}
+.spec .eyebrow{font:600 11px/1 "Manrope",sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.spec .headline{margin:0;text-wrap:balance}
+.spec .body{font:15px/1.55 "Manrope",sans-serif;max-width:46ch;margin:0}
+.spec .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.spec .btn{font:600 13px "Manrope",sans-serif;padding:10px 16px;border-radius:6px;border:1px solid transparent}
+.photo{border-radius:6px;display:flex;align-items:flex-end;padding:10px 12px;font:500 11px/1.35 var(--mono);letter-spacing:.02em;min-height:96px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:auto;padding-top:14px}
+.stats div{min-width:0}
+.stats b{display:block;font-variant-numeric:tabular-nums;line-height:1}
+.stats span{display:block;font:600 9.5px/1.3 "Manrope",sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-top:6px}
+
+/* A: Ledger */
+.spec.a{background:#fbfbf9;color:#13233d}
+.spec.a .eyebrow{color:#7a5c10}
+.spec.a .headline{font:400 clamp(26px,3.6vw,38px)/1.08 "Libre Caslon Display",Georgia,serif;color:#0a1d37}
+.spec.a .body{color:#3d4a5e}
+.spec.a .btn.p{background:#c9a227;color:#0a1d37}
+.spec.a .btn.s{border-color:#0a1d37;color:#0a1d37}
+.spec.a .photo{background:linear-gradient(135deg,#c9b48a 0%,#8e7a58 45%,#3f4b5c 100%);color:#fff}
+.spec.a .stats{border-top:1px solid #0a1d37}
+.spec.a .stats b{font:400 30px "Libre Caslon Display",Georgia,serif;color:#0a1d37}
+.spec.a .stats span{color:#5b6576}
+
+/* B: Daylight */
+.spec.b{background:#ffffff;color:#13233d}
+.spec.b .eyebrow{color:#1d4d86}
+.spec.b .headline{font:800 clamp(25px,3.4vw,36px)/1.06 "Manrope",sans-serif;letter-spacing:-.03em;color:#0a1d37}
+.spec.b .body{color:#46536a}
+.spec.b .btn.p{background:#0a1d37;color:#fff;border-radius:999px}
+.spec.b .btn.s{background:#eef2f7;color:#0a1d37;border-radius:999px}
+.spec.b .photo{background:linear-gradient(160deg,#f2c28b 0%,#d98c5f 40%,#5b6f8f 100%);color:#fff;border-radius:14px;min-height:120px}
+.spec.b .stats{background:#eef2f7;border-radius:12px;padding:12px}
+.spec.b .stats b{font:800 24px "Manrope",sans-serif;color:#0a1d37;letter-spacing:-.02em}
+.spec.b .stats span{color:#5b6576}
+
+/* C: Private Office */
+.spec.c{background:#0a1d37;color:#e8ecf3}
+.spec.c .eyebrow{color:#d4b04c}
+.spec.c .headline{font:500 clamp(26px,3.6vw,38px)/1.1 "Playfair Display",Georgia,serif;color:#ffffff;letter-spacing:-.005em}
+.spec.c .body{color:#c3cbd8}
+.spec.c .btn.p{background:linear-gradient(180deg,#e2c264,#b8901f);color:#0a1d37}
+.spec.c .btn.s{border-color:rgba(255,255,255,.45);color:#fff}
+.spec.c .photo{background:linear-gradient(135deg,#1a2f52 0%,#0d1f3a 55%,#2b3b55 100%);color:#d4b04c;border:1px solid rgba(212,176,76,.35)}
+.spec.c .stats{border-top:1px solid rgba(212,176,76,.4)}
+.spec.c .stats b{font:500 30px "Playfair Display",Georgia,serif;background:linear-gradient(180deg,#f0d78c,#b8901f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.spec.c .stats span{color:#9aa6ba}
+
+/* Type options */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.type{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px;min-width:0}
+.type .sample{font-size:30px;line-height:1.1;margin:8px 0 10px;color:var(--fg);text-wrap:balance}
+.type .meta{font-size:13px;color:var(--muted)}
+
+/* Wireframes */
+.wf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+@media (max-width:720px){.wf{grid-template-columns:minmax(0,1fr)}}
+.wf h3{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.wf h3 small{font:400 12px var(--mono);color:var(--muted)}
+.stack{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.stack li{border:1px solid var(--rule);background:var(--surface);border-radius:6px;padding:9px 12px;font-size:13.5px;display:flex;justify-content:space-between;gap:10px}
+.stack li em{font-style:normal;color:var(--muted);font-size:12px;text-align:right}
+.stack li.cut{opacity:.55;text-decoration:line-through;text-decoration-color:var(--muted)}
+.stack li.dark{background:#0a1d37;color:#fff;border-color:#0a1d37}
+.stack li.dark em{color:#c9d2df}
+.stack li.new{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+
+/* Page plan */
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+th{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-weight:600;white-space:nowrap}
+.tier{font:500 11px var(--mono);padding:2px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+
+/* Decisions */
+ol.decide{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;gap:12px}
+ol.decide>li{counter-increment:d;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px 16px 56px;position:relative}
+ol.decide>li::before{content:counter(d);position:absolute;left:18px;top:14px;font:600 20px var(--ui);color:var(--accent)}
+.opts{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted);margin-top:4px}
+.opts b{color:var(--fg);font-weight:600}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:6px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <p class="kicker">Proposal · Visual pass · goldeneagleltd.org</p>
+  <h1>Visual directions for Golden Eagle</h1>
+  <p class="lede">Three ways the site could look, a new homepage structure, and a page-by-page plan. The copy is already rewritten. This pass changes how it looks and how it's organised. Pick a direction and answer the decisions at the end, and I'll build it.</p>
+  <nav class="jump" aria-label="Sections">
+    <a href="#fixed">What changes regardless</a><a href="#directions">Three directions</a><a href="#type">Typeface</a><a href="#photos">Photography</a><a href="#home">Homepage</a><a href="#pages">Other pages</a><a href="#decide">Decisions</a>
+  </nav>
+</header>
+
+<section id="fixed">
+  <h2>What changes regardless</h2>
+  <p class="sub">These fixes apply whichever direction you choose. They come from the audit.</p>
+  <div class="givens">
+    <div class="given"><b>Readable gold</b>Gold text on white is 2.5:1 today. A darker text gold (<code>#7a5c10</code>, 5.7:1) for words, and the bright gold kept for buttons and lines.</div>
+    <div class="given"><b>Three hero sizes</b>Today all 11 pages share one hero. Big photo heroes only on Home and Advisory, medium on About and Insurance, and a plain text header on utility and legal pages.</div>
+    <div class="given"><b>Break the section template</b>Left-aligned headings by default, with centred ones only for closing calls to action. Fewer gold eyebrow labels, fewer boxed cards, no icons in tinted squares.</div>
+    <div class="given"><b>One palette</b>Remove the stray blue. Navy, gold and one considered neutral in place of flat grey <code>#f5f5f5</code>.</div>
+    <div class="given"><b>Real photos</b>Non-AI photographs of Kenyan people and places, licence-checked, with every source recorded in a credits file.</div>
+    <div class="given"><b>Header and footer</b>The header slims down on scroll, the mobile menu gets a proper Call / WhatsApp / Quote bar, and the footer is tidied up.</div>
+  </div>
+</section>
+
+<section id="directions">
+  <h2>Three directions</h2>
+  <p class="sub">Each one keeps the navy and gold brand. They differ in typeface, background, photography and mood. The panels below show the real homepage headline in each style.</p>
+
+  <article class="dir" aria-labelledby="dir-a">
+    <div class="dir-head"><h3 id="dir-a">A · Ledger</h3><span class="chip rec">Recommended base</span></div>
+    <div class="dir-body">
+      <div class="spec a">
+        <span class="eyebrow">Insurance Agency · Nairobi</span>
+        <p class="headline">The Right Cover From Kenya’s Leading Insurers, and Help When You Claim</p>
+        <p class="body">Founded in 2006 and licensed by the IRA. Ranked first in the AKI’s professional indemnity category in 2018, 2019 and 2023.</p>
+        <div class="btns"><span class="btn p">Get a Free Quote</span><span class="btn s">Talk to Us</span></div>
+        <div class="photo">Photo slot · Nairobi at golden hour, full colour, warm grade, with a small caption</div>
+        <div class="stats"><div><b>20+</b><span>Years</span></div><div><b>3×</b><span>AKI #1, PI</span></div><div><b>10</b><span>Insurers</span></div><div><b>11611</b><span>IRA Reg. No.</span></div></div>
+      </div>
+      <div class="dir-notes">
+        <dl>
+          <div><dt>Mood</dt><dd>An established firm. Calm, precise, quietly confident. It reads like a well-made policy document.</dd></div>
+          <div><dt>Type</dt><dd>Libre Caslon for headings (a classic banking and print face). Manrope stays for body text.</dd></div>
+          <div><dt>Colour</dt><dd><span class="swatches"><span class="sw"><i style="background:#fbfbf9"></i>Paper</span><span class="sw"><i style="background:#0a1d37"></i>Navy</span><span class="sw"><i style="background:#7a5c10"></i>Gold text</span><span class="sw"><i style="background:#c9a227"></i>Gold fill</span></span></dd></div>
+          <div><dt>Layout</dt><dd>Left-aligned, generous white space, thin navy rules, big figures for the awards. Photos are framed with captions.</dd></div>
+          <div><dt>Best for</dt><dd>The insurance pages and the professional indemnity audience (doctors, lawyers).</dd></div>
+          <div><dt>Risk</dt><dd>It can feel formal if the photos are cold. Warm, people-led photos balance it.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="dir" aria-labelledby="dir-b">
+    <div class="dir-head"><h3 id="dir-b">B · Daylight</h3><span class="chip alt">Alternative</span></div>
+    <div class="dir-body">
+      <div class="spec b">
+        <span class="eyebrow">Insurance Agency · Nairobi</span>
+        <p class="headline">The Right Cover From Kenya’s Leading Insurers, and Help When You Claim</p>
+        <p class="body">Founded in 2006 and licensed by the IRA. Ranked first in the AKI’s professional indemnity category in 2018, 2019 and 2023.</p>
+        <div class="btns"><span class="btn p">Get a Free Quote</span><span class="btn s">Talk to Us</span></div>
+        <div class="photo">Photo slot · large colour photo of a Kenyan family or a doctor at work, rounded corners</div>
+        <div class="stats"><div><b>20+</b><span>Years</span></div><div><b>3×</b><span>AKI #1, PI</span></div><div><b>10</b><span>Insurers</span></div><div><b>11611</b><span>IRA Reg. No.</span></div></div>
+      </div>
+      <div class="dir-notes">
+        <dl>
+          <div><dt>Mood</dt><dd>Bright, approachable, modern. People first.</dd></div>
+          <div><dt>Type</dt><dd>Manrope ExtraBold for headings, which is already on the site, so no new font. Serifs are dropped.</dd></div>
+          <div><dt>Colour</dt><dd><span class="swatches"><span class="sw"><i style="background:#ffffff"></i>White</span><span class="sw"><i style="background:#eef2f7"></i>Mist</span><span class="sw"><i style="background:#0a1d37"></i>Navy</span><span class="sw"><i style="background:#c9a227"></i>Gold, sparingly</span></span></dd></div>
+          <div><dt>Layout</dt><dd>Image-led hero, rounded photos, products in a "bento" grid of mixed-size tiles, pill buttons.</dd></div>
+          <div><dt>Best for</dt><dd>Medical, family and travel cover, and younger clients.</dd></div>
+          <div><dt>Risk</dt><dd>It depends heavily on good people photos, and there's no team photography yet. It also edges towards a generic startup look.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="dir" aria-labelledby="dir-c">
+    <div class="dir-head"><h3 id="dir-c">C · Private Office</h3><span class="chip rec">Recommended for Advisory only</span></div>
+    <div class="dir-body">
+      <div class="spec c">
+        <span class="eyebrow">Golden Eagle Global Markets</span>
+        <p class="headline">Invest in Global Markets, With Every Holding Explained</p>
+        <p class="body">We build and manage portfolios of shares, funds and bonds listed in the US, UK, Europe and Asia, around your goals.</p>
+        <div class="btns"><span class="btn p">Book a Consultation</span><span class="btn s">Call Lydia</span></div>
+        <div class="photo">Photo slot · Nairobi CBD at dusk, navy duotone, gold hairline frame</div>
+        <div class="stats"><div><b>CIMA</b><span>Regulated platform</span></div><div><b>4</b><span>Regions</span></div><div><b>6</b><span>Asset types</span></div><div><b>1:1</b><span>Lead Advisor</span></div></div>
+      </div>
+      <div class="dir-notes">
+        <dl>
+          <div><dt>Mood</dt><dd>Private bank. Discreet and premium.</dd></div>
+          <div><dt>Type</dt><dd>Playfair Display at a lighter weight (500), which keeps today's face but makes it more refined.</dd></div>
+          <div><dt>Colour</dt><dd><span class="swatches"><span class="sw"><i style="background:#0a1d37"></i>Navy ground</span><span class="sw"><i style="background:#d4b04c"></i>Gold on navy</span><span class="sw"><i style="background:linear-gradient(180deg,#f0d78c,#b8901f)"></i>Metallic</span></span></dd></div>
+          <div><dt>Layout</dt><dd>Dark sections, gold hairlines, metallic figures, a sticky philosophy panel while the page scrolls.</dd></div>
+          <div><dt>Best for</dt><dd>The investment advisory as a distinct sub-brand.</dd></div>
+          <div><dt>Risk</dt><dd>Across the whole site it would feel heavy and harder to read, so keep it to the Advisory pages.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <p class="sub" style="margin-top:18px"><strong>My recommendation:</strong> A for the main site, with C used only on the Advisory page and the homepage's advisory band. That gives the investment arm the boutique sub-brand the client asked for, while the insurance side stays calm and readable.</p>
+</section>
+
+<section id="type">
+  <h2>Heading typeface</h2>
+  <p class="sub">Body text stays in Manrope in every option. Only the heading face changes. Playfair Display at bold weight is one of the "AI template" giveaways.</p>
+  <div class="types">
+    <div class="type"><span class="chip rec">Pairs with A</span><p class="sample" style="font-family:'Libre Caslon Display',Georgia,serif">Cover for What You’ve Built</p><p class="meta">Libre Caslon Display. Classic, banking heritage, rarely seen on template sites.</p></div>
+    <div class="type"><span class="chip alt">Option</span><p class="sample" style="font-family:'Newsreader',Georgia,serif;font-weight:500">Cover for What You’ve Built</p><p class="meta">Newsreader. Editorial and warm, easier to read at small sizes.</p></div>
+    <div class="type"><span class="chip alt">Lowest change</span><p class="sample" style="font-family:'Playfair Display',Georgia,serif;font-weight:500">Cover for What You’ve Built</p><p class="meta">Playfair Display at 500 instead of 700. The same face, lighter, so it reads as less template.</p></div>
+  </div>
+</section>
+
+<section id="photos">
+  <h2>Photography</h2>
+  <p class="sub">Real photographs only. Sources: Unsplash and Pexels (free commercial licence, credit given anyway) and Wikimedia Commons (credit required). I'll check each one is a genuine photo by a named photographer, and record every source in a credits file in the repo.</p>
+  <div class="givens">
+    <div class="given"><b>Treatment: option 1 (recommended)</b>Navy duotone only on the big heroes, as agreed in July. Full colour with a slight warm grade everywhere else.</div>
+    <div class="given"><b>Treatment: option 2</b>Full colour everywhere, including the heroes. Livelier, but the heroes become harder to keep consistent.</div>
+    <div class="given"><b>Treatment: option 3</b>Duotone everywhere. Very consistent, but it repeats today's monotony.</div>
+  </div>
+  <p style="margin-top:18px"><strong>Shot list:</strong></p>
+  <ul class="plain">
+    <li><b>Home and About heroes:</b> Nairobi skyline at golden hour (Upper Hill or Westlands), replacing the CC BY-SA placeholders.</li>
+    <li><b>Professional indemnity:</b> a Kenyan doctor or advocate at work.</li>
+    <li><b>Medical:</b> a clinic or parent and child.</li>
+    <li><b>Life and pension:</b> an older Kenyan couple.</li>
+    <li><b>Home:</b> a Nairobi residential street.</li>
+    <li><b>Business:</b> an SME owner in a shop or workshop.</li>
+    <li><b>Cyber:</b> an office with screens.</li>
+    <li><b>Travel:</b> JKIA departures or a traveller.</li>
+    <li><b>Advisory:</b> the CBD at dusk, plus graduation and retirement images that look Kenyan. The current couple and gold-bar photos get replaced.</li>
+    <li><b>Team:</b> monogram placeholders for Lydia and Alvin until their photos arrive, then swapped in.</li>
+  </ul>
+</section>
+
+<section id="home">
+  <h2>Homepage restructure</h2>
+  <p class="sub">From 11 sections to 7. Repeated content gets merged, the estimator moves to Advisory, and proof comes early.</p>
+  <div class="wf">
+    <div>
+      <h3>Today <small>11 sections</small></h3>
+      <ul class="stack">
+        <li>Hero <em>photo, headline, 2 buttons</em></li>
+        <li>Quick actions <em>Quote / Claim / Adviser</em></li>
+        <li>Stats strip <em>4 numbers</em></li>
+        <li class="cut">Two divisions <em>merged into the hero and advisory band</em></li>
+        <li>Insurance products <em>6 photo tiles</em></li>
+        <li>Advisory spotlight <em>text, quote</em></li>
+        <li class="cut">Growth estimator <em>moves to Advisory</em></li>
+        <li>Life moments <em>4 links</em></li>
+        <li>Why us <em>4 boxed cards</em></li>
+        <li class="cut">Partners grid <em>merged into the proof band</em></li>
+        <li>Closing call to action</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Proposed <small>7 sections</small></h3>
+      <ul class="stack">
+        <li class="new">1 · Hero with actions <em>headline, subline, Quote / Claim / WhatsApp built in</em></li>
+        <li class="new">2 · Proof band <em>20+ · 3× AKI #1 · 10 insurers · IRA 11611, plus a scrolling insurer-name strip</em></li>
+        <li>3 · Cover we arrange <em>professional indemnity as a large featured tile, then Personal and Business rows</em></li>
+        <li>4 · What are you planning for? <em>4 life moments, kept compact</em></li>
+        <li class="dark">5 · Advisory band <em>Direction C: dark, Lydia named, one link</em></li>
+        <li class="new">6 · Why us and reviews <em>4 reasons as a list beside a photo, plus Google review quotes when available</em></li>
+        <li>7 · Closing call to action</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pages">
+  <h2>Page-by-page plan</h2>
+  <p class="sub">Hero tiers: <span class="tier">Large</span> full photo, <span class="tier">Medium</span> shorter photo band, <span class="tier">Text</span> no photo, a clean title block.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Page</th><th>Hero</th><th>Layout changes</th><th>Photos</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td><span class="tier">Large</span></td><td>7-section structure above. Quick actions sit inside the hero. Insurer names in a scrolling strip.</td><td>Skyline hero, 6 product photos</td></tr>
+      <tr><td>About</td><td><span class="tier">Medium</span></td><td>Story beside the "At a Glance" facts. Awards as a large timeline with big years. Mission and vision as pull quotes. Leadership cards with monograms until photos arrive.</td><td>Nairobi, team later</td></tr>
+      <tr><td>Insurance</td><td><span class="tier">Medium</span></td><td>A sticky row of product links replaces the index grid. Professional indemnity first, with the award. The quiz becomes a compact panel. Alternating photo and text sections with real photos.</td><td>7 product photos</td></tr>
+      <tr><td>Advisory</td><td><span class="tier">Large</span></td><td>Direction C throughout: a "Golden Eagle Global Markets" wordmark, the philosophy pinned while sections scroll, the estimator styled as an instrument, the disclosure kept adjacent and prominent.</td><td>CBD at dusk, 3 goal photos</td></tr>
+      <tr><td>FAQ</td><td><span class="tier">Text</span></td><td>Search in the title block. Sticky categories (already there). Smoother accordions.</td><td>None</td></tr>
+      <tr><td>Claims</td><td><span class="tier">Text</span></td><td>Urgent band at the top. The 4 steps as a horizontal timeline. Form front and centre.</td><td>None</td></tr>
+      <tr><td>Quote</td><td><span class="tier">Text</span></td><td>Form-first, with the "Why Ask Us" panel beside it and a trust strip below.</td><td>None</td></tr>
+      <tr><td>Contact</td><td><span class="tier">Text</span></td><td>Contact options and form side by side. WhatsApp given more prominence.</td><td>None</td></tr>
+      <tr><td>Legal ×3</td><td><span class="tier">Text</span></td><td>Plain title block, a narrower reading column, numbered clauses (already there).</td><td>None</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub" style="margin-top:16px">Motion (parallax, reveals, count-ups) comes after the visual pass, built on whichever direction you pick.</p>
+</section>
+
+<section id="decide">
+  <h2>Decisions I need</h2>
+  <ol class="decide">
+    <li><h3>Direction</h3><div class="opts"><b>A + C for Advisory (recommended)</b><span>A only</span><span>B</span><span>B + C for Advisory</span><span>C everywhere</span></div></li>
+    <li><h3>Heading typeface</h3><div class="opts"><b>Libre Caslon (recommended with A)</b><span>Newsreader</span><span>Playfair at 500</span></div></li>
+    <li><h3>Photo treatment</h3><div class="opts"><b>Duotone heroes, colour elsewhere (recommended)</b><span>Colour everywhere</span><span>Duotone everywhere</span></div></li>
+    <li><h3>Homepage structure</h3><div class="opts"><b>The 7-section plan as shown</b><span>Changes to it (tell me which)</span></div></li>
+    <li><h3>Hero tiers</h3><div class="opts"><b>Large / Medium / Text as tabled</b><span>Keep photo heroes on every page</span></div></li>
+  </ol>
+</section>
+
+<footer>Prepared 7 October 2026 for the goldeneagleltd.org visual pass. The copy is final; this proposal covers visual design and structure only.</footer>
+</div>

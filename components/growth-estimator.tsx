@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -20,6 +20,31 @@ function Field({ label, value, children }: { label: string; value: string; child
   )
 }
 
+/** Eases a displayed number towards its target, so the totals glide rather than jump as sliders move. */
+function useTweened(target: number, ms = 350) {
+  const [value, setValue] = useState(target)
+  const from = useRef(target)
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setValue(target)
+      return
+    }
+    const start = performance.now()
+    const begin = from.current
+    let frame = 0
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / ms, 1)
+      const v = begin + (target - begin) * (1 - Math.pow(1 - t, 3))
+      from.current = v
+      setValue(v)
+      if (t < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [target, ms])
+  return value
+}
+
 export function GrowthEstimator() {
   const [monthly, setMonthly] = useState(20000)
   const [years, setYears] = useState(10)
@@ -31,6 +56,9 @@ export function GrowthEstimator() {
   const contributed = monthly * n
   const growth = Math.max(projected - contributed, 0)
   const growthShare = projected > 0 ? (growth / projected) * 100 : 0
+  const shownProjected = useTweened(projected)
+  const shownContributed = useTweened(contributed)
+  const shownGrowth = useTweened(growth)
 
   return (
     <div className="grid items-start gap-8 lg:grid-cols-2">
@@ -76,19 +104,19 @@ export function GrowthEstimator() {
 
       {/* Result */}
       <div className="rounded-2xl bg-primary p-8 text-white">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">Estimated Value</p>
-        <p className="mt-2 font-serif text-4xl font-bold text-secondary md:text-5xl">{fmt(projected)}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Estimated Value</p>
+        <p className="mt-2 font-serif text-4xl font-bold text-gold-ink md:text-5xl">{fmt(shownProjected)}</p>
         <p className="mt-1 text-sm text-gray-300">after {years} years</p>
 
         <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-white/15">
-          <div className="h-full rounded-full bg-secondary" style={{ width: `${growthShare}%` }} />
+          <div className="h-full rounded-full bg-secondary" style={{ width: `${growthShare}%`, transition: "width 350ms ease-out" }} />
         </div>
         <div className="mt-3 flex items-center justify-between text-sm">
           <span className="text-gray-300">
-            You contribute <strong className="text-white">{fmt(contributed)}</strong>
+            You contribute <strong className="text-white">{fmt(shownContributed)}</strong>
           </span>
           <span className="text-gray-300">
-            Growth <strong className="text-secondary">{fmt(growth)}</strong>
+            Growth <strong className="text-gold-ink">{fmt(shownGrowth)}</strong>
           </span>
         </div>
 

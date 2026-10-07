@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { FileText, Clock, Phone, AlertCircle, MessageCircle } from "lucide-react"
+import { Phone } from "lucide-react"
 import { useState } from "react"
 import { submitClaimForm } from "@/lib/actions"
 import { BUSINESS_HOURS, CLAIMS_EMAIL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_NUMBER } from "@/lib/site"
@@ -79,10 +79,9 @@ export default function ClaimsPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
+      <main className="mode-functional flex-1">
         <PageHero
-          image="/nairobi-skyline-hero.jpg"
-          imageAlt="Nairobi city skyline"
+          size="text"
           eyebrow="Claims Support"
           title="File a Claim"
           subtitle="Tell us what happened. We'll help you prepare the claim and follow it up with your insurer until it's settled."
@@ -112,7 +111,7 @@ export default function ClaimsPage() {
                 { t: "Settlement", d: "The insurer pays according to your policy terms." },
               ].map((step, i) => (
                 <div key={step.t} className="relative text-center">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border-2 border-secondary bg-background font-serif text-lg font-bold text-secondary">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border-2 border-secondary bg-background font-serif text-lg font-bold text-gold-ink">
                     {i + 1}
                   </div>
                   <h3 className="mt-4 font-semibold text-primary">{step.t}</h3>
@@ -128,7 +127,6 @@ export default function ClaimsPage() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <AlertCircle className="h-8 w-8 flex-shrink-0 text-secondary" />
                 <div>
                   <h3 className="font-semibold text-lg">Urgent Claim?</h3>
                   <p className="text-sm text-white/80">
@@ -307,7 +305,6 @@ export default function ClaimsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <Card>
                 <CardContent className="p-6 text-center">
-                  <Phone className="h-8 w-8 text-secondary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Call Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Talk your claim through with us</p>
                   <a href={`tel:${PHONE_TEL}`} className="text-primary underline hover:text-primary/80 text-sm">
@@ -318,7 +315,6 @@ export default function ClaimsPage() {
 
               <Card>
                 <CardContent className="p-6 text-center">
-                  <MessageCircle className="h-8 w-8 text-secondary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">WhatsApp Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Send photos of documents and damage</p>
                   <a
@@ -334,7 +330,6 @@ export default function ClaimsPage() {
 
               <Card>
                 <CardContent className="p-6 text-center">
-                  <FileText className="h-8 w-8 text-secondary mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Email Us</h3>
                   <p className="text-sm text-muted-foreground mb-2">Send your claim documents</p>
                   <a href={`mailto:${CLAIMS_EMAIL}`} className="break-all text-primary underline hover:text-primary/80 text-sm">
@@ -345,7 +340,6 @@ export default function ClaimsPage() {
             </div>
 
             <p className="mt-8 flex flex-wrap items-center justify-center gap-2 text-center text-sm text-muted-foreground">
-              <Clock className="h-4 w-4 text-secondary" />
               {BUSINESS_HOURS.join(" · ")}
             </p>
           </div>
