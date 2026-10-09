@@ -11,17 +11,6 @@ const nextConfig = {
         destination: "/advisory",
         permanent: true,
       },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "goldeneagleltd.org",
-          },
-        ],
-        destination: "https://www.goldeneagleltd.org/:path*",
-        permanent: true,
-      },
     ]
   },
 }

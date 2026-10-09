@@ -131,7 +131,7 @@ export async function submitContactForm(rawData: unknown): Promise<FormResult> {
           <p><strong>Message:</strong></p>
           <p style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">${escapeHtml(data.message)}</p>
           <hr />
-          <p style="color: #666; font-size: 12px;">This email was sent from www.goldeneagleltd.org contact form</p>
+          <p style="color: #666; font-size: 12px;">This email was sent from goldeneagleltd.org contact form</p>
         </div>
       `,
     })
@@ -226,7 +226,7 @@ export async function submitQuoteForm(rawData: unknown): Promise<FormResult> {
           <p><strong>Additional Information:</strong></p>
           <p style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">${escapeHtml(data.additionalInfo || "No additional details provided")}</p>
           <hr />
-          <p style="color: #666; font-size: 12px;">This email was sent from www.goldeneagleltd.org quote form</p>
+          <p style="color: #666; font-size: 12px;">This email was sent from goldeneagleltd.org quote form</p>
         </div>
       `,
     })
@@ -318,7 +318,7 @@ export async function submitClaimForm(rawData: unknown): Promise<FormResult> {
           <p><strong>Description:</strong></p>
           <p style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">${escapeHtml(data.description)}</p>
           <hr />
-          <p style="color: #666; font-size: 12px;">This email was sent from www.goldeneagleltd.org claims form</p>
+          <p style="color: #666; font-size: 12px;">This email was sent from goldeneagleltd.org claims form</p>
         </div>
       `,
     })

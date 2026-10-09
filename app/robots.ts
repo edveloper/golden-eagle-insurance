@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://www.goldeneagleltd.org/sitemap.xml',
+    sitemap: 'https://goldeneagleltd.org/sitemap.xml',
   }
 }

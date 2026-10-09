@@ -1,7 +1,7 @@
 import { INSTAGRAM_URL } from "@/lib/site"
 import type { Metadata } from "next"
 
-export const SITE_URL = "https://www.goldeneagleltd.org"
+export const SITE_URL = "https://goldeneagleltd.org"
 export const ORGANIZATION_NAME = "Golden Eagle Insurance Agency"
 export const SHARE_IMAGE = "/images/share-link.png" // from docs/brand/kit/share-link-1200x630.png
 
