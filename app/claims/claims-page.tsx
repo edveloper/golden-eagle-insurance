@@ -85,7 +85,7 @@ export default function ClaimsPage() {
         <PageHero
           size="text"
           eyebrow="Claims Support"
-          title="File a Claim"
+          title="Making an Insurance Claim in Kenya"
           subtitle="Tell us what happened. We'll help you prepare the claim and follow it up with your insurer until it's settled."
         />
 
@@ -120,6 +120,119 @@ export default function ClaimsPage() {
                   <p className="mt-1 text-sm text-muted-foreground">{step.d}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What each claim needs. Insurer-neutral; each insurer has its own form. */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary mb-4 text-balance">
+                Documents Each Claim Needs
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+                Every insurer has its own claim form, but the supporting documents are much the same. Send what
+                you have and we&apos;ll tell you what&apos;s missing.
+              </p>
+            </div>
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <Card key="Medical">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg text-primary">Medical</h3>
+                    <p className="text-sm text-muted-foreground mb-3">Treatment or hospitalisation</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      <li>The insurer&apos;s claim form, signed by you and the doctor</li>
+                      <li>Itemised invoices and receipts</li>
+                      <li>The doctor&apos;s report or discharge summary</li>
+                      <li>Prescriptions, for medicine claims</li>
+                      <li>Pre-authorisation, if the insurer asked for one before admission</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card key="Life">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg text-primary">Life</h3>
+                    <p className="text-sm text-muted-foreground mb-3">Death benefit</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      <li>The claim form, completed by the beneficiary</li>
+                      <li>A certified copy of the death certificate</li>
+                      <li>The burial permit</li>
+                      <li>ID copies for the deceased and each beneficiary</li>
+                      <li>The policy document, if you have it</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card key="Property">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg text-primary">Property</h3>
+                    <p className="text-sm text-muted-foreground mb-3">Fire, theft or burglary</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      <li>The claim form</li>
+                      <li>A police abstract, for theft or burglary</li>
+                      <li>A fire brigade report, for fire</li>
+                      <li>Photos of the damage</li>
+                      <li>Receipts or other proof of what was lost, and repair or replacement quotes</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card key="Business Liability">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg text-primary">Business Liability</h3>
+                    <p className="text-sm text-muted-foreground mb-3">A claim made against your business</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      <li>The claim form</li>
+                      <li>The letter or demand from the person claiming</li>
+                      <li>Your own account of what happened, with dates</li>
+                      <li>Any correspondence since</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card key="Professional Indemnity">
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg text-primary">Professional Indemnity</h3>
+                    <p className="text-sm text-muted-foreground mb-3">A client says your work cost them</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                      <li>The letter of claim or demand from your client</li>
+                      <li>The engagement letter or contract for the work</li>
+                      <li>A timeline of the work and what went wrong</li>
+                      <li>Don&apos;t admit liability or offer to settle before your insurer has been told. It can put the cover at risk.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Why claims fail, and how long they take */}
+        <section className="py-16 md:py-24 bg-muted">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 md:grid-cols-2">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4">Why Claims Get Turned Down</h2>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>The premium wasn&apos;t paid, so the policy had lapsed on the day of the incident.</li>
+                  <li>The insurer heard about it too late. Most policies set a time limit for reporting, so tell us straight away.</li>
+                  <li>The loss falls under an exclusion in the policy wording.</li>
+                  <li>Something material wasn&apos;t disclosed when the cover was taken out.</li>
+                  <li>Documents are missing or don&apos;t match, which stalls a claim more often than it sinks it.</li>
+                </ul>
+                <p className="mt-4 text-muted-foreground">
+                  The first two are the most common, and both can be avoided. If you&apos;re unsure whether something is
+                  covered, ask us before you claim.
+                </p>
+              </div>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-4">How Long a Claim Takes</h2>
+                <p className="text-muted-foreground">
+                  It depends on the insurer and the type of claim. A medical reimbursement with every receipt attached
+                  moves quickly. A property or liability claim that needs an assessor&apos;s visit takes longer.
+                </p>
+                <p className="mt-4 text-muted-foreground">
+                  Missing documents cause more delay than anything else, which is why we check yours before anything
+                  goes to the insurer, and keep chasing until it&apos;s settled.
+                </p>
+              </div>
             </div>
           </div>
         </section>
