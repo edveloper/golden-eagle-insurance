@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { track } from "@/lib/track"
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -40,6 +41,7 @@ export default function ClaimsPage() {
 
       if (result.success) {
         setReference(result.submissionId?.slice(0, 8).toUpperCase() ?? "")
+        track("claim_form_sent")
         setSubmitStatus("success")
         setFormData({
           policyNumber: "",

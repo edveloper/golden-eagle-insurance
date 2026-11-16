@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Script from "next/script"
 import { CONSENT_EVENT, CONSENT_KEY } from "@/components/cookie-consent"
+import { InteractionTracking } from "@/components/interaction-tracking"
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
@@ -54,6 +55,7 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
+      <InteractionTracking />
     </>
   )
 }
