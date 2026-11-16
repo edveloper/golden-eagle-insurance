@@ -26,6 +26,8 @@ type Product = {
   image: string
   quoteType: string
   quoteLabel: string
+  /** A full guide page for this cover, where one exists. */
+  guide?: string
 }
 
 // Section ids are linked from the homepage, footer and cover quiz; keep them stable.
@@ -46,6 +48,7 @@ const products: Product[] = [
     image: "/images/cover-professional-indemnity.jpg",
     quoteType: "professional-indemnity",
     quoteLabel: "Get a Professional Indemnity Quote",
+    guide: "/professional-indemnity-insurance-kenya",
   },
   {
     id: "health",
@@ -75,6 +78,7 @@ const products: Product[] = [
     image: "/images/cover-cyber.jpg",
     quoteType: "cyber",
     quoteLabel: "Get a Cyber Insurance Quote",
+    guide: "/cyber-insurance-kenya",
   },
   {
     id: "life",
@@ -209,12 +213,19 @@ export default function ProductsPage() {
                       ))}
                     </div>
 
-                    <Button className="self-start bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
-                      <Link href={`/quote?type=${p.quoteType}`}>
-                        {p.quoteLabel}
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <Button className="bg-secondary font-semibold text-primary hover:bg-secondary/90" asChild>
+                        <Link href={`/quote?type=${p.quoteType}`}>
+                          {p.quoteLabel}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      {p.guide ? (
+                        <Link href={p.guide} className="text-sm font-semibold text-primary underline underline-offset-4 hover:text-primary/80">
+                          Read the Full Guide
+                        </Link>
+                      ) : null}
+                    </div>
                   </div>
                   <div
                     className={cn(
